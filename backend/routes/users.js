@@ -17,6 +17,7 @@ router.post("/register", registerUser)
 router.post("/login", loginUser)
 router.post("/logout", logoutUser)
 
+
 // Protected routes
 router.get("/me", authenticate, getCurrentUser)
 router.put("/update", authenticate, updateUser)
