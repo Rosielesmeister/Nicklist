@@ -7,7 +7,7 @@ dotenv.config()
 
 const createProduct = async (req, res) => {
     try {
-        const { name, description, price, category, region, images, contactEmail } = req.body;
+        const { name, description, price, category, region, state, city, images, contactEmail } = req.body;
 
         if (!name || !description || !price || !category || !region || !contactEmail) {
             return res.status(400).json({ message: "All required fields must be provided." });
@@ -22,6 +22,8 @@ const createProduct = async (req, res) => {
             name,
             description,
             price,
+            state,
+            city,
             category,
             region,
             images,
