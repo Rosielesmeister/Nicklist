@@ -5,6 +5,7 @@ import mongoose from 'mongoose'
 import cors from 'cors'
 import userRoutes from './routes/users.js'
 import jwt from 'jsonwebtoken'
+import productRoutes from './routes/products.js'
 
 if (!process.env.JWT_SECRET) {
   console.error("Error: JWT_SECRET is not defined in environment variables.")
@@ -15,7 +16,7 @@ const app = express()
 const PORT = process.env.PORT || 5000
 
 const JWT_SECRET = process.env.JWT_SECRET
-console.log('JWT_SECRET:', process.env.JWT_SECRET)
+// console.log('JWT_SECRET:', process.env.JWT_SECRET)
 const JWT_EXPIRES_IN = '24h'
 
 const generateToken = (userId) => {
@@ -30,6 +31,7 @@ app.use(cors())
 app.use(express.json())
 
 app.use('/', userRoutes)
+app.use('/', productRoutes)
 
 mongoose.connect(process.env.MONGODB_URI)
   .then(() => console.log('Connected to MongoDB'))

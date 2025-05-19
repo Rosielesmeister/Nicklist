@@ -5,12 +5,12 @@ import User from "../models/User.js"
 import { generateToken } from "../server.js";
 const JWT_SECRET = process.env.JWT_SECRET
 
-console.log("JWT_SECRET:", JWT_SECRET)
-console.log("JWT_SECRET in middleware:", JWT_SECRET)
+// console.log("JWT_SECRET:", JWT_SECRET)
+// console.log("JWT_SECRET in middleware:", JWT_SECRET)
 // Middleware to authenticate user using JWT
 const authenticate = async (req, res, next) => {
   try {
-    const token = req.headers.authorization?.split(" ")[1]// Extract token from Authorization header
+    const token = req.headers.authorization?.split(" ")[1]
 
     if (!token) {
       return res.status(401).json({ message: "Authentication required" })
@@ -26,7 +26,7 @@ const authenticate = async (req, res, next) => {
       return res.status(401).json({ message: "User not found/(or authentication failed" })
     }
 
-    req.user = { userId: user._id, isAdmin: user.isAdmin }
+    req.user = { userId: user._id, isAdmin: user.isAdmin } 
     next()
   } catch (error) {
     console.error("Authentication error:", error.message)

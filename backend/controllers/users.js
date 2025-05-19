@@ -7,7 +7,7 @@ dotenv.config()
 const JWT_SECRET = process.env.JWT_SECRET
 const JWT_EXPIRES_IN = '24h' // Token expiration time
 
-// Generate JWT token with error handling
+// JWT token with error handling
 const generateToken = (userId) => {
   if (!JWT_SECRET) {
     console.error('JWT_SECRET is not defined in environment variables')
@@ -40,14 +40,13 @@ const generateToken = (userId) => {
         // Generate JWT token
         const token = generateToken(user._id)
 
-        // Send response with token
         res.status(201).json({
           _id: user._id,
           firstName: user.firstName,
           lastName: user.lastName,
           email: user.email,
           isAdmin: user.isAdmin,
-          token, // Include token in response
+          token, 
         });
       } catch (tokenError) {
         console.error("Token generation error:", tokenError.message)
@@ -161,7 +160,6 @@ const generateToken = (userId) => {
   try {
     const userId = req.user.userId
 
-    // Find and delete user
     const user = await User.findByIdAndDelete(userId)
 
     if (!user) {

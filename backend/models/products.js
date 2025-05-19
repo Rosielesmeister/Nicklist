@@ -1,5 +1,6 @@
-// backend/models/products.js
-const mongoose = require("mongoose");
+import mongoose from "mongoose";
+
+
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -39,12 +40,23 @@ const productSchema = new mongoose.Schema(
         "Books",
         "Services",
         "Misc",
-      ], // example categories
+      ],
     },
+    state: {
+      type: String,
+      required: [true, "State is required"],
+      trim: true,
+    },
+    city: {
+      type: String,
+      required: [true, "City is required"],
+      trim: true,
+    },
+ 
     region: {
       type: String,
       required: [true, "Region is required"],
-      enum: ["North", "South", "East", "West", "Central"], // example regions setup
+      enum: ["North", "South", "East", "West", "Central"], 
     },
     images: [
       {
@@ -57,20 +69,27 @@ const productSchema = new mongoose.Schema(
       required: [true, "Contact email is required"],
       lowercase: true,
       trim: true,
+      validate: {
+        validator: function (v) {
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); 
+        },
+        message: "Please enter a valid email address",
+      },
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", // Refers to the User who posted the listing
+      ref: "User", 
       required: true,
     },
     isActive: {
       type: Boolean,
-      default: true, // To allow soft delete or deactivate listing
+      default: true, 
     },
   },
   {
-    timestamps: true, // createdAt and updatedAt fields auto-managed by Mongoose
+    timestamps: true,
   }
 );
 
-module.exports = mongoose.model("Listing", listingSchema);
+const Product = mongoose.model("Product", productSchema);
+export default Product;
