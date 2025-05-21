@@ -20,7 +20,8 @@ router.post("/logout", logoutUser)
 
 // Protected routes
 router.get("/me", authenticate, getCurrentUser)
-router.put("/update", authenticate, updateUser)
-router.delete("/", authenticate, deleteUser)
+router.put("/update/:id", authenticate, updateUser)
+router.delete("/user/:id", authenticate, deleteUser) 
+
 
 export default router
