@@ -1,7 +1,7 @@
 //Auth is the parent component for the login/register components
 import React from "react"
-import Login from "./login/Login"
-import Register from "./registration/Register"
+import Login from "./Login"
+import Register from "./Register"
 
 // import bootstrap componets
 
