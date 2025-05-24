@@ -1,0 +1,2561 @@
+[
+  {
+    "name": "Apple MacBook Pro 16-inch 2024",
+    "description": "Latest model MacBook Pro with M3 Pro chip, 32GB RAM, 1TB SSD, 16-inch Liquid Retina XDR display. Includes charger and original box. Like new condition with AppleCare+ until 2026.",
+    "price": 2499.99,
+    "category": "Electronics",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/macbook-pro-2024.jpg",
+        "public_id": "listings/electronics/macbook-pro-01"
+      }
+    ],
+    "contactEmail": "techseller@example.com",
+    "user": "60d5ec9af682f926b8a90f3d",
+    "isActive": true
+  },
+  {
+    "name": "Samsung 65\" OLED 4K Smart TV",
+    "description": "Samsung 65-inch OLED TV with 4K resolution, HDR10+, built-in voice assistants, and Samsung Smart Hub. Perfect picture quality with deep blacks and vibrant colors. Only 6 months old.",
+    "price": 1799.95,
+    "category": "Electronics",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/samsung-oled-tv.jpg",
+        "public_id": "listings/electronics/samsung-tv-02"
+      }
+    ],
+    "contactEmail": "hometheater@example.com",
+    "user": "60d5ec9af682f926b8a90f41",
+    "isActive": true
+  },
+  {
+    "name": "Sony WH-1000XM5 Noise Cancelling Headphones",
+    "description": "Sony's flagship noise cancelling wireless headphones with industry-leading ANC, 30-hour battery life, and Hi-Res audio support. Includes carrying case and cables. Used for 3 months, excellent condition.",
+    "price": 279.99,
+    "category": "Electronics",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/sony-headphones.jpg",
+        "public_id": "listings/electronics/sony-headphones-03"
+      }
+    ],
+    "contactEmail": "audiophile@example.com",
+    "user": "60d5ec9af682f926b8a90f45",
+    "isActive": true
+  },
+  {
+    "name": "PlayStation 5 Pro Console Bundle",
+    "description": "PS5 Pro console with 2TB SSD storage, DualSense controller, charging dock, and 5 games (Spider-Man 2, God of War Ragnarök, Horizon Forbidden West, Gran Turismo 7, and Ratchet & Clank).",
+    "price": 749.00,
+    "category": "Electronics",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/ps5-pro-bundle.jpg",
+        "public_id": "listings/electronics/ps5-bundle-04"
+      }
+    ],
+    "contactEmail": "gamersden@example.com",
+    "user": "60d5ec9af682f926b8a90f49",
+    "isActive": true
+  },
+  {
+    "name": "Canon EOS R6 Mark II Camera Kit",
+    "description": "Canon EOS R6 Mark II mirrorless camera with 24-105mm lens, extra battery, 128GB memory card, and camera bag. 24.2MP full-frame CMOS sensor, 4K video, and in-body stabilization.",
+    "price": 2599.00,
+    "category": "Electronics",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/canon-eos-r6.jpg",
+        "public_id": "listings/electronics/canon-camera-05"
+      }
+    ],
+    "contactEmail": "photographer@example.com",
+    "user": "60d5ec9af682f926b8a90f4d",
+    "isActive": true
+  },
+  {
+    "name": "iPad Air 6th Generation (2024)",
+    "description": "Latest iPad Air with M2 chip, 11-inch Liquid Retina display, 256GB storage, Wi-Fi + Cellular. Space gray color with Apple Magic Keyboard and Apple Pencil 2nd generation included.",
+    "price": 899.00,
+    "category": "Electronics",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/ipad-air-2024.jpg",
+        "public_id": "listings/electronics/ipad-air-06"
+      }
+    ],
+    "contactEmail": "applefan@example.com",
+    "user": "60d5ec9af682f926b8a90f51",
+    "isActive": true
+  },
+  {
+    "name": "DJI Mini 4 Pro Drone Fly More Combo",
+    "description": "DJI Mini 4 Pro drone with 4K/60fps camera, 3-axis gimbal, obstacle avoidance, 10km video transmission. Includes 3 batteries, carrying case, and ND filters. Under 250g, no registration needed in most regions.",
+    "price": 799.00,
+    "category": "Electronics",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/dji-mini-4-pro.jpg",
+        "public_id": "listings/electronics/dji-drone-07"
+      }
+    ],
+    "contactEmail": "dronepilot@example.com",
+    "user": "60d5ec9af682f926b8a90f55",
+    "isActive": true
+  },
+  {
+    "name": "Bose Smart Soundbar 900 with Dolby Atmos",
+    "description": "Bose Smart Soundbar 900 with Dolby Atmos, Voice Assistant support, SpacialAudio technology, HDMI eARC, and Bluetooth/WiFi connectivity. Wall mounting kit included.",
+    "price": 599.95,
+    "category": "Electronics",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/bose-soundbar.jpg",
+        "public_id": "listings/electronics/bose-soundbar-08"
+      }
+    ],
+    "contactEmail": "audiolover@example.com",
+    "user": "60d5ec9af682f926b8a90f59",
+    "isActive": true
+  },
+  {
+    "name": "ASUS ROG Gaming Laptop",
+    "description": "ASUS ROG Zephyrus G14 gaming laptop with AMD Ryzen 9 processor, NVIDIA RTX 4070 graphics, 32GB RAM, 1TB SSD, 14-inch QHD 165Hz display. ROG Nebula display with Mini-LED technology.",
+    "price": 1899.00,
+    "category": "Electronics",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/asus-rog-laptop.jpg",
+        "public_id": "listings/electronics/asus-laptop-09"
+      }
+    ],
+    "contactEmail": "pcgamer@example.com",
+    "user": "60d5ec9af682f926b8a90f5d",
+    "isActive": true
+  },
+  {
+    "name": "Apple Watch Ultra 2",
+    "description": "Apple Watch Ultra 2 with titanium case, sapphire crystal display, cellular connectivity, and advanced health monitoring features. Includes extra bands (Sport and Trail). Water resistant to 100m.",
+    "price": 749.00,
+    "category": "Electronics",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/apple-watch-ultra.jpg",
+        "public_id": "listings/electronics/apple-watch-10"
+      }
+    ],
+    "contactEmail": "wearables@example.com",
+    "user": "60d5ec9af682f926b8a90f61",
+    "isActive": true
+  },
+  {
+    "name": "LG Smart Refrigerator with InstaView",
+    "description": "LG InstaView Door-in-Door refrigerator with 26 cu. ft. capacity, Wi-Fi connectivity, and smart features. Energy Star certified with linear cooling technology. Counter-depth design with stainless steel finish.",
+    "price": 2199.99,
+    "category": "Home Appliances",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/lg-refrigerator.jpg",
+        "public_id": "listings/home-appliances/lg-fridge-01"
+      }
+    ],
+    "contactEmail": "homeupgrade@example.com",
+    "user": "60d5ec9af682f926b8a90f65",
+    "isActive": true
+  },
+  {
+    "name": "Dyson V15 Detect Absolute Cordless Vacuum",
+    "description": "Dyson V15 Detect Absolute with laser dust detection, LCD screen, HEPA filtration, and up to 60 minutes of runtime. Includes 9 attachments and wall-mounted charging dock. 1 year old, excellent condition.",
+    "price": 499.95,
+    "category": "Home Appliances",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/dyson-v15.jpg",
+        "public_id": "listings/home-appliances/dyson-vacuum-02"
+      }
+    ],
+    "contactEmail": "cleanhouse@example.com",
+    "user": "60d5ec9af682f926b8a90f69",
+    "isActive": true
+  },
+  {
+    "name": "Wolf 48\" Dual Fuel Range",
+    "description": "Wolf 48-inch dual fuel range with 6 burners, griddle, dual convection ovens, and infrared broiler. Professional-grade stainless steel construction. Purchased 2 years ago during kitchen remodel.",
+    "price": 9999.00,
+    "category": "Home Appliances",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/wolf-range.jpg",
+        "public_id": "listings/home-appliances/wolf-range-03"
+      }
+    ],
+    "contactEmail": "chefkitchen@example.com",
+    "user": "60d5ec9af682f926b8a90f6d",
+    "isActive": true
+  },
+  {
+    "name": "Samsung Front Load Washer & Dryer Set",
+    "description": "Samsung front-loading washer (5.0 cu. ft.) and dryer (7.5 cu. ft.) with steam technology, Wi-Fi connectivity, and AI-powered wash cycles. Energy Star certified. Brushed platinum finish.",
+    "price": 1599.00,
+    "category": "Home Appliances",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/samsung-washer-dryer.jpg",
+        "public_id": "listings/home-appliances/samsung-laundry-04"
+      }
+    ],
+    "contactEmail": "laundrymaster@example.com",
+    "user": "60d5ec9af682f926b8a90f71",
+    "isActive": true
+  },
+  {
+    "name": "Vitamix A3500 Ascent Series Blender",
+    "description": "Vitamix A3500 Ascent Series blender with touchscreen control, 5 program settings, variable speed control, and wireless connectivity. Includes recipe book and tamper. Low usage, like new condition.",
+    "price": 449.95,
+    "category": "Home Appliances",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/vitamix-blender.jpg",
+        "public_id": "listings/home-appliances/vitamix-blender-05"
+      }
+    ],
+    "contactEmail": "smoothiemaker@example.com",
+    "user": "60d5ec9af682f926b8a90f75",
+    "isActive": true
+  },
+  {
+    "name": "Miele Dishwasher with AutoDos",
+    "description": "Miele G7000 series dishwasher with AutoDos automatic detergent dispensing, WiFi connectivity, QuickIntenseWash program, and 3D MultiFlex tray. Panel-ready design for custom cabinetry integration.",
+    "price": 1899.00,
+    "category": "Home Appliances",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/miele-dishwasher.jpg",
+        "public_id": "listings/home-appliances/miele-dishwasher-06"
+      }
+    ],
+    "contactEmail": "kitchenupgrade@example.com",
+    "user": "60d5ec9af682f926b8a90f79",
+    "isActive": true
+  },
+  {
+    "name": "Breville Barista Touch Espresso Machine",
+    "description": "Breville Barista Touch with color touchscreen, automatic milk texturing, integrated grinder, and digital temperature control. Makes barista-quality espresso at home. Includes milk jug and cleaning accessories.",
+    "price": 899.95,
+    "category": "Home Appliances",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/breville-espresso.jpg",
+        "public_id": "listings/home-appliances/breville-coffee-07"
+      }
+    ],
+    "contactEmail": "coffeelover@example.com",
+    "user": "60d5ec9af682f926b8a90f7d",
+    "isActive": true
+  },
+  {
+    "name": "Bosch 800 Series Gas Cooktop",
+    "description": "Bosch 800 Series 36-inch gas cooktop with 5 sealed burners, including 18,000 BTU power burner. Features continuous cast iron grates and electronic re-ignition. Stainless steel finish.",
+    "price": 1099.00,
+    "category": "Home Appliances",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/bosch-cooktop.jpg",
+        "public_id": "listings/home-appliances/bosch-cooktop-08"
+      }
+    ],
+    "contactEmail": "kitchenreno@example.com",
+    "user": "60d5ec9af682f926b8a90f81",
+    "isActive": true
+  },
+  {
+    "name": "LG OLED TV Integrated with Smart Home",
+    "description": "LG OLED 77-inch TV with webOS smart features, integrated Alexa, Google Assistant, and SmartThinQ connectivity. Smart screen with Apple AirPlay 2 and HomeKit support. Cinematic picture quality.",
+    "price": 2499.99,
+    "category": "Home Appliances",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/lg-oled-tv.jpg",
+        "public_id": "listings/home-appliances/lg-tv-09"
+      }
+    ],
+    "contactEmail": "smarthome@example.com",
+    "user": "60d5ec9af682f926b8a90f85",
+    "isActive": true
+  },
+  {
+    "name": "Nest Learning Thermostat 4th Generation",
+    "description": "Nest Learning Thermostat 4th generation with smart scheduling, energy-saving features, and remote control via app. Compatible with multiple HVAC systems. Includes installation kit and instructions.",
+    "price": 199.00,
+    "category": "Home Appliances",
+    "region": "Central",
+    "images": [
+    {
+      "url": "https://example.com/images/nest-thermostat.jpg",
+      "public_id": "listings/home-appliances/nest-thermostat-10"
+    }
+  ],
+  "contactEmail": "energysaver@example.com",
+  "user": "60d5ec9af682f926b8a90f89",
+  "isActive": true
+},
+{
+  "name": "2023 Tesla Model Y Long Range",
+  "price": 45990.00,
+    "category": "cars/trucks",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/tesla-model-y.jpg",
+        "public_id": "listings/cars-trucks/tesla-model-y-01"
+      }
+    ],
+    "contactEmail": "electriccarseller@example.com",
+    "user": "60d5ec9af682f926b8a90f8d",
+    "isActive": true
+  },
+  {
+    "name": "2022 Ford F-150 Lightning Platinum",
+    "description": "2022 Ford F-150 Lightning Platinum electric truck with extended range battery (320+ mile range), 563 HP, towing capacity of 10,000 lbs. Includes Pro Power Onboard generator system. 18,200 miles.",
+    "price": 68500.00,
+    "category": "cars/trucks",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/ford-lightning.jpg",
+        "public_id": "listings/cars-trucks/ford-lightning-02"
+      }
+    ],
+    "contactEmail": "truckguy@example.com",
+    "user": "60d5ec9af682f926b8a90f91",
+    "isActive": true
+  },
+  {
+    "name": "2024 BMW 540i xDrive",
+    "description": "2024 BMW 540i xDrive sedan with 3.0L turbocharged inline-6 engine, 48V mild hybrid system, all-wheel drive, and M Sport package. Mineral White Metallic with Cognac leather interior. Only 5,300 miles.",
+    "price": 65995.00,
+    "category": "cars/trucks",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/bmw-540i.jpg",
+        "public_id": "listings/cars-trucks/bmw-540i-03"
+      }
+    ],
+    "contactEmail": "luxurycarseller@example.com",
+    "user": "60d5ec9af682f926b8a90f95",
+    "isActive": true
+  },
+  {
+    "name": "2021 Jeep Wrangler Rubicon 4xe",
+    "description": "2021 Jeep Wrangler Rubicon 4xe plug-in hybrid with 25 miles of electric range, 375 HP, and 470 lb-ft of torque. Firecracker Red with black leather interior. Upgraded wheels and lift kit. 22,500 miles.",
+    "price": 47800.00,
+    "category": "cars/trucks",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/jeep-wrangler-4xe.jpg",
+        "public_id": "listings/cars-trucks/jeep-wrangler-04"
+      }
+    ],
+    "contactEmail": "offroader@example.com",
+    "user": "60d5ec9af682f926b8a90f99",
+    "isActive": true
+  },
+  {
+    "name": "2019 Toyota 4Runner TRD Pro",
+    "description": "2019 Toyota 4Runner TRD Pro with 4.0L V6 engine, 4WD, Fox shocks, TRD skid plate, and roof rack. Voodoo Blue color. 45,600 miles, regular maintenance, clean history report. Perfect for off-road adventures.",
+    "price": 42500.00,
+    "category": "cars/trucks",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/toyota-4runner.jpg",
+        "public_id": "listings/cars-trucks/toyota-4runner-05"
+      }
+    ],
+    "contactEmail": "toyotalover@example.com",
+    "user": "60d5ec9af682f926b8a90f9d",
+    "isActive": true
+  },
+  {
+    "name": "2020 Porsche 911 Carrera S",
+    "description": "2020 Porsche 911 Carrera S (992) with 3.0L twin-turbo flat-six engine, 8-speed PDK transmission, rear-wheel drive, and Sport Chrono package. GT Silver Metallic with black leather interior. 12,800 miles.",
+    "price": 117900.00,
+    "category": "cars/trucks",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/porsche-911.jpg",
+        "public_id": "listings/cars-trucks/porsche-911-06"
+      }
+    ],
+    "contactEmail": "sportscarfan@example.com",
+    "user": "60d5ec9af682f926b8a90fa1",
+    "isActive": true
+  },
+  {
+    "name": "2022 Rivian R1T Adventure Package",
+    "description": "2022 Rivian R1T Adventure Package with quad-motor AWD, 835 HP, 314+ mile range, air suspension, and gear tunnel. Limestone exterior with Forest Edge interior. 16,400 miles with warranty until 2030.",
+    "price": 76000.00,
+    "category": "cars/trucks",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/rivian-r1t.jpg",
+        "public_id": "listings/cars-trucks/rivian-r1t-07"
+      }
+    ],
+    "contactEmail": "evowner@example.com",
+    "user": "60d5ec9af682f926b8a90fa5",
+    "isActive": true
+  },
+  {
+    "name": "1967 Ford Mustang Fastback Restomod",
+    "description": "1967 Ford Mustang Fastback restomod with modern 5.0L Coyote V8 engine, 6-speed manual transmission, upgraded suspension, modern disc brakes, and custom interior. Highland Green with black leather interior.",
+    "price": 89500.00,
+    "category": "cars/trucks",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/mustang-restomod.jpg",
+        "public_id": "listings/cars-trucks/mustang-restomod-08"
+      }
+    ],
+    "contactEmail": "classiccardealer@example.com",
+    "user": "60d5ec9af682f926b8a90fa9",
+    "isActive": true
+  },
+  {
+    "name": "2023 GMC Sierra Denali Ultimate",
+    "description": "2023 GMC Sierra Denali Ultimate with 6.2L V8 engine, 10-speed automatic transmission, 4WD, Super Cruise hands-free driving, and CarbonPro carbon fiber composite bed. Onyx Black with Alpine Umber interior.",
+    "price": 76900.00,
+    "category": "cars/trucks",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/gmc-sierra.jpg",
+        "public_id": "listings/cars-trucks/gmc-sierra-09"
+      }
+    ],
+    "contactEmail": "truckdealer@example.com",
+    "user": "60d5ec9af682f926b8a90fad",
+    "isActive": true
+  },
+  {
+    "name": "2024 Lucid Air Grand Touring",
+    "description": "2024 Lucid Air Grand Touring with dual-motor AWD, 819 HP, 516-mile range, and DreamDrive Pro driver assistance system. Cosmos Silver exterior with Tahoe interior. Only 7,200 miles and full factory warranty.",
+    "price": 104500.00,
+    "category": "cars/trucks",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/lucid-air.jpg",
+        "public_id": "listings/cars-trucks/lucid-air-10"
+      }
+    ],
+    "contactEmail": "luxuryevseller@example.com",
+    "user": "60d5ec9af682f926b8a90fb1",
+    "isActive": true
+  },
+  {
+    "name": "2023 Harley-Davidson Road Glide Special",
+    "description": "2023 Harley-Davidson Road Glide Special with Milwaukee-Eight 114 V-Twin engine, ABS, cruise control, and premium audio system. Vivid Black with blacked-out finishes. Only 3,800 miles and still under warranty.",
+    "price": 25999.00,
+    "category": "Motorcycles",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/harley-road-glide.jpg",
+        "public_id": "listings/motorcycles/harley-road-glide-01"
+      }
+    ],
+    "contactEmail": "harleyrider@example.com",
+    "user": "60d5ec9af682f926b8a90fb5",
+    "isActive": true
+  },
+  {
+    "name": "2022 Ducati Panigale V4 S",
+    "description": "2022 Ducati Panigale V4 S with 1103cc Desmosedici Stradale engine, Öhlins electronic suspension, Brembo Stylema brakes, and carbon fiber winglets. Full Akrapovič exhaust system and ECU remap. 2,100 miles.",
+    "price": 23500.00,
+    "category": "Motorcycles",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/ducati-panigale.jpg",
+        "public_id": "listings/motorcycles/ducati-panigale-02"
+      }
+    ],
+    "contactEmail": "sportbikerider@example.com",
+    "user": "60d5ec9af682f926b8a90fb9",
+    "isActive": true
+  },
+  {
+    "name": "2021 BMW R 1250 GS Adventure",
+    "description": "2021 BMW R 1250 GS Adventure with 1254cc boxer engine, ShiftCam variable valve timing, dynamic ESA suspension, and full luggage system. Includes crash bars, LED auxiliary lights, and GPS mount. 11,500 miles.",
+    "price": 18900.00,
+    "category": "Motorcycles",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/bmw-gs.jpg",
+        "public_id": "listings/motorcycles/bmw-gs-03"
+      }
+    ],
+    "contactEmail": "adventurerider@example.com",
+    "user": "60d5ec9af682f926b8a90fbd",
+    "isActive": true
+  },
+  {
+    "name": "2023 Indian Chief Dark Horse",
+    "description": "2023 Indian Chief Dark Horse with Thunder Stroke 116 V-Twin engine, 4-inch touchscreen display with Bluetooth, and ABS. Stealth Gray finish with drag handlebars and solo seat. 1,900 miles, showroom condition.",
+    "price": 16750.00,
+    "category": "Motorcycles",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/indian-chief.jpg",
+        "public_id": "listings/motorcycles/indian-chief-04"
+      }
+    ],
+    "contactEmail": "cruiserrider@example.com",
+    "user": "60d5ec9af682f926b8a90fc1",
+    "isActive": true
+  },
+  {
+    "name": "2022 Honda Africa Twin Adventure Sports",
+    "description": "2022 Honda Africa Twin Adventure Sports with 1084cc parallel-twin engine, DCT transmission, electronic suspension, and tubeless wire-spoke wheels. Includes hard panniers, top case, and engine guards. 7,800 miles.",
+    "price": 14900.00,
+    "category": "Motorcycles",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/honda-africa-twin.jpg",
+        "public_id": "listings/motorcycles/honda-africa-twin-05"
+      }
+    ],
+    "contactEmail": "dualsportrider@example.com",
+    "user": "60d5ec9af682f926b8a90fc5",
+    "isActive": true
+  },
+  {
+    "name": "2020 Triumph Bonneville T120 Black",
+    "description": "2020 Triumph Bonneville T120 Black with 1200cc parallel-twin engine, matte black finish, and classic styling. Includes Vance & Hines exhaust, bar-end mirrors, and tail tidy kit. 4,500 miles, garage kept.",
+    "price": 10500.00,
+    "category": "Motorcycles",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/triumph-bonneville.jpg",
+        "public_id": "listings/motorcycles/triumph-bonneville-06"
+      }
+    ],
+    "contactEmail": "classicrider@example.com",
+    "user": "60d5ec9af682f926b8a90fc9",
+    "isActive": true
+  },
+  {
+    "name": "2023 Zero SR/F Premium",
+    "description": "2023 Zero SR/F Premium electric motorcycle with 110 HP, 140 ft-lb of torque, 200-mile city range, and fast charging capability. Includes Power Tank for extended range and premium seat. 1,200 miles.",
+    "price": 19999.00,
+    "category": "Motorcycles",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/zero-srf.jpg",
+        "public_id": "listings/motorcycles/zero-srf-07"
+      }
+    ],
+    "contactEmail": "electricbiker@example.com",
+    "user": "60d5ec9af682f926b8a90fcd",
+    "isActive": true
+  },
+  {
+    "name": "2022 Kawasaki Ninja ZX-10R",
+    "description": "2022 Kawasaki Ninja ZX-10R with 998cc inline-four engine, integrated aerodynamic winglets, and electronic rider aids. KRT Edition graphics with aftermarket Yoshimura exhaust. 3,600 miles, never tracked.",
+    "price": 15800.00,
+    "category": "Motorcycles",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/kawasaki-ninja.jpg",
+        "public_id": "listings/motorcycles/kawasaki-ninja-08"
+      }
+    ],
+    "contactEmail": "kawarider@example.com",
+    "user": "60d5ec9af682f926b8a90fd1",
+    "isActive": true
+  },
+  {
+    "name": "2019 Yamaha MT-09",
+    "description": "2019 Yamaha MT-09 with 847cc CP3 triple engine, quick shifter, and fully adjustable suspension. Matte black with full LED lighting package. Includes Akrapovič exhaust, fender eliminator, and slide protection. 9,200 miles.",
+    "price": 8500.00,
+    "category": "Motorcycles",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/yamaha-mt09.jpg",
+        "public_id": "listings/motorcycles/yamaha-mt09-09"
+      }
+    ],
+    "contactEmail": "yamaharider@example.com",
+    "user": "60d5ec9af682f926b8a90fd5",
+    "isActive": true
+  },
+  {
+    "name": "2023 KTM 1290 Super Adventure S",
+    "description": "2023 KTM 1290 Super Adventure S with 1301cc V-twin engine, semi-active suspension, radar-assisted adaptive cruise control, and 7-inch TFT display. Only 2,400 miles with remaining factory warranty.",
+    "price": 17900.00,
+    "category": "Motorcycles",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/ktm-adventure.jpg",
+        "public_id": "listings/motorcycles/ktm-adventure-10"
+      }
+    ],
+    "contactEmail": "ktmrider@example.com",
+    "user": "60d5ec9af682f926b8a90fd9",
+    "isActive": true
+  },
+  {
+    "name": "Specialized S-Works Tarmac SL7",
+    "description": "Specialized S-Works Tarmac SL7 road bike with Shimano Dura-Ace Di2 electronic groupset, Roval CLX 50 carbon wheels, and S-Works Power saddle. Size 56cm. Purchased in 2023, less than 1,000 miles of use.",
+    "price": 9500.00,
+    "category": "Bicycles",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/specialized-tarmac.jpg",
+        "public_id": "listings/bicycles/specialized-tarmac-01"
+      }
+    ],
+    "contactEmail": "roadcyclist@example.com",
+    "user": "60d5ec9af682f926b8a90fdd",
+    "isActive": true
+  },
+  {
+    "name": "Santa Cruz Hightower Carbon CC X01",
+    "description": "2022 Santa Cruz Hightower Carbon CC mountain bike with SRAM X01 Eagle groupset, Fox 36 Factory fork, Fox Float Factory DPX2 shock, and Reserve 30 carbon wheels. Size large. Excellent condition.",
+    "price": 6800.00,
+    "category": "Bicycles",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/santa-cruz-hightower.jpg",
+        "public_id": "listings/bicycles/santa-cruz-hightower-02"
+      }
+    ],
+    "contactEmail": "mtbrider@example.com",
+    "user": "60d5ec9af682f926b8a90fe1",
+    "isActive": true
+  },
+  {
+    "name": "Trek Domane SL 7 eTap",
+    "description": "2023 Trek Domane SL 7 endurance road bike with SRAM Force eTap AXS wireless electronic groupset, Bontrager Aeolus Pro 37 carbon wheels, and IsoSpeed decouplers. Size 54cm. Only 800 miles, like new condition.",
+    "price": 5999.00,
+    "category": "Bicycles",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/trek-domane.jpg",
+        "public_id": "listings/bicycles/trek-domane-03"
+      }
+    ],
+    "contactEmail": "trekfan@example.com",
+    "user": "60d5ec9af682f926b8a90fe5",
+    "isActive": true
+  },
+  {
+    "name": "Cannondale SuperSix EVO Hi-MOD Disc",
+    "description": "2022 Cannondale SuperSix EVO Hi-MOD Disc road bike with Shimano Ultegra Di2 groupset, KNOT 45 carbon wheels, and Power2Max power meter. Size 58cm. Very light and fast. Minor cosmetic scratches.",
+    "price": 5200.00,
+    "category": "Bicycles",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/cannondale-supersix.jpg",
+        "public_id": "listings/bicycles/cannondale-supersix-04"
+      }
+    ],
+    "contactEmail": "roadracer@example.com",
+    "user": "60d5ec9af682f926b8a90fe9",
+    "isActive": true
+  },
+  {
+    "name": "Specialized Turbo Creo SL Expert",
+    "description": "2023 Specialized Turbo Creo SL Expert electric road bike with SL 1.1 motor, 320Wh internal battery, range extender, and SRAM Force eTap AXS groupset. Size 54cm. 1,200 miles with battery health at 98%.",
+    "price": 8200.00,
+    "category": "Bicycles",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/specialized-turbo-creo.jpg",
+        "public_id": "listings/bicycles/specialized-turbo-creo-05"
+      }
+    ],
+    "contactEmail": "ebikefan@example.com",
+    "user": "60d5ec9af682f926b8a90fed",
+    "isActive": true
+  },
+  {
+    "name": "Cervélo R5 Disc Red eTap AXS",
+    "description": "2022 Cervélo R5 Disc with SRAM Red eTap AXS wireless groupset, Quarq power meter, and Zipp 303 NSW carbon wheels. Size 56cm. Pro build with upgraded components. 3,500 miles, well maintained.",
+    "price": 7800.00,
+    "category": "Bicycles",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/cervelo-r5.jpg",
+        "public_id": "listings/bicycles/cervelo-r5-06"
+      }
+    ],
+    "contactEmail": "roadbikeenthusiast@example.com",
+    "user": "60d5ec9af682f926b8a90ff1",
+    "isActive": true
+  },
+  {
+    "name": "Yeti SB150 T-Series X01 Eagle",
+    "description": "2023 Yeti SB150 T-Series mountain bike with SRAM X01 Eagle groupset, Fox Factory suspension, and DT Swiss XMC 1501 carbon wheels. Size medium. Switch Infinity suspension system. Only ridden 20 times.",
+    "price": 7200.00,
+    "category": "Bicycles",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/yeti-sb150.jpg",
+        "public_id": "listings/bicycles/yeti-sb150-07"
+      }
+    ],
+    "contactEmail": "mtbfanatic@example.com",
+    "user": "60d5ec9af682f926b8a90ff5",
+    "isActive": true
+  },
+  {
+    "name": "Cannondale Topstone Carbon Lefty",
+    "description": "2022 Cannondale Topstone Carbon Lefty gravel bike with SRAM Force AXS 1x groupset, Lefty Oliver suspension fork, and HollowGram 22 carbon wheels. Size 54cm. Kingpin rear suspension system. Excellent gravel crusher.",
+    "price": 4500.00,
+    "category": "Bicycles",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/cannondale-topstone.jpg",
+        "public_id": "listings/bicycles/cannondale-topstone-08"
+      }
+    ],
+    "contactEmail": "gravelrider@example.com",
+    "user": "60d5ec9af682f926b8a90ff9",
+    "isActive": true
+  },
+  {
+    "name": "Pinarello Dogma F Disk",
+    "description": "2023 Pinarello Dogma F Disk road bike with Shimano Dura-Ace Di2 12-speed groupset, Most Talon Ultra integrated cockpit, and Fulcrum Racing Speed 55 carbon wheels. Size 53cm. Tour de France winning frame design.",
+    "price": 11200.00,
+    "category": "Bicycles",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/pinarello-dogma.jpg",
+        "public_id": "listings/bicycles/pinarello-dogma-09"
+      }
+    ],
+    "contactEmail": "italianbikelover@example.com",
+    "user": "60d5ec9af682f926b8a90ffd",
+    "isActive": true
+  },
+  {
+    "name": "Riese & Müller Superdelite Mountain Rohloff",
+    "description": "2023 Riese & Müller Superdelite Mountain Rohloff electric mountain bike with dual Bosch batteries (1,250Wh total), Bosch Performance Line CX motor, full suspension, and Rohloff E-14 electronic shifting. 1,800 miles.",
+    "price": 9800.00,
+    "category": "Bicycles",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/riese-muller-superdelite.jpg",
+        "public_id": "listings/bicycles/riese-muller-superdelite-10"
+      }
+    ],
+    "contactEmail": "emtbfan@example.com",
+    "user": "60d5ec9af682f926b8a91001",
+    "isActive": true
+  },
+  {
+    "name": "Luxury Waterfront Condo in Downtown",
+    "description": "Stunning 3-bedroom, 2.5-bathroom waterfront condo with panoramic harbor views. Features include gourmet kitchen with high-end appliances, floor-to-ceiling windows, hardwood floors, and private balcony. Building amenities include 24/7 concierge, fitness center, rooftop pool, and electric vehicle charging.",
+    "price": 1250000.00,
+    "category": "Real Estate",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/waterfront-condo.jpg",
+        "public_id": "listings/real-estate/waterfront-condo-01"
+      }
+    ],
+    "contactEmail": "luxuryrealestate@example.com",
+    "user": "60d5ec9af682f926b8a91005",
+    "isActive": true
+  },
+  {
+    "name": "Modern Farmhouse on 5 Acres",
+    "description": "Custom-built modern farmhouse on 5 acres of private land. 4 bedrooms, 3.5 bathrooms, open concept living space with vaulted ceilings, chef's kitchen with island, and wrap-around porch. Features include hardwood floors, stone fireplace, smart home technology, and 3-car garage with workshop.",
+    "price": 875000.00,
+    "category": "Real Estate",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/modern-farmhouse.jpg",
+        "public_id": "listings/real-estate/modern-farmhouse-02"
+      }
+    ],
+    "contactEmail": "countryliving@example.com",
+    "user": "60d5ec9af682f926b8a91009",
+    "isActive": true
+  },
+  {
+    "name": "Mid-Century Modern Home in Historic District",
+    "description": "Fully restored mid-century modern home in prestigious historic district. 3 bedrooms, 2 bathrooms, 2,400 sq ft. Original features include terrazzo floors, wood-paneled walls, vintage tile work, and period light fixtures. Updated kitchen and bathrooms. Private backyard with mature landscaping.",
+    "price": 650000.00,
+    "category": "Real Estate",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/mid-century-home.jpg",
+        "public_id": "listings/real-estate/mid-century-home-03"
+      }
+    ],
+    "contactEmail": "vintagehomes@example.com",
+    "user": "60d5ec9af682f926b8a9100d",
+    "isActive": true
+  },
+  {
+    "name": "Luxury Mountain Retreat with Views",
+    "description": "Spectacular mountain home with breathtaking panoramic views. 5 bedrooms, 4.5 bathrooms, 4,800 sq ft. Features include floor-to-ceiling windows, stone fireplace, gourmet kitchen, wine cellar, home theater, and outdoor living space with hot tub. Located near ski resort with direct trail access.",
+    "price": 2100000.00,
+    "category": "Real Estate",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/mountain-retreat.jpg",
+        "public_id": "listings/real-estate/mountain-retreat-04"
+      }
+    ],
+    "contactEmail": "mountainproperties@example.com",
+    "user": "60d5ec9af682f926b8a91011",
+    "isActive": true
+  },
+  {
+    "name": "Contemporary Urban Loft",
+    "description": "Industrial-chic loft in converted historic warehouse. 2 bedrooms, 2 bathrooms, 1,800 sq ft. Features include exposed brick walls, 14-foot ceilings, original timber beams, polished concrete floors, and gourmet kitchen with waterfall island. Rooftop garden and secure parking included.",
+    "price": 699000.00,
+    "category": "Real Estate",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/urban-loft.jpg",
+        "public_id": "listings/real-estate/urban-loft-05"
+      }
+    ],
+    "contactEmail": "cityliving@example.com",
+    "user": "60d5ec9af682f926b8a91015",
+    "isActive": true
+  },
+  {
+    "name": "Oceanfront Beach House",
+    "description": "Stunning oceanfront beach house with private beach access. 4 bedrooms, 3 bathrooms, 2,600 sq ft. Features include open floor plan, walls of glass, chef's kitchen, expansive deck, and outdoor shower. Recently renovated with high-end finishes and hurricane-resistant construction.",
+    "price": 1750000.00,
+    "category": "Real Estate",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/beach-house.jpg",
+        "public_id": "listings/real-estate/beach-house-06"
+      }
+    ],
+    "contactEmail": "beachproperties@example.com",
+    "user": "60d5ec9af682f926b8a91019",
+    "isActive": true
+  },
+  {
+    "name": "Smart Home in Gated Community",
+    "description": "Ultra-modern smart home in exclusive gated community. 5 bedrooms, 4 bathrooms, 3,800 sq ft. Features include integrated home automation system, solar panels with battery storage, energy-efficient design, home office, gym, and outdoor kitchen. Community amenities include pool, tennis courts, and walking trails.",
+    "price": 1495000.00,
+    "category": "Real Estate",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/smart-home.jpg",
+        "public_id": "listings/real-estate/smart-home-07"
+      }
+    ],
+    "contactEmail": "futurehomes@example.com",
+    "user": "60d5ec9af682f926b8a9101d",
+    "isActive": true
+  },
+  {
+    "name": "Historic Victorian Mansion",
+    "description": "Meticulously restored Victorian mansion from 1890. 6 bedrooms, 4.5 bathrooms, 5,200 sq ft. Features include ornate woodwork, stained glass windows, multiple fireplaces, updated kitchen with butler's pantry, third-floor ballroom, and carriage house. Listed on National Register of Historic Places.",
+    "price": 1200000.00,
+    "category": "Real Estate",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/victorian-mansion.jpg",
+        "public_id": "listings/real-estate/victorian-mansion-08"
+      }
+    ],
+    "contactEmail": "historicproperties@example.com",
+    "user": "60d5ec9af682f926b8a91021",
+    "isActive": true
+  },
+  {
+    "name": "Luxury Penthouse in Downtown",
+    "description": "Exclusive penthouse apartment with 360-degree city views. 3 bedrooms, 3.5 bathrooms, 3,200 sq ft. Features include private elevator access, 12-foot ceilings, floor-to-ceiling windows, gourmet kitchen, custom cabinetry, and 1,000 sq ft private terrace. Building amenities include concierge, spa, and private parking.",
+    "price": 2750000.00,
+    "category": "Real Estate",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/luxury-penthouse.jpg",
+        "public_id": "listings/real-estate/luxury-penthouse-09"
+      }
+    ],
+    "contactEmail": "penthouserealty@example.com",
+    "user": "60d5ec9af682f926b8a91025",
+    "isActive": true
+  },
+  {
+    "name": "Sustainable Eco-Friendly Home",
+    "description": "Award-winning eco-friendly home with net-zero energy consumption. 3 bedrooms, 2.5 bathrooms, 2,500 sq ft. Features include passive solar design, ground-source heat pump, rainwater harvesting system, green roof, and organic garden. Built with sustainable and non-toxic materials throughout.",
+    "price": 925000.00,
+    "category": "Real Estate",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/eco-friendly-home.jpg",
+        "public_id": "listings/real-estate/eco-friendly-home-10"
+      }
+    ],
+    "contactEmail": "greenhomes@example.com",
+    "user": "60d5ec9af682f926b8a91029",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Hermès Birkin 35 Bag",
+    "description": "Authentic Hermès Birkin 35 bag in Togo leather with gold hardware. Etoupe (taupe) color. Purchased in 2018 from Hermès boutique in Paris. Excellent condition with minimal corner wear. Includes original dust bag, box, and authenticity card.",
+    "price": 18500.00,
+    "category": "Fashion",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/hermes-birkin.jpg",
+        "public_id": "listings/fashion/hermes-birkin-01"
+      }
+    ],
+    "contactEmail": "luxurybags@example.com",
+    "user": "60d5ec9af682f926b8a9102d",
+    "isActive": true
+  },
+  {
+    "name": "Rolex Submariner Date Watch",
+    "description": "Rolex Submariner Date (Ref. 126610LN) with black ceramic bezel and stainless steel Oyster bracelet. Purchased in 2022, full set with box, papers, warranty card, and remaining manufacturer warranty. Excellent condition with minimal wear.",
+    "price": 14500.00,
+    "category": "Fashion",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/rolex-submariner.jpg",
+        "public_id": "listings/fashion/rolex-submariner-02"
+      }
+    ],
+    "contactEmail": "luxurywatches@example.com",
+    "user": "60d5ec9af682f926b8a91031",
+    "isActive": true
+  },
+  {
+    "name": "Christian Louboutin So Kate Pumps",
+    "description": "Christian Louboutin So Kate 120mm pumps in black patent leather, size 38 (US 8). Iconic red soles and pointed toe design. Worn only twice for special occasions. Includes original dust bags and box.",
+    "price": 550.00,
+    "category": "Fashion",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/louboutin-pumps.jpg",
+        "public_id": "listings/fashion/louboutin-pumps-03"
+      }
+    ],
+    "contactEmail": "designershoes@example.com",
+    "user": "60d5ec9af682f926b8a91035",
+    "isActive": true
+  },
+  {
+    "name": "Burberry Trench Coat",
+    "description": "Classic Burberry Kensington mid-length trench coat in honey color, size UK 10 (US 8). Made in England from water-resistant cotton gabardine with the iconic check lining. Excellent condition, dry cleaned and ready to wear.",
+    "price": 1200.00,
+    "category": "Fashion",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/burberry-trench.jpg",
+        "public_id": "listings/fashion/burberry-trench-04"
+      }
+    ],
+    "contactEmail": "designerclothing@example.com",
+    "user": "60d5ec9af682f926b8a91039",
+    "isActive": true
+  },
+  {
+    "name": "Gucci Marmont Leather Belt",
+    "description": "Gucci GG Marmont leather belt with Double G buckle in antique brass. Black leather, size 85cm (34\"). Purchased at Gucci flagship store in 2023. Worn only a few times, includes original dust bag and box.",
+    "price": 450.00,
+    "category": "Fashion",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/gucci-belt.jpg",
+        "public_id": "listings/fashion/gucci-belt-05"
+      }
+    ],
+    "contactEmail": "designeraccessories@example.com",
+    "user": "60d5ec9af682f926b8a9103d",
+    "isActive": true
+  },
+  {
+    "name": "Louis Vuitton Neverfull MM Tote",
+    "description": "Louis Vuitton Neverfull MM tote in Damier Ebene canvas with cherry interior. Purchased in 2021 at Louis Vuitton boutique. Excellent condition with minimal patina on the leather handles. Includes dust bag and original receipt.",
+    "price": 1300.00,
+    "category": "Fashion",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/lv-neverfull.jpg",
+        "public_id": "listings/fashion/lv-neverfull-06"
+      }
+    ],
+    "contactEmail": "luxurytotes@example.com",
+    "user": "60d5ec9af682f926b8a91041",
+    "isActive": true
+  },
+  {
+    "name": "Cartier Love Bracelet",
+    "description": "Authentic Cartier Love bracelet in 18k yellow gold, size 17. Purchased in 2020 from Cartier boutique. Includes original packaging, screwdriver, and certificate of authenticity. Excellent condition with minimal scratches.",
+    "price": 6700.00,
+    "category": "Fashion",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/cartier-love.jpg",
+        "public_id": "listings/fashion/cartier-love-07"
+      }
+    ],
+    "contactEmail": "finejewelry@example.com",
+    "user": "60d5ec9af682f926b8a91045",
+    "isActive": true
+  },
+  {
+    "name": "Valentino Rockstud Handbag",
+    "description": "Valentino Garavani Rockstud Medium handbag in black grained leather with platinum-finish studs. Detachable shoulder strap and signature flip-lock closure. Used only a handful of times, in excellent condition with dust bag.",
+    "price": 1850.00,
+    "category": "Fashion",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/valentino-rockstud.jpg",
+        "public_id": "listings/fashion/valentino-rockstud-08"
+      }
+    ],
+    "contactEmail": "designerbags@example.com",
+    "user": "60d5ec9af682f926b8a91049",
+    "isActive": true
+  },
+  {
+    "name": "Tom Ford Sunglasses",
+    "description": "Tom Ford Jennifer TF008 sunglasses in black acetate with gold T logo on temples. Classic oversized square frame. Includes original case, cleaning cloth, and authenticity card. Excellent condition with no scratches on lenses.",
+    "price": 250.00,
+    "category": "Fashion",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/tom-ford-sunglasses.jpg",
+        "public_id": "listings/fashion/tom-ford-sunglasses-09"
+      }
+    ],
+    "contactEmail": "designersunglasses@example.com",
+    "user": "60d5ec9af682f926b8a9104d",
+    "isActive": true
+  },
+  {
+    "name": "Tiffany & Co. Diamond Pendant",
+    "description": "Tiffany & Co. Elsa Peretti Diamonds by the Yard pendant in platinum with 0.30 carat round brilliant diamond. 16\" chain with adjustable sizing loops. Purchased in 2022, worn only a few times. Includes Tiffany blue box and pouch.",
+    "price": 1950.00,
+    "category": "Fashion",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/tiffany-pendant.jpg",
+        "public_id": "listings/fashion/tiffany-pendant-10"
+      }
+    ],
+    "contactEmail": "luxuryjewelry@example.com",
+    "user": "60d5ec9af682f926b8a91051",
+    "isActive": true
+  },
+  {
+    "name": "LEGO Star Wars Millennium Falcon Ultimate Collector Series",
+    "description": "LEGO Star Wars UCS Millennium Falcon (75192) with 7,541 pieces. New and sealed in original box. Largest and most detailed LEGO Star Wars set ever created, with detailed interior, removable hull panels, and minifigures from both classic and recent trilogies.",
+    "price": 899.00,
+    "category": "Toys",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/lego-millennium-falcon.jpg",
+        "public_id": "listings/toys/lego-falcon-01"
+      }
+    ],
+    "contactEmail": "legocollector@example.com",
+    "user": "60d5ec9af682f926b8a91055",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Transformers G1 Optimus Prime",
+    "description": "Original 1984 Transformers Generation 1 Optimus Prime figure in excellent condition. Complete with trailer, combat deck, Roller, ion blaster, and original accessories. Box shows some wear but is intact with original packaging materials and instructions.",
+    "price": 1200.00,
+    "category": "Toys",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/g1-optimus-prime.jpg",
+        "public_id": "listings/toys/optimus-prime-02"
+      }
+    ],
+    "contactEmail": "vintagetoys@example.com",
+    "user": "60d5ec9af682f926b8a91059",
+    "isActive": true
+  },
+  {
+    "name": "Nintendo Switch OLED with Games Bundle",
+    "description": "Nintendo Switch OLED model (white) with dock, joy-cons, and all original accessories. Includes 5 physical games: Legend of Zelda: Tears of the Kingdom, Mario Kart 8 Deluxe, Animal Crossing: New Horizons, Super Smash Bros. Ultimate, and Pokemon Scarlet. Also includes 128GB memory card.",
+    "price": 450.00,
+    "category": "Toys",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/nintendo-switch-bundle.jpg",
+        "public_id": "listings/toys/nintendo-switch-03"
+      }
+    ],
+    "contactEmail": "gamer@example.com",
+    "user": "60d5ec9af682f926b8a9105d",
+    "isActive": true
+  },
+  {
+    "name": "Collectible Marvel Legends Infinity Gauntlet",
+    "description": "Marvel Legends Series Infinity Gauntlet electronic articulated fist. Full-scale wearable replica with light-up Infinity Stones and movie-accurate sound effects. Limited edition collector's item in original packaging. Perfect display piece for Marvel fans.",
+    "price": 250.00,
+    "category": "Toys",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/infinity-gauntlet.jpg",
+        "public_id": "listings/toys/infinity-gauntlet-04"
+      }
+    ],
+    "contactEmail": "marvelcollector@example.com",
+    "user": "60d5ec9af682f926b8a91061",
+    "isActive": true
+  },
+  {
+    "name": "Hot Toys Iron Man Mark 85 Diecast Figure",
+    "description": "Hot Toys 1/6 scale Iron Man Mark 85 diecast figure from Avengers: Endgame. Movie-accurate details, LED light-up features, multiple interchangeable parts, and dynamic display stand. New in sealed box with shipper.",
+    "price": 550.00,
+    "category": "Toys",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/hot-toys-ironman.jpg",
+        "public_id": "listings/toys/hot-toys-ironman-05"
+      }
+    ],
+    "contactEmail": "actionfigures@example.com",
+    "user": "60d5ec9af682f926b8a91065",
+    "isActive": true
+  },
+  {
+    "name": "DJI RoboMaster S1 Educational Robot",
+    "description": "DJI RoboMaster S1 educational robot with programmable features, AI capabilities, and modular design. Includes brushless motors, omnidirectional wheels, mechanical gimbal, and blaster with gel beads. Used only a few times, in excellent condition with original packaging.",
+    "price": 349.00,
+    "category": "Toys",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/dji-robomaster.jpg",
+        "public_id": "listings/toys/dji-robomaster-06"
+      }
+    ],
+    "contactEmail": "roboticsfan@example.com",
+    "user": "60d5ec9af682f926b8a91069",
+    "isActive": true
+  },
+  {
+    "name": "American Girl Historical Collection Dolls",
+    "description": "Set of 6 American Girl historical collection dolls: Addy, Felicity, Josefina, Kirsten, Molly, and Samantha. Each doll comes with original meet outfit, accessories, and first book. All in excellent condition from smoke-free home.",
+    "price": 900.00,
+    "category": "Toys",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/american-girl-dolls.jpg",
+        "public_id": "listings/toys/american-girl-07"
+      }
+    ],
+    "contactEmail": "dollcollector@example.com",
+    "user": "60d5ec9af682f926b8a9106d",
+    "isActive": true
+  },
+  {
+    "name": "PlayStation 5 VR2 Bundle",
+    "description": "PlayStation 5 VR2 headset and controllers bundle with Horizon Call of the Mountain, Resident Evil Village VR, and Gran Turismo 7. Used only a handful of times, in pristine condition with all original packaging and manuals.",
+    "price": 475.00,
+    "category": "Toys",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/ps5-vr2.jpg",
+        "public_id": "listings/toys/ps5-vr2-08"
+      }
+    ],
+    "contactEmail": "vrgamer@example.com",
+    "user": "60d5ec9af682f926b8a91071",
+    "isActive": true
+  },
+  {
+    "name": "LEGO Technic Bugatti Chiron",
+    "description": "LEGO Technic Bugatti Chiron (42083) with 3,599 pieces. Built once and displayed, now disassembled and complete with original box and instructions. Features working W16 engine, 8-speed gearbox, and authentic design details.",
+    "price": 300.00,
+    "category": "Toys",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/lego-bugatti.jpg",
+        "public_id": "listings/toys/lego-bugatti-09"
+      }
+    ],
+    "contactEmail": "technicfan@example.com",
+    "user": "60d5ec9af682f926b8a91075",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Star Wars Action Figure Collection",
+    "description": "Collection of 25 vintage Star Wars action figures from the original trilogy (1977-1983). Includes rare figures like Blue Snaggletooth, Vinyl Cape Jawa, and more. All figures in played-with but good condition with minimal paint wear and tight joints.",
+    "price": 2500.00,
+    "category": "Toys",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/vintage-star-wars.jpg",
+        "public_id": "listings/toys/vintage-star-wars-10"
+      }
+    ],
+    "contactEmail": "starwarscollector@example.com",
+    "user": "60d5ec9af682f926b8a91079",
+    "isActive": true
+  },
+  {
+    "name": "Specialized S-Works Shiv Disc Triathlon Bike",
+    "description": "Specialized S-Works Shiv Disc triathlon bike with SRAM Red eTap AXS wireless groupset, Roval CLX 64 carbon wheels, and Power cranks power meter. Size medium. Optimized for aerodynamics and storage capacity. Used for 2 seasons, excellent condition.",
+    "price": 8500.00,
+    "category": "Sports",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/specialized-shiv.jpg",
+        "public_id": "listings/sports/specialized-shiv-01"
+      }
+    ],
+    "contactEmail": "triathlete@example.com",
+    "user": "60d5ec9af682f926b8a9107d",
+    "isActive": true
+  },
+  {
+    "name": "Callaway Golf Complete Set with Bag",
+    "description": "Complete Callaway golf set including Mavrik driver (9.5°), Mavrik fairway woods (3, 5), Apex irons (4-PW), Jaws wedges (52°, 56°, 60°), Odyssey putter, and premium Callaway stand bag. Used for one season, excellent condition.",
+    "price": 1800.00,
+    "category": "Sports",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/callaway-set.jpg",
+        "public_id": "listings/sports/callaway-set-02"
+      }
+    ],
+    "contactEmail": "golfer@example.com",
+    "user": "60d5ec9af682f926b8a91081",
+    "isActive": true
+  },
+  {
+    "name": "Wilson Pro Staff RF97 Roger Federer Tennis Racquet",
+    "description": "Wilson Pro Staff RF97 Autograph tennis racquet. 97 sq. in. head, 340g unstrung weight, 16x19 string pattern. Roger Federer's signature racquet with tuxedo colorway. Includes 4 3/8 grip size and original cover. Strung with Luxilon ALU Power at 52 lbs.",
+    "price": 240.00,
+    "category": "Sports",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/wilson-prostaff.jpg",
+        "public_id": "listings/sports/wilson-prostaff-03"
+      }
+    ],
+    "contactEmail": "tennisplayer@example.com",
+    "user": "60d5ec9af682f926b8a91085",
+    "isActive": true
+  },
+  {
+    "name": "Surftech Gerry Lopez Something Fishy Surfboard",
+    "description": "Surftech Gerry Lopez Something Fishy surfboard, 5'8\" x 21\" x 2.5\". Epoxy construction with swallow tail design. Perfect for small to medium waves. Minor pressure dents but no dings or repairs. Includes FCS II fins.",
+    "price": 650.00,
+    "category": "Sports",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/surftech-board.jpg",
+        "public_id": "listings/sports/surftech-board-04"
+      }
+    ],
+    "contactEmail": "surfer@example.com",
+    "user": "60d5ec9af682f926b8a91089",
+    "isActive": true
+  },
+  {
+    "name": "Theragun PRO Percussion Massage Device",
+    "description": "Theragun PRO professional-grade percussion massage device with 6 attachments, 2 rechargeable batteries, and carrying case. Features QuietForce technology, OLED screen, and customizable speed range. Used only a few times, like new condition.",
+    "price": 375.00,
+    "category": "Sports",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/theragun-pro.jpg",
+        "public_id": "listings/sports/theragun-pro-05"
+      }
+    ],
+    "contactEmail": "recovery@example.com",
+    "user": "60d5ec9af682f926b8a9108d",
+    "isActive": true
+  },
+  {
+    "name": "Garmin Fenix 7X Sapphire Solar GPS Watch",
+    "description": "Garmin Fenix 7X Sapphire Solar multisport GPS watch with 51mm case, sapphire crystal lens, and solar charging. Features include topographic maps, advanced training metrics, and up to 37 days of battery life. Includes charging cable and original packaging.",
+    "price": 750.00,
+    "category": "Sports",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/garmin-fenix.jpg",
+        "public_id": "listings/sports/garmin-fenix-06"
+      }
+    ],
+    "contactEmail": "enduranceathlete@example.com",
+    "user": "60d5ec9af682f926b8a91091",
+    "isActive": true
+  },
+  {
+    "name": "Yeti Tundra 65 Cooler",
+    "description": "Yeti Tundra 65 hard cooler in white. 3-inch PermaFrost insulation, FatWall design, and T-Rex lid latches for maximum ice retention. Holds approximately 42 cans with 2:1 ice-to-contents ratio. Perfect for camping, fishing, or tailgating.",
+    "price": 300.00,
+    "category": "Sports",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/yeti-tundra.jpg",
+        "public_id": "listings/sports/yeti-tundra-07"
+      }
+    ],
+    "contactEmail": "outdoors@example.com",
+    "user": "60d5ec9af682f926b8a91095",
+    "isActive": true
+  },
+  {
+    "name": "Concept2 Model D Indoor Rowing Machine",
+    "description": "Concept2 Model D indoor rowing machine with PM5 performance monitor. Features air resistance flywheel, ergonomic handle, and adjustable footrests. Separates for easy storage. Low lifetime meters (under 500,000), regular maintenance, excellent condition.",
+    "price": 800.00,
+    "category": "Sports",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/concept2-rower.jpg",
+        "public_id": "listings/sports/concept2-rower-08"
+      }
+    ],
+    "contactEmail": "homegym@example.com",
+    "user": "60d5ec9af682f926b8a91099",
+    "isActive": true
+  },
+  {
+    "name": "Burton Custom X Snowboard with Bindings",
+    "description": "Burton Custom X snowboard (158cm) with Burton Cartel X bindings (size M). High-performance directional twin board with camber profile and sintered base. Used for one season, excellent condition with minor base scratches. Freshly waxed and tuned.",
+    "price": 650.00,
+    "category": "Sports",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/burton-snowboard.jpg",
+        "public_id": "listings/sports/burton-snowboard-09"
+      }
+    ],
+    "contactEmail": "snowboarder@example.com",
+    "user": "60d5ec9af682f926b8a9109d",
+    "isActive": true
+  },
+  {
+    "name": "Hobie Mirage Passport 12.0 Kayak",
+    "description": "Hobie Mirage Passport 12.0 pedal kayak with MirageDrive GT kick-up fin system. Features include rudder control, gear tracks, rod holders, and storage compartments. Seagrass green color. Used only 5 times, excellent condition.",
+    "price": 1500.00,
+    "category": "Sports",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/hobie-kayak.jpg",
+        "public_id": "listings/sports/hobie-kayak-10"
+      }
+    ],
+    "contactEmail": "kayaker@example.com",
+    "user": "60d5ec9af682f926b8a910a1",
+    "isActive": true
+  },
+  {
+    "name": "Dyson Airwrap Complete Styler",
+    "description": "Dyson Airwrap Complete styler for multiple hair types and styles. Includes 6 attachments: 1.2\" Airwrap barrels, 1.6\" Airwrap barrels, firm smoothing brush, soft smoothing brush, round volumizing brush, and pre-styling dryer. Used only a few times, like new condition.",
+    "price": 450.00,
+    "category": "health & Beauty",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/dyson-airwrap.jpg",
+        "public_id": "listings/health-beauty/dyson-airwrap-01"
+      }
+    ],
+    "contactEmail": "hairstyling@example.com",
+    "user": "60d5ec9af682f926b8a910a5",
+    "isActive": true
+  },
+  {
+    "name": "La Mer Skincare Collection",
+    "description": "La Mer premium skincare collection including: The Concentrate (50ml, 80% full), Crème de la Mer (60ml, 90% full), The Eye Concentrate (15ml, new/sealed), and The Regenerating Serum (30ml, 85% full). All products are authentic, purchased within the last 6 months.",
+    "price": 950.00,
+    "category": "health & Beauty",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/la-mer-collection.jpg",
+        "public_id": "listings/health-beauty/la-mer-collection-02"
+      }
+    ],
+    "contactEmail": "luxuryskincare@example.com",
+    "user": "60d5ec9af682f926b8a910a9",
+    "isActive": true
+  },
+  {
+    "name": "Peloton Bike+ with Accessories",
+    "description": "Peloton Bike+ in excellent condition with rotating HD touchscreen, automatic resistance adjustment, and Apple GymKit integration. Includes Peloton shoes (size 42), heart rate monitor, weights, mat, and 1 year remaining on All-Access Membership.",
+    "price": 1800.00,
+    "category": "health & Beauty",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/peloton-bike-plus.jpg",
+        "public_id": "listings/health-beauty/peloton-bike-03"
+      }
+    ],
+    "contactEmail": "homefitness@example.com",
+    "user": "60d5ec9af682f926b8a910ad",
+    "isActive": true
+  },
+  {
+    "name": "Oura Ring Gen 3 Horizon",
+    "description": "Oura Ring Gen 3 Horizon in brushed titanium, size 10. Features include sleep tracking, activity monitoring, temperature sensing, and heart rate tracking. Used for 4 months, excellent condition. Includes charger and original packaging.",
+    "price": 250.00,
+    "category": "health & Beauty",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/oura-ring.jpg",
+        "public_id": "listings/health-beauty/oura-ring-04"
+      }
+    ],
+    "contactEmail": "healthtech@example.com",
+    "user": "60d5ec9af682f926b8a910b1",
+    "isActive": true
+  },
+  {
+    "name": "NuFACE Trinity Facial Toning Device",
+    "description": "NuFACE Trinity facial toning device with interchangeable attachments: Trinity Facial Trainer, Trinity ELE (Eye and Lip Enhancer), and Trinity Wrinkle Reducer. Includes charging cradle, power adapter, and NuFACE Gel Primer (2 oz). Used only a dozen times.",
+    "price": 325.00,
+    "category": "health & Beauty",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/nuface-trinity.jpg",
+        "public_id": "listings/health-beauty/nuface-trinity-05"
+      }
+    ],
+    "contactEmail": "skintechnology@example.com",
+    "user": "60d5ec9af682f926b8a910b5",
+    "isActive": true
+  },
+  {
+    "name": "Tom Ford Fragrance Collection",
+    "description": "Tom Ford premium fragrance collection: Tobacco Vanille (50ml, 80% full), Oud Wood (50ml, 90% full), Tuscan Leather (50ml, 85% full), and Neroli Portofino (50ml, 75% full). All bottles are authentic with original packaging.",
+    "price": 750.00,
+    "category": "health & Beauty",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/tom-ford-fragrances.jpg",
+        "public_id": "listings/health-beauty/tom-ford-fragrances-06"
+      }
+    ],
+    "contactEmail": "luxuryfragrances@example.com",
+    "user": "60d5ec9af682f926b8a910b9",
+    "isActive": true
+  },
+  {
+    "name": "Therabody PowerDot 2.0 Duo",
+    "description": "Therabody PowerDot 2.0 Duo smart muscle stimulator for pain relief and recovery. Includes 2 pods, 4 electrode pads, 2 lead cables, charging case, and USB charging cable. App-controlled with multiple programs. Used only a few times.",
+    "price": 225.00,
+    "category": "health & Beauty",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/powerdot-duo.jpg",
+        "public_id": "listings/health-beauty/powerdot-duo-07"
+      }
+    ],
+    "contactEmail": "musclerecovery@example.com",
+    "user": "60d5ec9af682f926b8a910bd",
+    "isActive": true
+  },
+  {
+    "name": "Hydrafacial Elite Device",
+    "description": "Professional Hydrafacial Elite device for spa or dermatology practice. Features multiple treatment modes, LED light therapy, and touchscreen interface. Purchased in 2022, regularly maintained, excellent condition. Includes tips, solutions, and training materials.",
+    "price": 18500.00,
+    "category": "health & Beauty",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/hydrafacial-elite.jpg",
+        "public_id": "listings/health-beauty/hydrafacial-elite-08"
+      }
+    ],
+    "contactEmail": "professionalskincare@example.com",
+    "user": "60d5ec9af682f926b8a910c1",
+    "isActive": true
+  },
+  {
+    "name": "Ergonomic Home Office Chair",
+    "description": "Herman Miller Aeron ergonomic office chair, size B (medium). Features include PostureFit SL lumbar support, adjustable arms, tilt limiter, and mesh seat and back for breathability. Graphite color with polished aluminum base. 2 years old, excellent condition.",
+    "price": 750.00,
+    "category": "health & Beauty",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/herman-miller-aeron.jpg",
+        "public_id": "listings/health-beauty/herman-miller-aeron-09"
+      }
+    ],
+    "contactEmail": "ergonomics@example.com",
+    "user": "60d5ec9af682f926b8a910c5",
+    "isActive": true
+  },
+  {
+    "name": "Meditation and Sound Therapy Set",
+    "description": "Complete meditation and sound therapy set including Tibetan singing bowls (set of 7, chakra-tuned), crystal sound bowl (quartz, 432 Hz), tingsha bells, meditation cushion, and instructional materials. Perfect for yoga studios or personal practice.",
+    "price": 450.00,
+    "category": "health & Beauty",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/sound-therapy-set.jpg",
+        "public_id": "listings/health-beauty/sound-therapy-set-10"
+      }
+    ],
+    "contactEmail": "meditation@example.com",
+    "user": "60d5ec9af682f926b8a910c9",
+    "isActive": true
+  },
+  {
+    "name": "Bengal Cat - 1 Year Old Female",
+    "description": "Beautiful Bengal cat, 1 year old female. Brown spotted coat with rosettes and high contrast. Playful, affectionate, and fully vaccinated. Spayed and microchipped. Comes with health records, favorite toys, and premium cat tree. Rehoming due to owner's overseas job transfer.",
+    "price": 1200.00,
+    "category": "animals",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/bengal-cat.jpg",
+        "public_id": "listings/animals/bengal-cat-01"
+      }
+    ],
+    "contactEmail": "catrehoming@example.com",
+    "user": "60d5ec9af682f926b8a910cd",
+    "isActive": true
+  },
+  {
+    "name": "Purebred Golden Retriever Puppies",
+    "description": "AKC registered Golden Retriever puppies, 8 weeks old. 3 males, 2 females available. Parents are health tested (hips, elbows, heart, eyes). Puppies are vaccinated, dewormed, and microchipped. Raised in home environment with early socialization. Family companions with excellent temperaments.",
+    "price": 2500.00,
+    "category": "animals",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/golden-puppies.jpg",
+        "public_id": "listings/animals/golden-puppies-02"
+      }
+    ],
+    "contactEmail": "goldenpuppies@example.com",
+    "user": "60d5ec9af682f926b8a910d1",
+    "isActive": true
+  },
+  {
+    "name": "Complete 55-Gallon Aquarium Setup",
+    "description": "Complete 55-gallon freshwater aquarium setup. Includes Fluval canister filter, LED lighting system, adjustable heater, air pump, live plants, driftwood, and decorations. Also includes water test kit, food, and maintenance supplies. Tank has been running for 2 years with stable parameters.",
+    "price": 450.00,
+    "category": "animals",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/aquarium-setup.jpg",
+        "public_id": "listings/animals/aquarium-setup-03"
+      }
+    ],
+    "contactEmail": "aquariumhobbyist@example.com",
+    "user": "60d5ec9af682f926b8a910d5",
+    "isActive": true
+  },
+  {
+    "name": "Registered Quarter Horse Mare",
+    "description": "Registered Quarter Horse mare, 8 years old, 15.2 hands. Sorrel with white blaze and socks. Well-trained for trail riding and western pleasure. Calm temperament, loads easily, good with farrier and vet. Current on vaccinations, dental, and hoof care. Safe for intermediate riders.",
+    "price": 8500.00,
+    "category": "animals",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/quarter-horse.jpg",
+        "public_id": "listings/animals/quarter-horse-04"
+      }
+    ],
+    "contactEmail": "horsetrainer@example.com",
+    "user": "60d5ec9af682f926b8a910d9",
+    "isActive": true
+  },
+  {
+    "name": "Breeding Pair of Blue Parakeets",
+    "description": "Bonded pair of blue parakeets (budgerigars) with spacious cage and accessories. Male is sky blue, female is cobalt blue. 2 years old, healthy and active. Includes large cage, toys, food, treats, and care instructions. Looking for loving home that will keep them together.",
+    "price": 180.00,
+    "category": "animals",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/blue-parakeets.jpg",
+        "public_id": "listings/animals/blue-parakeets-05"
+      }
+    ],
+    "contactEmail": "birdlover@example.com",
+    "user": "60d5ec9af682f926b8a910dd",
+    "isActive": true
+  },
+  {
+    "name": "French Bulldog Male - 10 Weeks Old",
+    "description": "AKC registered French Bulldog puppy, 10 weeks old male. Blue fawn color with distinct markings. Health tested parents, first vaccines completed, dewormed, and vet checked. Raised in family environment with children and other pets. Comes with starter kit, puppy food, and AKC papers.",
+    "price": 3500.00,
+    "category": "animals",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/french-bulldog-puppy.jpg",
+        "public_id": "listings/animals/french-bulldog-06"
+      }
+    ],
+    "contactEmail": "frenchiepuppies@example.com",
+    "user": "60d5ec9af682f926b8a910e1",
+    "isActive": true
+  },
+  {
+    "name": "Maine Coon Kittens - Pedigreed",
+    "description": "Pedigreed Maine Coon kittens, 12 weeks old. 2 males, 1 female available. Silver tabby and brown tabby colors. Both parents are HCM and PKD negative. Kittens are vaccinated, dewormed, and microchipped. Large, friendly, and well-socialized. Comes with TICA registration papers.",
+    "price": 1500.00,
+    "category": "animals",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/maine-coon-kittens.jpg",
+        "public_id": "listings/animals/maine-coon-kittens-07"
+      }
+    ],
+    "contactEmail": "mainecoonbreeder@example.com",
+    "user": "60d5ec9af682f926b8a910e5",
+    "isActive": true
+  },
+  {
+    "name": "Red-Eared Slider Turtle with Complete Setup",
+    "description": "Adult Red-Eared Slider turtle (approximately 7 years old) with complete 75-gallon aquatic setup. Includes tank, powerful filter, UVB lighting, basking platform, heater, and decorations. Healthy omnivore that eats commercial turtle food and fresh vegetables. Easy to care for with proper setup.",
+    "price": 250.00,
+    "category": "animals",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/slider-turtle.jpg",
+        "public_id": "listings/animals/slider-turtle-08"
+      }
+    ],
+    "contactEmail": "reptilekeeper@example.com",
+    "user": "60d5ec9af682f926b8a910e9",
+    "isActive": true
+  },
+  {
+    "name": "Angora Rabbits - Show Quality",
+    "description": "Show quality English Angora rabbits, 4 months old. 2 females available in pure white color. Pedigreed with multiple show champions in lineage. Friendly temperament, handled daily since birth. Includes starter kit with housing guidance, grooming tools, and premium food samples.",
+    "price": 200.00,
+    "category": "animals",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/angora-rabbits.jpg",
+        "public_id": "listings/animals/angora-rabbits-09"
+      }
+    ],
+    "contactEmail": "rabbitbreeder@example.com",
+    "user": "60d5ec9af682f926b8a910ed",
+    "isActive": true
+  },
+  {
+    "name": "Ball Python with Bioactive Terrarium",
+    "description": "3-year-old female Ball Python (normal morph) with complete bioactive terrarium setup. Docile temperament, comfortable with handling. Setup includes 40-gallon front-opening terrarium, heating, lighting, live plants, substrate, hides, and decor. All feeding and care records included.",
+    "price": 350.00,
+    "category": "animals",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/ball-python.jpg",
+        "public_id": "listings/animals/ball-python-10"
+      }
+    ],
+    "contactEmail": "snakeenthusiast@example.com",
+    "user": "60d5ec9af682f926b8a910f1",
+    "isActive": true
+  },
+  {
+    "name": "Restoration Hardware Cloud Sectional Sofa",
+    "description": "Restoration Hardware Cloud Modular Sectional Sofa in Performance Linen (Fog color). Includes corner piece, three center pieces, and ottoman. Down-feather cushions with ultra-deep, comfortable design. 2 years old, excellent condition from pet-free, smoke-free home.",
+    "price": 7500.00,
+    "category": "Furniture",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/rh-cloud-sectional.jpg",
+        "public_id": "listings/furniture/rh-cloud-sectional-01"
+      }
+    ],
+    "contactEmail": "luxuryfurniture@example.com",
+    "user": "60d5ec9af682f926b8a910f5",
+    "isActive": true
+  },
+  {
+    "name": "Herman Miller Eames Lounge Chair and Ottoman",
+    "description": "Authentic Herman Miller Eames Lounge Chair and Ottoman in black leather with santos palisander veneer. Classic mid-century modern design. Purchased in 2020, lightly used in formal living room. Original tags and certificate of authenticity included.",
+    "price": 5300.00,
+    "category": "Furniture",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/eames-lounge.jpg",
+        "public_id": "listings/furniture/eames-lounge-02"
+      }
+    ],
+    "contactEmail": "designclassics@example.com",
+    "user": "60d5ec9af682f926b8a910f9",
+    "isActive": true
+  },
+  {
+    "name": "Solid Walnut Dining Table with 6 Chairs",
+    "description": "Custom-made solid walnut dining table with six matching chairs. Live-edge slab tabletop with black metal base. 84\" x 40\" x 30\" dimensions. Chairs have walnut frames with leather upholstery. Handcrafted by local artisan, 3 years old, excellent condition with minimal wear.",
+    "price": 3800.00,
+    "category": "Furniture",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/walnut-dining-set.jpg",
+        "public_id": "listings/furniture/walnut-dining-set-03"
+      }
+    ],
+    "contactEmail": "customfurniture@example.com",
+    "user": "60d5ec9af682f926b8a910fd",
+    "isActive": true
+  },
+  {
+    "name": "King Size Tempurpedic Adjustable Bed",
+    "description": "Tempurpedic ProAdapt Medium king size mattress with TEMPUR-Ergo adjustable base. Features include head and foot articulation, zero-gravity preset, massage function, and under-bed lighting. 2 years old with 8 years remaining on warranty. Like new condition.",
+    "price": 4200.00,
+    "category": "Furniture",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/tempurpedic-bed.jpg",
+        "public_id": "listings/furniture/tempurpedic-bed-04"
+      }
+    ],
+    "contactEmail": "sleepcomfort@example.com",
+    "user": "60d5ec9af682f926b8a91101",
+    "isActive": true
+  },
+  {
+    "name": "Crate & Barrel Media Console",
+    "description": "Crate & Barrel Woodward media console in walnut finish. 80\" wide with ample storage and cable management. Features include adjustable shelves, integrated LED lighting, and ventilated back panel. Perfect condition, purchased 18 months ago.",
+    "price": 1200.00,
+    "category": "Furniture",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/media-console.jpg",
+        "public_id": "listings/furniture/media-console-05"
+      }
+    ],
+    "contactEmail": "modernfurniture@example.com",
+    "user": "60d5ec9af682f926b8a91105",
+    "isActive": true
+  },
+  {
+    "name": "Antique French Provincial Armoire",
+    "description": "Authentic 19th century French Provincial armoire in solid oak. Hand-carved details with original brass hardware. 78\" H x 52\" W x 24\" D. Recently professionally restored and refinished while preserving patina and character. Perfect statement piece for bedroom or living room.",
+    "price": 3500.00,
+    "category": "Furniture",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/antique-armoire.jpg",
+        "public_id": "listings/furniture/antique-armoire-06"
+      }
+    ],
+    "contactEmail": "antiquefurniture@example.com",
+    "user": "60d5ec9af682f926b8a91109",
+    "isActive": true
+  },
+  {
+    "name": "Room & Board Jasper Sectional with Chaise",
+    "description": "Room & Board Jasper Sectional with right-arm chaise in Performance Fabric (Charcoal). 112\" x 67\" dimensions with bench cushions and hardwood frame. Built in USA with lifetime warranty on frame. 1 year old, excellent condition from non-smoking home with no pets.",
+    "price": 2800.00,
+    "category": "Furniture",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/jasper-sectional.jpg",
+        "public_id": "listings/furniture/jasper-sectional-07"
+      }
+    ],
+    "contactEmail": "contemporaryfurniture@example.com",
+    "user": "60d5ec9af682f926b8a9110d",
+    "isActive": true
+  },
+  {
+    "name": "West Elm Mid-Century Bedroom Set",
+    "description": "Complete West Elm Mid-Century bedroom set in acorn finish. Includes king bed frame, 6-drawer dresser, 2 nightstands, and 5-drawer tall chest. Solid eucalyptus wood construction with brass-finished hardware. Purchased 2 years ago, excellent condition with minimal wear.",
+    "price": 3200.00,
+    "category": "Furniture",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/mid-century-bedroom.jpg",
+        "public_id": "listings/furniture/mid-century-bedroom-08"
+      }
+    ],
+    "contactEmail": "bedroomfurniture@example.com",
+    "user": "60d5ec9af682f926b8a91111",
+    "isActive": true
+  },
+  {
+    "name": "Pottery Barn Leather Recliner",
+    "description": "Pottery Barn Irving Leather Recliner in bourbon brown. Features include power recline, adjustable headrest, and USB charging port. Top-grain leather with nailhead trim details. 14 months old, excellent condition with minimal wear. Originally $2,799.",
+    "price": 1600.00,
+    "category": "Furniture",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/leather-recliner.jpg",
+        "public_id": "listings/furniture/leather-recliner-09"
+      }
+    ],
+    "contactEmail": "leatherfurniture@example.com",
+    "user": "60d5ec9af682f926b8a91115",
+    "isActive": true
+  },
+  {
+    "name": "Custom Bookshelves with Ladder",
+    "description": "Custom-built floor-to-ceiling bookshelves with rolling library ladder. Solid maple construction with white lacquer finish. 12' wide x 9' tall with adjustable shelves and integrated LED lighting. Includes brass ladder rail system. Moving to smaller home, must sell.",
+    "price": 4500.00,
+    "category": "Furniture",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/custom-bookshelves.jpg",
+        "public_id": "listings/furniture/custom-bookshelves-10"
+      }
+    ],
+    "contactEmail": "customcabinetry@example.com",
+    "user": "60d5ec9af682f926b8a91119",
+    "isActive": true
+  },
+  {
+    "name": "Burberry Trench Coat - Women's Classic Fit",
+    "description": "Authentic Burberry Chelsea Heritage Trench Coat in honey color, women's US size 8 (UK 10). Made in England from water-resistant cotton gabardine with the iconic check lining. Worn only a handful of times, excellent condition. Includes original garment bag and spare buttons.",
+    "price": 1250.00,
+    "category": "Clothing",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/burberry-womens-trench.jpg",
+        "public_id": "listings/clothing/burberry-womens-trench-01"
+      }
+    ],
+    "contactEmail": "designerclothing@example.com",
+    "user": "60d5ec9af682f926b8a9111d",
+    "isActive": true
+  },
+  {
+    "name": "Men's Brioni Bespoke Suit",
+    "description": "Men's Brioni bespoke suit in navy super 150s wool. Made in Italy with custom measurements. Jacket size approximately 42R with 34W/32L trousers. Single-breasted, two-button, side vents. Worn twice for special occasions, impeccable condition. Original price over $8,000.",
+    "price": 2800.00,
+    "category": "Clothing",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/brioni-suit.jpg",
+        "public_id": "listings/clothing/brioni-suit-02"
+      }
+    ],
+    "contactEmail": "luxurymenswear@example.com",
+    "user": "60d5ec9af682f926b8a91121",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Levi's 501 Jeans Collection",
+    "description": "Collection of vintage Levi's 501 jeans from the 1970s-1990s. 5 pairs total in various washes, all size W32/L32. Authentic red tab, selvedge denim, made in USA. Perfect vintage condition with natural fading and character. Collector's items for denim enthusiasts.",
+    "price": 750.00,
+    "category": "Clothing",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/vintage-levis.jpg",
+        "public_id": "listings/clothing/vintage-levis-03"
+      }
+    ],
+    "contactEmail": "vintagedenim@example.com",
+    "user": "60d5ec9af682f926b8a91125",
+    "isActive": true
+  },
+  {
+    "name": "Canada Goose Expedition Parka",
+    "description": "Canada Goose Expedition Parka in black, men's size large. 625 fill power white duck down insulation, rated for -30°C/-22°F. Genuine coyote fur ruff (removable), multiple pockets, and reflective details. Worn for one winter season, excellent condition with no damage or wear.",
+    "price": 650.00,
+    "category": "Clothing",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/canada-goose-parka.jpg",
+        "public_id": "listings/clothing/canada-goose-parka-04"
+      }
+    ],
+    "contactEmail": "wintergear@example.com",
+    "user": "60d5ec9af682f926b8a91129",
+    "isActive": true
+  },
+  {
+    "name": "Chanel Classic Tweed Jacket",
+    "description": "Authentic Chanel classic tweed jacket in black and white, women's size FR 40 (US 8). Signature Chanel design with four pockets, fringe trim, and chain detail along hem. Gold-tone CC buttons. Purchased in 2021, worn only twice. Includes garment bag, hanger, and receipt.",
+    "price": 3900.00,
+    "category": "Clothing",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/chanel-tweed-jacket.jpg",
+        "public_id": "listings/clothing/chanel-tweed-jacket-05"
+      }
+    ],
+    "contactEmail": "chanelcollector@example.com",
+    "user": "60d5ec9af682f926b8a9112d",
+    "isActive": true
+  },
+  {
+    "name": "Arc'teryx Alpine Ski Gear Bundle",
+    "description": "Complete Arc'teryx alpine ski gear bundle in men's size medium. Includes Rush jacket (Gore-Tex Pro), Sabre AR pants (Gore-Tex), Atom LT midlayer, and Phase AR base layer. All items in excellent condition, used for one season. High-performance technical gear for backcountry skiing and alpinism.",
+    "price": 1100.00,
+    "category": "Clothing",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/arcteryx-ski-gear.jpg",
+        "public_id": "listings/clothing/arcteryx-ski-gear-06"
+      }
+    ],
+    "contactEmail": "alpinegear@example.com",
+    "user": "60d5ec9af682f926b8a91131",
+    "isActive": true
+  },
+  {
+    "name": "Wedding Dress - Vera Wang",
+    "description": "Vera Wang Hayley wedding gown, size 6. Ivory tulle and lace with hand-applied crystal embellishments. Strapless design with sweetheart neckline, fitted bodice, and full skirt with chapel train. Worn once in 2022, professionally cleaned and preserved. Original price $9,500.",
+    "price": 3200.00,
+    "category": "Clothing",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/vera-wang-wedding.jpg",
+        "public_id": "listings/clothing/vera-wang-wedding-07"
+      }
+    ],
+    "contactEmail": "bridalresale@example.com",
+    "user": "60d5ec9af682f926b8a91135",
+    "isActive": true
+  },
+  {
+    "name": "Authentic Hermès Silk Scarves Collection",
+    "description": "Collection of 5 authentic Hermès silk scarves (90cm x 90cm) in various colorways and designs. All purchased between 2018-2022 from Hermès boutiques. Includes 'La Danse du Cheval Marwari', 'Les Jardins d'Armenie', 'Fleurs de Giverny', 'Della Cavalleria', and 'Grand Apparat'. Excellent condition with original boxes.",
+    "price": 1800.00,
+    "category": "Clothing",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/hermes-scarves.jpg",
+        "public_id": "listings/clothing/hermes-scarves-08"
+      }
+    ],
+    "contactEmail": "luxuryaccessories@example.com",
+    "user": "60d5ec9af682f926b8a91139",
+    "isActive": true
+  },
+  {
+    "name": "Luxury Men's Shoe Collection",
+    "description": "Curated collection of luxury men's shoes, all size US 10.5 (EU 43.5). Includes John Lobb Oxford dress shoes, Gucci horsebit loafers, Santoni double monk straps, Edward Green Chelsea boots, and Salvatore Ferragamo drivers. All in excellent condition with shoe trees, bags, and original boxes.",
+    "price": 2400.00,
+    "category": "Clothing",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/luxury-mens-shoes.jpg",
+        "public_id": "listings/clothing/luxury-mens-shoes-09"
+      }
+    ],
+    "contactEmail": "designershoes@example.com",
+    "user": "60d5ec9af682f926b8a9113d",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Band T-Shirt Collection",
+    "description": "Authentic vintage band t-shirts from the 1970s-1990s. Collection of 15 shirts including Led Zeppelin, Pink Floyd, Metallica, Nirvana, Rolling Stones, AC/DC, and more. Various sizes (mostly M-L). All original vintage pieces, not reproductions. Great condition considering age.",
+    "price": 1200.00,
+    "category": "Clothing",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/vintage-band-shirts.jpg",
+        "public_id": "listings/clothing/vintage-band-shirts-10"
+      }
+    ],
+    "contactEmail": "vintagetees@example.com",
+    "user": "60d5ec9af682f926b8a91141",
+    "isActive": true
+  },
+   {
+    "name": "First Edition Harry Potter Complete Set",
+    "description": "Complete set of all seven Harry Potter books by J.K. Rowling. First edition, first printings of UK Bloomsbury editions. Hardcover with original dust jackets in excellent condition. 'The Philosopher's Stone' is the coveted first printing with the error on page 53. Professionally authenticated and appraised.",
+    "price": 75000.00,
+    "category": "Books",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/harry-potter-first-editions.jpg",
+        "public_id": "listings/books/harry-potter-first-editions-01"
+      }
+    ],
+    "contactEmail": "rarebookseller@example.com",
+    "user": "60d5ec9af682f926b8a91145",
+    "isActive": true
+  },
+  {
+    "name": "Signed David Sedaris Collection",
+    "description": "Complete collection of David Sedaris books, all signed and personally inscribed by the author. Includes 'Calypso', 'Theft by Finding', 'Let's Explore Diabetes with Owls', 'When You Are Engulfed in Flames', 'Dress Your Family in Corduroy and Denim', 'Me Talk Pretty One Day', and more. Excellent condition.",
+    "price": 950.00,
+    "category": "Books",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/signed-sedaris.jpg",
+        "public_id": "listings/books/signed-sedaris-02"
+      }
+    ],
+    "contactEmail": "bookscollector@example.com",
+    "user": "60d5ec9af682f926b8a91149",
+    "isActive": true
+  },
+  {
+    "name": "Rare Vintage Comic Book Collection",
+    "description": "Curated collection of 25 rare vintage comic books from the 1960s-1980s. Includes key issues from Marvel and DC such as Fantastic Four #48 (first Silver Surfer), Amazing Spider-Man #129 (first Punisher), X-Men #94 (new team), and more. All professionally graded by CGC, averaging 8.0-9.2 condition.",
+    "price": 12500.00,
+    "category": "Books",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/vintage-comics.jpg",
+        "public_id": "listings/books/vintage-comics-03"
+      }
+    ],
+    "contactEmail": "comicscollector@example.com",
+    "user": "60d5ec9af682f926b8a9114d",
+    "isActive": true
+  },
+  {
+    "name": "Leather-Bound Classics Library",
+    "description": "Collection of 50 leather-bound classic literary works from Easton Press and Franklin Library. Includes complete works of Shakespeare, Dickens, Austen, Twain, Hemingway, and more. Features include genuine leather binding, 22k gold accents, silk moire endpapers, and gilded page edges. Pristine condition.",
+    "price": 4800.00,
+    "category": "Books",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/leather-bound-classics.jpg",
+        "public_id": "listings/books/leather-bound-classics-04"
+      }
+    ],
+    "contactEmail": "finebooks@example.com",
+    "user": "60d5ec9af682f926b8a91151",
+    "isActive": true
+  },
+  {
+    "name": "Architecture and Design Book Collection",
+    "description": "Comprehensive collection of 75+ architecture and design coffee table books and monographs. Features works on Frank Lloyd Wright, Le Corbusier, Zaha Hadid, Frank Gehry, and more. Also includes rare out-of-print publications on Bauhaus, mid-century modern, and contemporary architecture.",
+    "price": 1200.00,
+    "category": "Books",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/architecture-books.jpg",
+        "public_id": "listings/books/architecture-books-05"
+      }
+    ],
+    "contactEmail": "designbooks@example.com",
+    "user": "60d5ec9af682f926b8a91155",
+    "isActive": true
+  },
+  {
+    "name": "Rare First Edition 'The Great Gatsby'",
+    "description": "First edition, first printing of F. Scott Fitzgerald's 'The Great Gatsby' published by Charles Scribner's Sons in 1925. Complete with the rare original dust jacket with the lowercase 'j' in Jay Gatsby on the back panel. Book is in near fine condition, dust jacket professionally restored. Includes authentication.",
+    "price": 195000.00,
+    "category": "Books",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/gatsby-first-edition.jpg",
+        "public_id": "listings/books/gatsby-first-edition-06"
+      }
+    ],
+    "contactEmail": "rarebooks@example.com",
+    "user": "60d5ec9af682f926b8a91159",
+    "isActive": true
+  },
+  {
+    "name": "Complete Calvin and Hobbes Collection",
+    "description": "The Complete Calvin and Hobbes hardcover box set by Bill Watterson. Three-volume set containing every Calvin and Hobbes comic strip from 1985-1995. Mint condition, never read, still in original shrink wrap. Perfect gift for comic enthusiasts and collectors.",
+    "price": 175.00,
+    "category": "Books",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/calvin-hobbes-complete.jpg",
+        "public_id": "listings/books/calvin-hobbes-complete-07"
+      }
+    ],
+    "contactEmail": "comicsfan@example.com",
+    "user": "60d5ec9af682f926b8a9115d",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Cookbook Collection",
+    "description": "Collection of 35 vintage and rare cookbooks from the 1950s-1980s. Includes first editions of Julia Child's 'Mastering the Art of French Cooking', James Beard's 'American Cookery', and rare international cookbooks. Most in excellent condition with original dust jackets.",
+    "price": 900.00,
+    "category": "Books",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/vintage-cookbooks.jpg",
+        "public_id": "listings/books/vintage-cookbooks-08"
+      }
+    ],
+    "contactEmail": "cookbookscollector@example.com",
+    "user": "60d5ec9af682f926b8a91161",
+    "isActive": true
+  },
+  {
+    "name": "Signed Stephen King First Editions",
+    "description": "Collection of 12 Stephen King first edition hardcovers, all signed by the author. Includes 'The Shining', 'Salem's Lot', 'It', 'The Stand', 'Misery', 'Pet Sematary', and more. All in excellent condition with original dust jackets and protective Mylar covers. Authenticity guaranteed.",
+    "price": 8500.00,
+    "category": "Books",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/signed-king-books.jpg",
+        "public_id": "listings/books/signed-king-books-09"
+      }
+    ],
+    "contactEmail": "horrorbookscollector@example.com",
+    "user": "60d5ec9af682f926b8a91165",
+    "isActive": true
+  },
+  {
+    "name": "Modern First Editions Library",
+    "description": "Curated collection of 40 modern first edition novels from award-winning authors. All first printings in hardcover with original dust jackets. Includes works by Toni Morrison, Margaret Atwood, Cormac McCarthy, Kazuo Ishiguro, Haruki Murakami, and more. Many signed by the authors. Excellent condition.",
+    "price": 3200.00,
+    "category": "Books",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/modern-first-editions.jpg",
+        "public_id": "listings/books/modern-first-editions-10"
+      }
+    ],
+    "contactEmail": "literarycollector@example.com",
+    "user": "60d5ec9af682f926b8a91169",
+    "isActive": true
+  },
+  {
+    "name": "Professional Web Design & Development",
+    "description": "Full-service web design and development by experienced software engineer with 10+ years in the industry. Services include responsive website design, e-commerce development, custom web applications, SEO optimization, and ongoing maintenance. Portfolio and references available upon request.",
+    "price": 2500.00,
+    "category": "Services",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/web-development.jpg",
+        "public_id": "listings/services/web-development-01"
+      }
+    ],
+    "contactEmail": "webdeveloper@example.com",
+    "user": "60d5ec9af682f926b8a9116d",
+    "isActive": true
+  },
+  {
+    "name": "Wedding Photography & Videography",
+    "description": "Award-winning wedding photography and videography services. Packages include engagement session, full wedding day coverage (8-12 hours), second shooter, drone aerial footage, edited digital photos, highlight video (5-7 minutes), and custom wedding album. Experienced in various cultural weddings.",
+    "price": 4200.00,
+    "category": "Services",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/wedding-photography.jpg",
+        "public_id": "listings/services/wedding-photography-02"
+      }
+    ],
+    "contactEmail": "weddingphotographer@example.com",
+    "user": "60d5ec9af682f926b8a91171",
+    "isActive": true
+  },
+  {
+    "name": "Interior Design Consultation",
+    "description": "Professional interior design services by certified designer with 15 years of experience. Services include initial consultation, space planning, 3D renderings, furniture and material selection, color schemes, lighting design, and project management. Specializing in modern, mid-century, and transitional styles.",
+    "price": 1500.00,
+    "category": "Services",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/interior-design.jpg",
+        "public_id": "listings/services/interior-design-03"
+      }
+    ],
+    "contactEmail": "interiordesigner@example.com",
+    "user": "60d5ec9af682f926b8a91175",
+    "isActive": true
+  },
+  {
+    "name": "Personal Fitness Training",
+    "description": "Certified personal trainer with specialization in strength training, weight loss, and athletic performance. Services include personalized workout programs, nutritional guidance, progress tracking, and accountability coaching. Available for in-home sessions or at partnered fitness facilities.",
+    "price": 75.00,
+    "category": "Services",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/personal-training.jpg",
+        "public_id": "listings/services/personal-training-04"
+      }
+    ],
+    "contactEmail": "personaltrainer@example.com",
+    "user": "60d5ec9af682f926b8a91179",
+    "isActive": true
+  },
+  {
+    "name": "Professional Home Cleaning",
+    "description": "Thorough house cleaning services by insured and bonded professionals. Services include deep cleaning of kitchens and bathrooms, dusting, vacuuming, mopping, window cleaning, and laundry. Eco-friendly cleaning products available upon request. One-time cleaning or recurring service plans.",
+    "price": 150.00,
+    "category": "Services",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/home-cleaning.jpg",
+        "public_id": "listings/services/home-cleaning-05"
+      }
+    ],
+    "contactEmail": "cleaningservice@example.com",
+    "user": "60d5ec9af682f926b8a9117d",
+    "isActive": true
+  },
+  {
+    "name": "Mobile Auto Detailing",
+    "description": "Premium mobile auto detailing service that comes to your location. Services include exterior wash and wax, interior cleaning and conditioning, engine bay detailing, headlight restoration, paint correction, ceramic coating application, and odor elimination. All equipment and supplies provided.",
+    "price": 225.00,
+    "category": "Services",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/auto-detailing.jpg",
+        "public_id": "listings/services/auto-detailing-06"
+      }
+    ],
+    "contactEmail": "autodetailer@example.com",
+    "user": "60d5ec9af682f926b8a91181",
+    "isActive": true
+  },
+  {
+    "name": "Professional Tax Preparation",
+    "description": "Comprehensive tax preparation services by licensed CPA with 20+ years of experience. Services include personal and business tax returns, tax planning, IRS representation, bookkeeping, and financial advice. Specializing in small business owners, freelancers, and complex tax situations.",
+    "price": 350.00,
+    "category": "Services",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/tax-preparation.jpg",
+        "public_id": "listings/services/tax-preparation-07"
+      }
+    ],
+    "contactEmail": "taxprofessional@example.com",
+    "user": "60d5ec9af682f926b8a91185",
+    "isActive": true
+  },
+  {
+    "name": "Landscape Design & Installation",
+    "description": "Full-service landscape design and installation by certified landscape architect. Services include initial consultation, custom design plans, plant selection, hardscape design, irrigation systems, lighting, and installation. Specializing in drought-tolerant, native, and sustainable landscapes.",
+    "price": 3500.00,
+    "category": "Services",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/landscape-design.jpg",
+        "public_id": "listings/services/landscape-design-08"
+      }
+    ],
+    "contactEmail": "landscapearchitect@example.com",
+    "user": "60d5ec9af682f926b8a91189",
+    "isActive": true
+  },
+  {
+    "name": "Private Chef for Special Events",
+    "description": "Professional private chef services for dinner parties, special events, and celebrations. Custom menu creation based on your preferences and dietary requirements. Services include grocery shopping, meal preparation, service, and cleanup. Specializing in Mediterranean, Asian fusion, and modern American cuisine.",
+    "price": 500.00,
+    "category": "Services",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/private-chef.jpg",
+        "public_id": "listings/services/private-chef-09"
+      }
+    ],
+    "contactEmail": "privatechef@example.com",
+    "user": "60d5ec9af682f926b8a9118d",
+    "isActive": true
+  },
+  {
+    "name": "Drone Photography & Videography",
+    "description": "Professional drone photography and videography services for real estate, events, commercial properties, and creative projects. FAA-certified drone pilot with state-of-the-art equipment. Services include aerial photography, 4K video, 3D mapping, virtual tours, and edited content delivery.",
+    "price": 450.00,
+    "category": "Services",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/drone-photography.jpg",
+        "public_id": "listings/services/drone-photography-10"
+      }
+    ],
+    "contactEmail": "dronepilot@example.com",
+    "user": "60d5ec9af682f926b8a91191",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Vinyl Record Collection",
+    "description": "Curated collection of 200+ vintage vinyl records from the 1960s-1980s. Includes rare first pressings, limited editions, and classic albums from rock, jazz, blues, and soul genres. Artists include The Beatles, Pink Floyd, Miles Davis, John Coltrane, Led Zeppelin, and more. Most in VG+ to NM condition with original inner sleeves.",
+    "price": 3500.00,
+    "category": "Misc",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/vinyl-collection.jpg",
+        "public_id": "listings/misc/vinyl-collection-01"
+      }
+    ],
+    "contactEmail": "vinylcollector@example.com",
+    "user": "60d5ec9af682f926b8a91195",
+    "isActive": true
+  },
+  {
+    "name": "Antique Pocket Watch Collection",
+    "description": "Collection of 15 antique pocket watches from the late 19th and early 20th centuries. Includes examples from Waltham, Elgin, Hamilton, and Swiss manufacturers. Various case materials including gold-filled, sterling silver, and nickel. Most are in working condition with recently serviced movements.",
+    "price": 2200.00,
+    "category": "Misc",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/pocket-watches.jpg",
+        "public_id": "listings/misc/pocket-watches-02"
+      }
+    ],
+    "contactEmail": "antiquecollector@example.com",
+    "user": "60d5ec9af682f926b8a91199",
+    "isActive": true
+  },
+  {
+    "name": "Handcrafted Wooden Chest",
+    "description": "One-of-a-kind handcrafted wooden chest made from reclaimed walnut and maple. Dovetail joinery, hand-carved details, and brass hardware. Dimensions: 36\" W x 20\" D x 24\" H. Perfect as a coffee table, blanket chest, or decorative storage piece. Created by local master woodworker.",
+    "price": 1250.00,
+    "category": "Misc",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/wooden-chest.jpg",
+        "public_id": "listings/misc/wooden-chest-03"
+      }
+    ],
+    "contactEmail": "artisanwoodworker@example.com",
+    "user": "60d5ec9af682f926b8a9119d",
+    "isActive": true
+  },
+  {
+    "name": "Professional Telescope with Accessories",
+    "description": "Celestron EdgeHD 9.25\" Schmidt-Cassegrain telescope with computerized GoTo mount, tracking motor, and tripod. Includes 7 eyepieces, 2x Barlow lens, filters, astrophotography adapter, and carrying cases. Perfect for deep sky observation and planetary imaging. Used only a few times, like new condition.",
+    "price": 2800.00,
+    "category": "Misc",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/telescope.jpg",
+        "public_id": "listings/misc/telescope-04"
+      }
+    ],
+    "contactEmail": "astronomer@example.com",
+    "user": "60d5ec9af682f926b8a911a1",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Film Camera Collection",
+    "description": "Collection of 12 vintage film cameras from the 1950s-1980s. Includes Leica M3, Hasselblad 500CM, Nikon F3, Rolleiflex 2.8F, Canon AE-1, and more. All in working condition with original cases and some accessories. Perfect for collectors or film photography enthusiasts.",
+    "price": 4800.00,
+    "category": "Misc",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/film-cameras.jpg",
+        "public_id": "listings/misc/film-cameras-05"
+      }
+    ],
+    "contactEmail": "filmcameracollector@example.com",
+    "user": "60d5ec9af682f926b8a911a5",
+    "isActive": true
+  },
+  {
+    "name": "Vintage Pinball Machine - Restored",
+    "description": "Fully restored 1978 Bally 'KISS' pinball machine in excellent working condition. Professional restoration includes new playfield, rebuilt flippers, new rubbers, LEDs, and sound system. Original artwork in great condition. Includes maintenance manual, schematics, and spare parts kit.",
+    "price": 8500.00,
+    "category": "Misc",
+    "region": "East",
+    "images": [
+      {
+        "url": "https://example.com/images/pinball-machine.jpg",
+        "public_id": "listings/misc/pinball-machine-06"
+      }
+    ],
+    "contactEmail": "arcadecollector@example.com",
+    "user": "60d5ec9af682f926b8a911a9",
+    "isActive": true
+  },
+  {
+    "name": "Antique Persian Rug",
+    "description": "Authentic antique Persian Heriz rug, circa 1920s. Hand-knotted wool with natural vegetable dyes. Geometric medallion design in deep reds, blues, and ivory. Dimensions: 9' x 12'. Recently professionally cleaned and in excellent condition with minimal wear consistent with age.",
+    "price": 4800.00,
+    "category": "Misc",
+    "region": "West",
+    "images": [
+      {
+        "url": "https://example.com/images/persian-rug.jpg",
+        "public_id": "listings/misc/persian-rug-07"
+      }
+    ],
+    "contactEmail": "antiquerugs@example.com",
+    "user": "60d5ec9af682f926b8a911ad",
+    "isActive": true
+  },
+  {
+    "name": "Industrial Sewing Machine",
+    "description": "Juki DDL-8700 industrial sewing machine with servo motor, table, and accessories. High-speed straight stitch machine perfect for professional seamstresses, tailors, or small clothing businesses. Used for one year in home studio, excellent condition and recently serviced.",
+    "price": 850.00,
+    "category": "Misc",
+    "region": "North",
+    "images": [
+      {
+        "url": "https://example.com/images/industrial-sewing.jpg",
+        "public_id": "listings/misc/industrial-sewing-08"
+      }
+    ],
+    "contactEmail": "sewingequipment@example.com",
+    "user": "60d5ec9af682f926b8a911b1",
+    "isActive": true
+  },
+  {
+    "name": "Professional Pottery Wheel and Kiln",
+    "description": "Complete ceramic studio setup including Brent CXC pottery wheel and L&L E23T electric kiln. Also includes tools, bats, glazes, trimming tools, and 100 lbs of clay. Perfect for serious hobbyist or professional potter. All in excellent working condition, kiln has new elements and controller.",
+    "price": 2200.00,
+    "category": "Misc",
+    "region": "South",
+    "images": [
+      {
+        "url": "https://example.com/images/pottery-equipment.jpg",
+        "public_id": "listings/misc/pottery-equipment-09"
+      }
+    ],
+    "contactEmail": "ceramicartist@example.com",
+    "user": "60d5ec9af682f926b8a911b5",
+    "isActive": true
+  },
+  {
+    "name": "Rare Coin Collection",
+    "description": "Curated collection of 50 rare U.S. coins including Morgan silver dollars, Saint-Gaudens double eagles, Liberty Head nickels, and key date pennies. Many graded by PCGS or NGC. Dates range from 1850s to 1950s. Includes display case, reference books, and certificates of authenticity.",
+    "price": 12500.00,
+    "category": "Misc",
+    "region": "Central",
+    "images": [
+      {
+        "url": "https://example.com/images/rare-coins.jpg",
+        "public_id": "listings/misc/rare-coins-10"
+      }
+    ],
+    "contactEmail": "numismatist@example.com",
+    "user": "60d5ec9af682f926b8a911b9",
+    "isActive": true
+  }
+]
