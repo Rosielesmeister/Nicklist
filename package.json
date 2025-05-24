@@ -1,33 +1,32 @@
 {
-	"name": "nicklist",
-	"version": "1.0.0",
-	"description": "Nicklist : \"A MERN stack classifieds platform for categorized user-generated content.\"",
-	"main": "index.js",
-	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"server": "cd backend && npm start",
-		"client": "cd client && npm run dev"
-	},
-	"repository": {
-		"type": "git",
-		"url": "git+https://github.com/Rosielesmeister/Nicklist.git"
-	},
-	"keywords": [],
-	"author": "",
-	"license": "ISC",
-	"bugs": {
-		"url": "https://github.com/Rosielesmeister/Nicklist/issues"
-	},
-	"homepage": "https://github.com/Rosielesmeister/Nicklist#readme",
-	"dependencies": {
-		"bcrypt": "^6.0.0",
-		"dotenv": "^16.5.0",
-		"express": "^5.1.0",
-		"jsonwebtoken": "^9.0.2",
-		"mongodb": "^6.16.0"
-	},
-	"devDependencies": {
-		"concurrently": "^9.1.2"
-	}
+  "name": "nicklist",
+  "version": "1.0.0",
+  "description": "Nicklist : \"A MERN stack classifieds platform for categorized user-generated content.\"",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Rosielesmeister/Nicklist.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Rosielesmeister/Nicklist/issues"
+  },
+  "homepage": "https://github.com/Rosielesmeister/Nicklist#readme",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "dotenv": "^16.5.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongodb": "^6.16.0"
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.21",
+    "postcss": "^8.5.3",
+    "tailwindcss": "^4.1.7"
+  }
 }
