@@ -1,4 +1,5 @@
 import products from "../models/products.js";
+import User from "../models/User.js"; // Import User model
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -140,12 +141,10 @@ const updateProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found." });
     }
 
-    res
-      .status(200)
-      .json({
-        message: "Product updated successfully.",
-        product: updatedProduct,
-      });
+    res.status(200).json({
+      message: "Product updated successfully.",
+      product: updatedProduct,
+    });
   } catch (error) {
     res
       .status(500)
@@ -177,6 +176,53 @@ const deleteProduct = async (req, res) => {
       .json({ message: "Error deleting product.", error: error.message });
   }
 };
+
+// Add these functions
+
+// Add a product to user's bookmarks
+export const addBookmark = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId);
+    if (!user.bookmarks.includes(req.params.id)) {
+      user.bookmarks.push(req.params.id);
+      await user.save();
+    }
+    res.status(200).json({ message: "Bookmarked!" });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error bookmarking.", error: error.message });
+  }
+};
+
+// Remove a product from user's bookmarks
+export const removeBookmark = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId);
+    user.bookmarks = user.bookmarks.filter(
+      (id) => id.toString() !== req.params.id
+    );
+    await user.save();
+    res.status(200).json({ message: "Bookmark removed." });
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error removing bookmark.", error: error.message });
+  }
+};
+
+// Get all bookmarks for a user
+export const getBookmarks = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.userId).populate("bookmarks");
+    res.status(200).json(user.bookmarks);
+  } catch (error) {
+    res
+      .status(500)
+      .json({ message: "Error fetching bookmarks.", error: error.message });
+  }
+};
+
 export {
   createProduct,
   getProducts,
@@ -184,4 +230,7 @@ export {
   updateProduct,
   deleteProduct,
   getProductsByUserId,
+  addBookmark,
+  removeBookmark,
+  getBookmarks,
 };
