@@ -31,8 +31,8 @@ const generateToken = (userId) => {
 app.use(cors());
 app.use(express.json());
 
-app.use("/", userRoutes);
-app.use("/", productRoutes);
+app.use("/api", userRoutes);
+app.use("/api", productRoutes);
 app.use("/api/messages", messageRoutes); // Registers /api/messages endpoints
 
 mongoose
