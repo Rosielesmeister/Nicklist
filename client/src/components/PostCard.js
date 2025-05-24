@@ -9,40 +9,44 @@ const PostCard = ({ post, showActions = false, onEdit, onDelete }) => {
     <div className="bg-white rounded-lg shadow-md overflow-hidden">
       {post.images && post.images.length > 0 && (
         <img
-          src={post.images[0]}
-          alt={post.title}
+          src={post.images[0].url} // Changed: access .url property
+          alt={post.name} // Changed: use name instead of title
           className="w-full h-48 object-cover"
         />
       )}
       <div className="p-4">
-        <h3 className="font-bold text-lg mb-2">{post.title}</h3>
+        <h3 className="font-bold text-lg mb-2">{post.name}</h3>{" "}
+        {/* Changed: title to name */}
         <p className="text-gray-600 text-sm mb-3 line-clamp-2">
           {post.description}
         </p>
-
         <div className="flex justify-between items-center text-sm text-gray-500 mb-3">
           <span className="bg-gray-200 px-2 py-1 rounded">{post.category}</span>
-          <span>{post.region}</span>
+          <span>
+            {post.city}, {post.state}
+          </span>{" "}
+          {/* Changed: show city, state instead of region */}
         </div>
-
+        <div className="text-xs text-gray-400 mb-3">
+          <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded">
+            {post.region} Region
+          </span>
+        </div>
         {post.price && (
           <p className="text-lg font-bold text-green-600 mb-3">${post.price}</p>
         )}
-
         {showActions && (
           <>
             <div className="flex justify-between items-center text-xs text-gray-400 mb-4">
               <span>Created: {formatDate(post.createdAt)}</span>
               <span
                 className={`px-2 py-1 rounded ${
-                  post.status === "active"
+                  post.isActive // Changed: use isActive instead of status
                     ? "bg-green-100 text-green-800"
-                    : post.status === "sold"
-                    ? "bg-blue-100 text-blue-800"
                     : "bg-gray-100 text-gray-800"
                 }`}
               >
-                {post.status}
+                {post.isActive ? "Active" : "Inactive"}
               </span>
             </div>
 
