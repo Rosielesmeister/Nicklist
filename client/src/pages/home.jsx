@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Spinner } from "react-bootstrap";
 import { postsAPI } from "../api/api";
+import PostCard from "../components/PostCard";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
