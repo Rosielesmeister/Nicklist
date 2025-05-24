@@ -1,6 +1,5 @@
 import mongoose from "mongoose";
 
-
 const productSchema = new mongoose.Schema(
   {
     name: {
@@ -45,6 +44,58 @@ const productSchema = new mongoose.Schema(
     state: {
       type: String,
       required: [true, "State is required"],
+      enum: [
+        "Alabama",
+        "Alaska",
+        "Arizona",
+        "Arkansas",
+        "California",
+        "Colorado",
+        "Connecticut",
+        "Delaware",
+        "Florida",
+        "Georgia",
+        "Hawaii",
+        "Idaho",
+        "Illinois",
+        "Indiana",
+        "Iowa",
+        "Kansas",
+        "Kentucky",
+        "Louisiana",
+        "Maine",
+        "Maryland",
+        "Massachusetts",
+        "Michigan",
+        "Minnesota",
+        "Mississippi",
+        "Missouri",
+        "Montana",
+        "Nebraska",
+        "Nevada",
+        "New Hampshire",
+        "New Jersey",
+        "New Mexico",
+        "New York",
+        "North Carolina",
+        "North Dakota",
+        "Ohio",
+        "Oklahoma",
+        "Oregon",
+        "Pennsylvania",
+        "Rhode Island",
+        "South Carolina",
+        "South Dakota",
+        "Tennessee",
+        "Texas",
+        "Utah",
+        "Vermont",
+        "Virginia",
+        "Washington",
+        "West Virginia",
+        "Wisconsin",
+        "Wyoming",
+      ],
       trim: true,
     },
     city: {
@@ -52,11 +103,11 @@ const productSchema = new mongoose.Schema(
       required: [true, "City is required"],
       trim: true,
     },
- 
+
     region: {
       type: String,
       required: [true, "Region is required"],
-      enum: ["North", "South", "East", "West", "Central"], 
+      enum: ["North", "South", "East", "West", "Central"],
     },
     images: [
       {
@@ -71,19 +122,19 @@ const productSchema = new mongoose.Schema(
       trim: true,
       validate: {
         validator: function (v) {
-          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); 
+          return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
         },
         message: "Please enter a valid email address",
       },
     },
     user: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "User", 
+      ref: "User",
       required: true,
     },
     isActive: {
       type: Boolean,
-      default: true, 
+      default: true,
     },
   },
   {

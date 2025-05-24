@@ -7,10 +7,24 @@ const Home = () => {
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [regionFilter, setRegionFilter] = useState("");
+    const [stateFilter, setStateFilter] = useState("");
+    const [zipcodeFilter, setZipcodeFilter] = useState("");
     const [loading, setLoading] = useState(true);
 
     const categories = ['Electronics', 'Home Appliances', 'cars/trucks', 'Motorcycles', 'Bicycles', 'Real Estate', 'Fashion', 'Toys', 'Sports', 'health & Beauty', 'animals', 'Furniture', 'Clothing', 'Books', 'Services', 'Misc'];
     const regions = ["North", "South", "East", "West", "Central"];
+    
+    // US States array
+    const states = [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
+        "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", 
+        "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", 
+        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
+        "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", 
+        "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
+        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", 
+        "Wisconsin", "Wyoming"
+    ];
 
     useEffect(() => {
         fetchPosts();
@@ -32,9 +46,20 @@ const Home = () => {
             post.description.toLowerCase().includes(searchTerm.toLowerCase());
         const matchesCategory = !categoryFilter || post.category === categoryFilter;
         const matchesRegion = !regionFilter || post.region === regionFilter;
+        const matchesState = !stateFilter || post.state === stateFilter;
+        const matchesZipcode = !zipcodeFilter || 
+            (post.zipcode && post.zipcode.toString().includes(zipcodeFilter));
 
-        return matchesSearch && matchesCategory && matchesRegion;
+        return matchesSearch && matchesCategory && matchesRegion && matchesState && matchesZipcode;
     });
+
+    const clearFilters = () => {
+        setSearchTerm("");
+        setCategoryFilter("");
+        setRegionFilter("");
+        setStateFilter("");
+        setZipcodeFilter("");
+    };
 
     if (loading) {
         return (
@@ -54,15 +79,34 @@ const Home = () => {
                     <Card className="mb-3">
                         <Card.Body>
                             <Row className="mb-3">
-                                <Col>
+                                <Col md={6} lg={4}>
                                     <Form.Control
                                         type="text"
-                                        placeholder="Search..."
+                                        placeholder="Search listings..."
                                         value={searchTerm}
                                         onChange={(e) => setSearchTerm(e.target.value)}
                                     />
                                 </Col>
-                                <Col>
+                                <Col md={6} lg={4}>
+                                    <Form.Control
+                                        type="text"
+                                        placeholder="Search by zipcode..."
+                                        value={zipcodeFilter}
+                                        onChange={(e) => setZipcodeFilter(e.target.value)}
+                                    />
+                                </Col>
+                                <Col md={6} lg={4}>
+                                    <Button 
+                                        variant="outline-secondary" 
+                                        onClick={clearFilters}
+                                        className="w-100"
+                                    >
+                                        Clear Filters
+                                    </Button>
+                                </Col>
+                            </Row>
+                            <Row>
+                                <Col md={6} lg={3}>
                                     <Form.Select
                                         value={categoryFilter}
                                         onChange={(e) => setCategoryFilter(e.target.value)}
@@ -75,7 +119,7 @@ const Home = () => {
                                         ))}
                                     </Form.Select>
                                 </Col>
-                                <Col>
+                                <Col md={6} lg={3}>
                                     <Form.Select
                                         value={regionFilter}
                                         onChange={(e) => setRegionFilter(e.target.value)}
@@ -87,6 +131,24 @@ const Home = () => {
                                             </option>
                                         ))}
                                     </Form.Select>
+                                </Col>
+                                <Col md={6} lg={3}>
+                                    <Form.Select
+                                        value={stateFilter}
+                                        onChange={(e) => setStateFilter(e.target.value)}
+                                    >
+                                        <option value="">All States</option>
+                                        {states.map((state) => (
+                                            <option key={state} value={state}>
+                                                {state}
+                                            </option>
+                                        ))}
+                                    </Form.Select>
+                                </Col>
+                                <Col md={6} lg={3}>
+                                    <div className="text-muted small">
+                                        Showing {filteredPosts.length} of {posts.length} listings
+                                    </div>
                                 </Col>
                             </Row>
                         </Card.Body>
@@ -104,12 +166,30 @@ const Home = () => {
                                         <Card.Text>
                                             {post.description}
                                         </Card.Text>
+                                        <div className="d-flex justify-content-between align-items-center mb-2">
+                                            <small className="text-muted">
+                                                {post.state && `${post.state}`}
+                                                {post.zipcode && ` ${post.zipcode}`}
+                                            </small>
+                                            <small className="text-muted">
+                                                {post.category}
+                                            </small>
+                                        </div>
                                         <Button variant="primary">View Details</Button>
                                     </Card.Body>
                                 </Card>
                             </Col>
                         ))}
                     </Row>
+
+                    {filteredPosts.length === 0 && (
+                        <Row>
+                            <Col className="text-center py-5">
+                                <h4>No listings found</h4>
+                                <p className="text-muted">Try adjusting your search filters</p>
+                            </Col>
+                        </Row>
+                    )}
                 </Col>
             </Row>
         </Container>
