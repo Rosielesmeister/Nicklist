@@ -1,4 +1,6 @@
 import Message from "../models/message.js";
+import { sendEmail } from "../utils/email.js";
+import User from "../models/User.js";
 
 // Send a message (already exists)
 export const sendMessage = async (req, res) => {
@@ -10,6 +12,19 @@ export const sendMessage = async (req, res) => {
       product,
       content,
     });
+
+    // Fetch recipient's email
+    const recipientUser = await User.findById(recipient);
+    if (recipientUser) {
+      // Send notification email
+      await sendEmail({
+        to: recipientUser.email,
+        subject: "You have a new message on Nicklist",
+        text: `You received a new message: "${content}"`,
+        html: `<p>You received a new message:</p><blockquote>${content}</blockquote>`,
+      });
+    }
+
     res.status(201).json(message);
   } catch (error) {
     res
