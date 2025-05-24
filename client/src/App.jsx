@@ -16,47 +16,41 @@ function App() {
 
 	return (
 		<Router>
-			<div className="min-h-screen bg-gray-50">
-				<main className="container mx-auto px-4 py-8">
-					{/* Layuout components */}
-					<Auth />
-					<div style={{ backgroundColor: "red", padding: "20px" }}>
-						<h1>APP IS WORKING</h1>
-					</div>
-					{/* Layout End */}
-					<Routes>
-    {/* TODO: Uncomment each page when completed */}
-    <Route
-        path="/"
-        element={<Home />}
-    />
-    {/* <Route
+			<div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
+				{/* Layuout components */}
+				<Auth />
+				{/* Layout End */}
+				<Routes>
+					{/* TODO: Uncomment each page when completed */}
+					<Route
+						path="/"
+						element={<Home />}
+					/>
+					{/* <Route
         path="/login"
         element={<Login />}
     /> */}
-    {/* <Route
+					{/* <Route
         path="/register"
         element={<Register />}
     /> */}
-    {/* <Route
+					{/* <Route
         path="/dashboard"
         element={<Dashboard />}
     /> */}
-    {/* <Route
+					{/* <Route
         path="/create"
         element={<CreatePost />}
     /> */}
-    {/* <Route
+					{/* <Route
         path="/edit/:id"
         element={<EditPost />}
     /> */}
-    {/* <Route
+					{/* <Route
         path="/image"
         element={<AdvancedImage cldImg={img} />}
     /> */}
-   
-</Routes>
-				</main>
+				</Routes>
 			</div>
 		</Router>
 	)
