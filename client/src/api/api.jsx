@@ -35,4 +35,11 @@ export const postsAPI = {
   getBookmarks: () => api.get("/user/bookmarks"),
 };
 
+export const messagesAPI = {
+  sendMessage: (data) => api.post("/messages", data),
+  getMessagesForProduct: (productId) =>
+    api.get(`/messages/product/${productId}`),
+  getMessagesForUser: () => api.get("/messages/user"),
+};
+
 export default api;

@@ -1,6 +1,7 @@
 import React from "react";
 import PostCard from "../components/PostCard";
-
+import MessageForm from "../pages/MessageForm";
+import MessageList from "../components/MessageList";
 const PostList = ({ posts, showActions, onEdit, onDelete }) => {
   const filteredPosts = posts.filter((post) => post.isActive); // Example filter
 
@@ -13,13 +14,18 @@ const PostList = ({ posts, showActions, onEdit, onDelete }) => {
           </p>
         ) : (
           filteredPosts.map((post) => (
-            <PostCard
-              key={post._id}
-              post={post}
-              showActions={showActions}
-              onEdit={onEdit}
-              onDelete={onDelete}
-            />
+            <div key={post._id}>
+              {/* Render the post card */}
+              <PostCard
+                post={post}
+                showActions={showActions}
+                onEdit={onEdit}
+                onDelete={onDelete}
+              />
+              {/* Messaging components for this post */}
+              <MessageForm recipientId={post.user._id} productId={post._id} />
+              <MessageList productId={post._id} />
+            </div>
           ))
         )}
       </div>
