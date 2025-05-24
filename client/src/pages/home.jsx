@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Spinner } from "react-bootstrap";
 import { postsAPI } from "../api/api";
-import PostCard from "../components/PostCard";
 
 const Home = () => {
     const [posts, setPosts] = useState([]);
@@ -34,17 +33,19 @@ const Home = () => {
     const fetchPosts = async () => {
         try {
             const response = await postsAPI.getAllPosts();
-            setPosts(response.data);
+            setPosts(response.data || []);
         } catch (error) {
             console.error("Error fetching posts:", error);
+            setPosts([]);
         } finally {
             setLoading(false);
         }
     };
 
     const filteredPosts = posts.filter((post) => {
-        const matchesSearch = post.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
-            post.description.toLowerCase().includes(searchTerm.toLowerCase());
+        const matchesSearch = searchTerm === "" || 
+            ((post.title ? post.title.toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
+            (post.description ? post.description.toLowerCase().includes(searchTerm.toLowerCase()) : false));
         const matchesCategory = !categoryFilter || post.category === categoryFilter;
         const matchesRegion = !regionFilter || post.region === regionFilter;
         const matchesState = !stateFilter || post.state === stateFilter;
