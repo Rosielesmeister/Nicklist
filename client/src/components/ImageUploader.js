@@ -93,7 +93,13 @@ const ImageUploader = ({
         (progress) => setUploadProgress(progress)
       );
 
-      onUploadSuccess?.(result);
+      // When creating/updating a product, save image URLs in the images array
+      const imageData = {
+        url: result.secure_url,
+        public_id: result.public_id,
+      };
+
+      onUploadSuccess?.(imageData);
       resetUpload();
     } catch (error) {
       console.error("Upload error:", error);
