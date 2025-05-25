@@ -1,5 +1,5 @@
 import Message from "../models/message.js";
-import { sendEmail } from "../utils/email.js";
+//import { sendEmail } from "../utilitys/email.js"; causing and error, so commented out. rosie
 import User from "../models/User.js";
 
 // Send a message (already exists)
