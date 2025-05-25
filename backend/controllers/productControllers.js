@@ -82,20 +82,53 @@ const getProductsByUserId = async (req, res) => {
 // get all the products
 const getProducts = async (req, res) => {
   try {
-    if (!req.user || !req.user.userId) {
-      return res
-        .status(401)
-        .json({ message: "Unauthorized: User information is missing." });
-    }
+      // Extract query parameters for filtering
+      const { 
+          search, 
+          category, 
+          region, 
+          state, 
+          zipcode,
+          page = 1, 
+          limit = 20 
+      } = req.query;
 
-    const allProducts = await products.find();
-    res.status(200).json(allProducts);
+      // Build filter object
+      let filter = {};
+      
+      if (search) {
+          filter.$or = [
+              { name: { $regex: search, $options: 'i' } },
+              { description: { $regex: search, $options: 'i' } }
+          ];
+      }
+      
+      if (category) filter.category = category;
+      if (region) filter.region = region;
+      if (state) filter.state = state;
+      if (zipcode) filter.zipcode = new RegExp(zipcode, 'i');
+
+      // Execute query with pagination
+      const skip = (parseInt(page) - 1) * parseInt(limit);
+      const allProducts = await products.find(filter)
+          .skip(skip)
+          .limit(parseInt(limit))
+          .sort({ createdAt: -1 }); // Sort by newest first
+
+      const total = await products.countDocuments(filter);
+
+      res.status(200).json({
+          data: allProducts,
+          total,
+          page: parseInt(page),
+          limit: parseInt(limit),
+          totalPages: Math.ceil(total / parseInt(limit))
+      });
   } catch (error) {
-    res
-      .status(500)
-      .json({ message: "Error fetching products.", error: error.message });
+      res.status(500).json({ message: "Error fetching products.", error: error.message });
   }
 };
+
 // get a single product by id
 const getProductById = async (req, res) => {
   try {
