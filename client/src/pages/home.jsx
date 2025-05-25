@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Card, Form, Button, Spinner } from "react-bootstrap";
-import { postsAPI } from "../api/api";
+import { productsAPI } from "../api/api";
 
 const Home = () => {
-    const [posts, setPosts] = useState([]);
+    const [products, setProducts] = useState([]);
     const [searchTerm, setSearchTerm] = useState("");
     const [categoryFilter, setCategoryFilter] = useState("");
     const [regionFilter, setRegionFilter] = useState("");
@@ -27,30 +27,30 @@ const Home = () => {
     ];
 
     useEffect(() => {
-        fetchPosts();
+        fetchProducts();
     }, []);
 
-    const fetchPosts = async () => {
+    const fetchProducts = async () => {
         try {
-            const response = await postsAPI.getAllPosts();
-            setPosts(response.data || []);
+            const response = await productsAPI.getAllProducts(); // This calls the GET /products endpoint without auth
+            setProducts(response.data || response || []); // Handle different response structures
         } catch (error) {
-            console.error("Error fetching posts:", error);
-            setPosts([]);
+            console.error("Error fetching products:", error);
+            setProducts([]);
         } finally {
             setLoading(false);
         }
     };
-
-    const filteredPosts = posts.filter((post) => {
+    
+    const filteredProducts = products.filter((product) => {
         const matchesSearch = searchTerm === "" || 
-            ((post.title ? post.title.toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
-            (post.description ? post.description.toLowerCase().includes(searchTerm.toLowerCase()) : false));
-        const matchesCategory = !categoryFilter || post.category === categoryFilter;
-        const matchesRegion = !regionFilter || post.region === regionFilter;
-        const matchesState = !stateFilter || post.state === stateFilter;
+            ((product.title ? product.title.toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
+            (product.description ? product.description.toLowerCase().includes(searchTerm.toLowerCase()) : false));
+        const matchesCategory = !categoryFilter || product.category === categoryFilter;
+        const matchesRegion = !regionFilter || product.region === regionFilter;
+        const matchesState = !stateFilter || product.state === stateFilter;
         const matchesZipcode = !zipcodeFilter || 
-            (post.zipcode && post.zipcode.toString().includes(zipcodeFilter));
+            (product.zipcode && product.zipcode.toString().includes(zipcodeFilter));
 
         return matchesSearch && matchesCategory && matchesRegion && matchesState && matchesZipcode;
     });
@@ -149,7 +149,7 @@ const Home = () => {
                                 </Col>
                                 <Col md={6} lg={3}>
                                     <div className="text-muted small">
-                                        Showing {filteredPosts.length} of {posts.length} listings
+                                        Showing {filteredProducts.length} of {products.length} listings
                                     </div>
                                 </Col>
                             </Row>
@@ -157,24 +157,24 @@ const Home = () => {
                     </Card>
 
                     <Row>
-                        {filteredPosts.map((post) => (
-                            <Col key={post._id} md={6} lg={4}>
+                        {filteredProducts.map((product) => (
+                            <Col key={product._id} md={6} lg={4}>
                                 <Card className="mb-3">
-                                    {post.images && post.images.length > 0 && (
-                                        <Card.Img variant="top" src={post.images[0].url} />
+                                    {product.images && product.images.length > 0 && (
+                                        <Card.Img variant="top" src={product.images[0].url} />
                                     )}
                                     <Card.Body>
-                                        <Card.Title>{post.title}</Card.Title>
+                                        <Card.Title>{product.title}</Card.Title>
                                         <Card.Text>
-                                            {post.description}
+                                            {product.description}
                                         </Card.Text>
                                         <div className="d-flex justify-content-between align-items-center mb-2">
                                             <small className="text-muted">
-                                                {post.state && `${post.state}`}
-                                                {post.zipcode && ` ${post.zipcode}`}
+                                                {product.state && `${product.state}`}
+                                                {product.zipcode && ` ${product.zipcode}`}
                                             </small>
                                             <small className="text-muted">
-                                                {post.category}
+                                                {product.category}
                                             </small>
                                         </div>
                                         <Button variant="primary">View Details</Button>
@@ -184,7 +184,7 @@ const Home = () => {
                         ))}
                     </Row>
 
-                    {filteredPosts.length === 0 && (
+                    {filteredProducts.length === 0 && (
                         <Row>
                             <Col className="text-center py-5">
                                 <h4>No listings found</h4>
