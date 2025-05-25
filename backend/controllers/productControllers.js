@@ -230,7 +230,7 @@ export {
   updateProduct,
   deleteProduct,
   getProductsByUserId,
-  addBookmark,
-  removeBookmark,
-  getBookmarks,
+  //addBookmark,
+  //removeBookmark,
+  //getBookmarks, i comment these out b/c they are used above and it cause the code to break using them in both places. rosie
 };
