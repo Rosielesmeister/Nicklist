@@ -1,7 +1,5 @@
-// Base API configuration
 const API_BASE_URL = 'http://localhost:5000';
 
-// Products API
 export const productsAPI = {
   // GET all products - NO AUTH REQUIRED
   getAllProducts: async () => {
@@ -15,8 +13,6 @@ export const productsAPI = {
     if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
     return await response.json();
   },
-
-  // GET single product - PUBLIC (if you remove auth from route)
   getProduct: async (id) => {
     if (!id) throw new Error('Product ID required');
     
@@ -126,5 +122,71 @@ export const productsAPI = {
   }
 };
 
-// Keep the original postsAPI for backward compatibility if needed
-export const postsAPI = productsAPI;
+export const postsAPI = {
+  getUserPosts: async () => {
+    const token = localStorage.getItem("authToken");
+    const response = await fetch(`${API_BASE_URL}/products`, {
+      headers: { Authorization: `Bearer ${token}` },
+    });
+    if (!response.ok) {
+      throw new Error("Failed to fetch user posts");
+    }
+    return response.json();
+  },
+};
+
+// Auth API for user management
+export const authAPI = {
+  // Register new user
+  register: async (userData) => {
+    const response = await fetch(`${API_BASE_URL}/auth/register`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(userData),
+    });
+    
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    return await response.json();
+  },
+  
+  // Login user
+  login: async (credentials) => {
+    const response = await fetch(`${API_BASE_URL}/auth/login`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(credentials),
+    });
+    
+    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+    const data = await response.json();
+    
+    // Store token in localStorage for subsequent API calls
+    if (data.token) localStorage.setItem('token', data.token);
+    return data;
+  },
+  
+  // Logout user (client-side)
+  logout: () => {
+    localStorage.removeItem('token');
+  },
+  
+  // Get current user info
+  getCurrentUser: async () => {
+    const token = localStorage.getItem('token');
+    if (!token) return null;
+    
+    const response = await fetch(`${API_BASE_URL}/auth/me`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`,
+      },
+    });
+    
+    if (!response.ok) {
+      localStorage.removeItem('token');
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+    return await response.json();
+  }
+};

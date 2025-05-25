@@ -1,7 +1,7 @@
 export const CLOUDINARY_CONFIG = {
-  cloudName: process.env.REACT_APP_CLOUDINARY_CLOUD_NAME || "doaoflgje",
-  uploadPreset: process.env.REACT_APP_CLOUDINARY_UPLOAD_PRESET || "nicklist",
-  apiKey: process.env.REACT_APP_CLOUDINARY_API_KEY, // Optional for signed uploads
+  cloudName: import.meta.env.VITE_CLOUDINARY_CLOUD_NAME || "doaoflgje",
+  uploadPreset: import.meta.env.VITE_CLOUDINARY_UPLOAD_PRESET || "nicklist",
+  apiKey: import.meta.env.VITE_CLOUDINARY_API_KEY, // Optional for signed uploads
 };
 
 // Validate configuration

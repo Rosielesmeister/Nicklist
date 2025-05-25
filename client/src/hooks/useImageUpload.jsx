@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { cloudinaryConfig } from '../utils/cloudinaryConfig.js';
+import { cloudinaryConfig } from '../utils/cloudinaryConfig.js.jsx';
 
 export const useImageUpload = () => {
   const [uploading, setUploading] = useState(false);

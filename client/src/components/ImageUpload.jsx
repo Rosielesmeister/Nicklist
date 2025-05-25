@@ -7,8 +7,8 @@ const ImageUpload = ({
   images = [], 
   onImagesChange, 
   maxImages = 5, 
-  cloudName = "doaoflgje", // Replace with your Cloudinary cloud name
-  uploadPreset = "nicklist" // Replace with your upload preset
+  cloudName = "doaoflgje", 
+  uploadPreset = "nicklist" 
 }) => {
 
 

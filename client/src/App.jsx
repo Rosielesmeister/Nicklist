@@ -1,58 +1,83 @@
-import React from "react"
+import React, { useState } from "react"
 import { useCloudinaryImage } from "./hooks/useCloudinaryImage"
-import { AdvancedImage } from "@cloudinary/react" // Add this import
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-//TODO import Navbar from "./components/Navbar"
+import { AdvancedImage } from "@cloudinary/react"
+import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
+import { useAuth, AuthProvider } from "./hooks/useAuth"
+import UserProfile from "./components/UserProfile"
+import NewListing from "./components/NewListing"
 import Home from "./pages/Home"
-//TODO import Dashboard from "./pages/Dashboard"
-//TODO import CreatePost from "./pages/CreatePost"s
-//TODO import EditPost from "./pages/EditPost"
+import Login from "./components/auth/Login"
 import Auth from "./components/auth/Auth"
 import "bootstrap/dist/css/bootstrap.min.css"
 
-function App() {
+// Protected route component
+function ProtectedRoute({ children }) {
+	const { user, loading } = useAuth()
+	console.log("Protected route - user:", user, "loading:", loading)
+	
+	if (loading) {
+		return <div>Loading...</div> // Show loading while checking auth state
+	}
+	
+	return user ? children : <Navigate to="/" replace />
+}
+
+// Main app content (needs to be inside AuthProvider)
+function AppContent() {
 	const { getOptimizedImage } = useCloudinaryImage("doaflgje")
-	const img = getOptimizedImage("cld-sample-5")
+	const img = getOptimizedImage("cld-sample-5") 
+	const { user } = useAuth()
+	const [showAddListing, setShowAddListing] = useState(false)
+
+	const handleListingAdded = (newListing) => {
+		console.log('New listing added:', newListing)
+		setShowAddListing(false)
+	}
 
 	return (
 		<Router>
 			<div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-				{/* Layuout components */}
+				{/* Layout components */}
 				<Auth />
 				{/* Layout End */}
+
 				<Routes>
-					{/* TODO: Uncomment each page when completed */}
+					<Route path="/" element={<Home />} />
+					<Route path="/login" element={<Login />} />
+
+					{/* Protected route for user profile */}
 					<Route
-						path="/"
-						element={<Home />}
+						path="/me"
+						element={
+							<ProtectedRoute>
+								<UserProfile />
+							</ProtectedRoute>
+						}
 					/>
-					{/* <Route
-        path="/login"
-        element={<Login />}
-    /> */}
-					{/* <Route
-        path="/register"
-        element={<Register />}
-    /> */}
-					{/* <Route
-        path="/dashboard"
-        element={<Dashboard />}
-    /> */}
-					{/* <Route
-        path="/create"
-        element={<CreatePost />}
-    /> */}
-					{/* <Route
-        path="/edit/:id"
-        element={<EditPost />}
-    /> */}
-					{/* <Route
-        path="/image"
-        element={<AdvancedImage cldImg={img} />}
-    /> */}
+
+					{/* Catch-all route for unmatched paths */}
+					<Route path="*" element={<Navigate to="/" replace />} />
 				</Routes>
+
+				{/* Add Listing Modal */}
+				{user && (
+					<NewListing
+						show={showAddListing}
+						onHide={() => setShowAddListing(false)}
+						onListingAdded={handleListingAdded}
+					/>
+				)}
 			</div>
 		</Router>
+	)
+}
+
+// Main App component with AuthProvider wrapper
+function App() {
+	return (
+		<AuthProvider>
+			<AppContent />
+		</AuthProvider>
 	)
 }
 

@@ -15,7 +15,6 @@ const CloudinaryUploadWidget = ({
   const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    // Load Cloudinary script if not already loaded
     if (!window.cloudinary) {
       const script = document.createElement("script");
       script.src = "https://widget.cloudinary.com/v2.0/global/all.js";

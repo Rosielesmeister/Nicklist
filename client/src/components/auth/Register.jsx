@@ -1,9 +1,7 @@
 import { Modal, Form, Button } from "react-bootstrap"
 import { useAuth } from "../../hooks/useAuth"
 
-// Accept show/onHide props to control modal visibility
 export default function Register({ show, onHide }) {
-	// Get login function from our auth hook
 	const { login } = useAuth()
 
 	const handleSubmit = async (e) => {
@@ -17,8 +15,7 @@ export default function Register({ show, onHide }) {
 		const email = formData.get("email")
 		const password = formData.get("password")
 
-		// Call your backend register endpoint
-		const response = await fetch("/register", {
+		const response = await fetch("http://localhost:5000/register", {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ firstName, lastName, email, password }),
@@ -27,16 +24,17 @@ export default function Register({ show, onHide }) {
 		// Handle response
 		if (response.ok) {
 			const userData = await response.json()
-			login(userData) // Auto-login after registration
+			login(userData)
+			 // Auto-login after registration
 			onHide() // Close the modal
 		} else {
 			const error = await response.json()
-			alert(error.message) // Show error message
+			alert(error.message) 
 		}
 	}
 
 	return (
-		// Bootstrap modal - show/hide controlled by parent component
+		
 		<Modal
 			show={show}
 			onHide={onHide}>
