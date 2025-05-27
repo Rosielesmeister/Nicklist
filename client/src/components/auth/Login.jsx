@@ -1,11 +1,13 @@
 import React, { useState } from "react"
 import { Modal, Form, Button, Alert, Spinner } from "react-bootstrap"
 import { useAuth } from "../../hooks/useAuth"
-import { useNavigate } from "react-router-dom" 
+import { useNavigate } from "react-router-dom"
+
+const API_BASE_URL = `http://localhost:${import.meta.env.VITE_API_PORT || 5000}`
 
 export default function Login({ show, onHide }) {
 	const { login } = useAuth()
-	const navigate = useNavigate() 
+	const navigate = useNavigate()
 	const [error, setError] = useState("")
 	const [isLoading, setIsLoading] = useState(false)
 
@@ -21,21 +23,21 @@ export default function Login({ show, onHide }) {
 
 			console.log("Attempting login with:", { email, password: "***" })
 
-			const response = await fetch("http://localhost:5000/login", {
+			const response = await fetch(`${API_BASE_URL}/login`, {
 				method: "POST",
 				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ email, password }),
 			})
 
 			console.log("Response status:", response.status)
-			
+
 			const data = await response.json()
 			console.log("Response data:", data)
 
 			if (response.ok) {
 				console.log("Login successful, calling login function")
 				login(data)
-				navigate('/me') 
+				navigate("/me")
 				onHide()
 				e.target.reset()
 			} else {
@@ -56,18 +58,23 @@ export default function Login({ show, onHide }) {
 	}
 
 	return (
-		<Modal show={show} onHide={handleHide} backdrop="static">
+		<Modal
+			show={show}
+			onHide={handleHide}
+			backdrop="static">
 			<Modal.Header closeButton>
 				<Modal.Title>Login</Modal.Title>
 			</Modal.Header>
 
 			<Modal.Body>
 				{error && (
-					<Alert variant="danger" className="mb-3">
+					<Alert
+						variant="danger"
+						className="mb-3">
 						{error}
 					</Alert>
 				)}
-				
+
 				<Form onSubmit={handleSubmit}>
 					<Form.Group className="mb-3">
 						<Form.Label>Email</Form.Label>
@@ -95,8 +102,7 @@ export default function Login({ show, onHide }) {
 						variant="primary"
 						type="submit"
 						className="w-100"
-						disabled={isLoading}
-					>
+						disabled={isLoading}>
 						{isLoading ? (
 							<>
 								<Spinner

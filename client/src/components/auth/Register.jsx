@@ -1,6 +1,9 @@
 import { Modal, Form, Button } from "react-bootstrap"
 import { useAuth } from "../../hooks/useAuth"
 
+//import port variable from frontend ENV file
+const API_BASE_URL = `http://localhost:${import.meta.env.VITE_API_PORT || 5000}` 
+
 export default function Register({ show, onHide }) {
 	const { login } = useAuth()
 
@@ -15,7 +18,7 @@ export default function Register({ show, onHide }) {
 		const email = formData.get("email")
 		const password = formData.get("password")
 
-		const response = await fetch("http://localhost:5000/register", {
+		const response = await fetch(`${API_BASE_URL}/register`, {
 			method: "POST",
 			headers: { "Content-Type": "application/json" },
 			body: JSON.stringify({ firstName, lastName, email, password }),
@@ -25,16 +28,15 @@ export default function Register({ show, onHide }) {
 		if (response.ok) {
 			const userData = await response.json()
 			login(userData)
-			 // Auto-login after registration
+			// Auto-login after registration
 			onHide() // Close the modal
 		} else {
 			const error = await response.json()
-			alert(error.message) 
+			alert(error.message)
 		}
 	}
 
 	return (
-		
 		<Modal
 			show={show}
 			onHide={onHide}>
