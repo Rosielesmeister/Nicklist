@@ -1,314 +1,310 @@
-import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Card, Form, Button, Spinner, Badge } from "react-bootstrap";
-import { productsAPI } from "../api/api";
-import ProductDetails from "../components/ProductDetails";
+// pages/Home.jsx
+import React, { useState, useEffect } from 'react';
+import { Container, Row, Col, Card, Form, Button, Alert, Spinner } from 'react-bootstrap';
+import { useAuth } from '../hooks/useAuth';
+import { productsAPI } from '../api/api';
+import ProductCard from '../components/ProductCard';
+import ProductDetailsModal from '../components/ProductDetailsModal';
+import NewListing from '../components/NewListing';
 
 const Home = () => {
+    const { user } = useAuth();
     const [products, setProducts] = useState([]);
-    const [searchTerm, setSearchTerm] = useState("");
-    const [categoryFilter, setCategoryFilter] = useState("");
-    const [regionFilter, setRegionFilter] = useState("");
-    const [stateFilter, setStateFilter] = useState("");
-    const [zipcodeFilter, setZipcodeFilter] = useState("");
     const [loading, setLoading] = useState(true);
-    
-    // Modal state
-    const [showDetailsModal, setShowDetailsModal] = useState(false);
+    const [error, setError] = useState('');
     const [selectedProduct, setSelectedProduct] = useState(null);
-
-    const categories = ['Electronics', 'Home Appliances', 'cars/trucks', 'Motorcycles', 'Bicycles', 'Real Estate', 'Fashion', 'Toys', 'Sports', 'health & Beauty', 'animals', 'Furniture', 'Clothing', 'Books', 'Services', 'Misc'];
-    const regions = ["North", "South", "East", "West", "Central"];
+    const [showProductDetails, setShowProductDetails] = useState(false);
+    const [showNewListing, setShowNewListing] = useState(false);
     
-    // US States array
-    const states = [
-        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado", "Connecticut", 
-        "Delaware", "Florida", "Georgia", "Hawaii", "Idaho", "Illinois", "Indiana", "Iowa", 
-        "Kansas", "Kentucky", "Louisiana", "Maine", "Maryland", "Massachusetts", "Michigan", 
-        "Minnesota", "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada", "New Hampshire", 
-        "New Jersey", "New Mexico", "New York", "North Carolina", "North Dakota", "Ohio", 
-        "Oklahoma", "Oregon", "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota", 
-        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington", "West Virginia", 
-        "Wisconsin", "Wyoming"
+    // Filter states
+    const [searchTerm, setSearchTerm] = useState('');
+    const [selectedCategory, setSelectedCategory] = useState('');
+    const [selectedState, setSelectedState] = useState('');
+    const [selectedRegion, setSelectedRegion] = useState('');
+    const [priceRange, setPriceRange] = useState({ min: '', max: '' });
+
+    const categories = [
+        "Electronics", "Home Appliances", "cars/trucks", "Motorcycles", "Bicycles",
+        "Real Estate", "Fashion", "Toys", "Sports", "health & Beauty", "animals",
+        "Furniture", "Clothing", "Books", "Services", "Misc"
     ];
 
+    const states = [
+        "Alabama", "Alaska", "Arizona", "Arkansas", "California", "Colorado",
+        "Connecticut", "Delaware", "Florida", "Georgia", "Hawaii", "Idaho",
+        "Illinois", "Indiana", "Iowa", "Kansas", "Kentucky", "Louisiana",
+        "Maine", "Maryland", "Massachusetts", "Michigan", "Minnesota",
+        "Mississippi", "Missouri", "Montana", "Nebraska", "Nevada",
+        "New Hampshire", "New Jersey", "New Mexico", "New York",
+        "North Carolina", "North Dakota", "Ohio", "Oklahoma", "Oregon",
+        "Pennsylvania", "Rhode Island", "South Carolina", "South Dakota",
+        "Tennessee", "Texas", "Utah", "Vermont", "Virginia", "Washington",
+        "West Virginia", "Wisconsin", "Wyoming"
+    ];
+
+    const regions = ["North", "South", "East", "West", "Central"];
+
+    // Fetch products on component mount
     useEffect(() => {
         fetchProducts();
     }, []);
 
     const fetchProducts = async () => {
         try {
+            setLoading(true);
+            setError('');
             const response = await productsAPI.getAllProducts();
-            setProducts(response.data || response || []);
-        } catch (error) {
-            console.error("Error fetching products:", error);
+            setProducts(Array.isArray(response) ? response : []);
+        } catch (err) {
+            console.error('Error fetching products:', err);
+            setError('Failed to load products. Please try again.');
             setProducts([]);
         } finally {
             setLoading(false);
         }
     };
-    
-    const filteredProducts = products.filter((product) => {
-        const matchesSearch = searchTerm === "" || 
-            ((product.name ? product.name.toLowerCase().includes(searchTerm.toLowerCase()) : false) ||
-            (product.description ? product.description.toLowerCase().includes(searchTerm.toLowerCase()) : false));
-        const matchesCategory = !categoryFilter || product.category === categoryFilter;
-        const matchesRegion = !regionFilter || product.region === regionFilter;
-        const matchesState = !stateFilter || product.state === stateFilter;
-        const matchesZipcode = !zipcodeFilter || 
-            (product.zipcode && product.zipcode.toString().includes(zipcodeFilter));
 
-        return matchesSearch && matchesCategory && matchesRegion && matchesState && matchesZipcode;
-    });
-
-    const clearFilters = () => {
-        setSearchTerm("");
-        setCategoryFilter("");
-        setRegionFilter("");
-        setStateFilter("");
-        setZipcodeFilter("");
-    };
-
+    // Handle product detail view
     const handleViewDetails = (product) => {
         setSelectedProduct(product);
-        setShowDetailsModal(true);
+        setShowProductDetails(true);
     };
 
-    const handleCloseModal = () => {
-        setShowDetailsModal(false);
-        setSelectedProduct(null);
+    // Handle new listing added
+    const handleListingAdded = (newListing) => {
+        setProducts(prev => [newListing.product || newListing, ...prev]);
+        setShowNewListing(false);
     };
 
-    const formatPrice = (price) => {
-        return new Intl.NumberFormat('en-US', {
-            style: 'currency',
-            currency: 'USD'
-        }).format(price);
-    };
+    // Filter products based on search criteria
+    const filteredProducts = products.filter(product => {
+        const matchesSearch = !searchTerm || 
+            product.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            product.description.toLowerCase().includes(searchTerm.toLowerCase());
+        
+        const matchesCategory = !selectedCategory || product.category === selectedCategory;
+        const matchesState = !selectedState || product.state === selectedState;
+        const matchesRegion = !selectedRegion || product.region === selectedRegion;
+        
+        const matchesPrice = (!priceRange.min || product.price >= parseFloat(priceRange.min)) &&
+                            (!priceRange.max || product.price <= parseFloat(priceRange.max));
 
-    const truncateText = (text, maxLength = 100) => {
-        if (!text || text.length <= maxLength) return text;
-        return text.substring(0, maxLength) + '...';
+        return matchesSearch && matchesCategory && matchesState && matchesRegion && matchesPrice;
+    });
+
+    // Clear all filters
+    const clearFilters = () => {
+        setSearchTerm('');
+        setSelectedCategory('');
+        setSelectedState('');
+        setSelectedRegion('');
+        setPriceRange({ min: '', max: '' });
     };
 
     if (loading) {
         return (
-            <Container className="text-center py-5">
+            <Container className="text-center mt-5">
                 <Spinner animation="border" role="status">
                     <span className="visually-hidden">Loading...</span>
                 </Spinner>
-                <p className="mt-2">Loading listings...</p>
+                <div className="mt-3">Loading products...</div>
             </Container>
         );
     }
 
     return (
-        <Container>
-            <Row>
+        <Container fluid className="py-4">
+            {/* Header */}
+            <Row className="mb-4">
                 <Col>
-                    <h1 className="mb-4">Browse Listings</h1>
-                    
-                    {/* Search and Filter Card */}
-                    <Card className="mb-4 shadow-sm">
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <div>
+                            <h2 className="mb-0">Nicklist Marketplace</h2>
+                            <p className="text-muted mb-0">Find great deals in your area</p>
+                        </div>
+                        {user && (
+                            <Button 
+                                variant="primary" 
+                                onClick={() => setShowNewListing(true)}
+                                className="d-flex align-items-center gap-2"
+                            >
+                                <span>+</span> Add Listing
+                            </Button>
+                        )}
+                    </div>
+                </Col>
+            </Row>
+
+            {error && (
+                <Row className="mb-4">
+                    <Col>
+                        <Alert variant="danger" dismissible onClose={() => setError('')}>
+                            {error}
+                        </Alert>
+                    </Col>
+                </Row>
+            )}
+
+            <Row>
+                {/* Filters Sidebar */}
+                <Col lg={3} className="mb-4">
+                    <Card className="border-0 shadow-sm">
+                        <Card.Header className="bg-white border-0">
+                            <div className="d-flex justify-content-between align-items-center">
+                                <h5 className="mb-0">Filters</h5>
+                                <Button 
+                                    variant="outline-secondary" 
+                                    size="sm"
+                                    onClick={clearFilters}
+                                >
+                                    Clear All
+                                </Button>
+                            </div>
+                        </Card.Header>
                         <Card.Body>
-                            <Row className="mb-3">
-                                <Col md={6} lg={4}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Search listings..."
-                                        value={searchTerm}
-                                        onChange={(e) => setSearchTerm(e.target.value)}
-                                    />
-                                </Col>
-                                <Col md={6} lg={4}>
-                                    <Form.Control
-                                        type="text"
-                                        placeholder="Search by zipcode..."
-                                        value={zipcodeFilter}
-                                        onChange={(e) => setZipcodeFilter(e.target.value)}
-                                    />
-                                </Col>
-                                <Col md={6} lg={4}>
-                                    <Button 
-                                        variant="outline-secondary" 
-                                        onClick={clearFilters}
-                                        className="w-100"
-                                    >
-                                        Clear Filters
-                                    </Button>
-                                </Col>
-                            </Row>
-                            <Row>
-                                <Col md={6} lg={3}>
-                                    <Form.Select
-                                        value={categoryFilter}
-                                        onChange={(e) => setCategoryFilter(e.target.value)}
-                                    >
-                                        <option value="">All Categories</option>
-                                        {categories.map((category) => (
-                                            <option key={category} value={category}>
-                                                {category}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Col>
-                                <Col md={6} lg={3}>
-                                    <Form.Select
-                                        value={regionFilter}
-                                        onChange={(e) => setRegionFilter(e.target.value)}
-                                    >
-                                        <option value="">All Regions</option>
-                                        {regions.map((region) => (
-                                            <option key={region} value={region}>
-                                                {region}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Col>
-                                <Col md={6} lg={3}>
-                                    <Form.Select
-                                        value={stateFilter}
-                                        onChange={(e) => setStateFilter(e.target.value)}
-                                    >
-                                        <option value="">All States</option>
-                                        {states.map((state) => (
-                                            <option key={state} value={state}>
-                                                {state}
-                                            </option>
-                                        ))}
-                                    </Form.Select>
-                                </Col>
-                                <Col md={6} lg={3}>
-                                    <div className="text-muted small d-flex align-items-center justify-content-center h-100">
-                                        Showing {filteredProducts.length} of {products.length} listings
-                                    </div>
-                                </Col>
-                            </Row>
+                            {/* Search */}
+                            <Form.Group className="mb-3">
+                                <Form.Label>Search</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    placeholder="Search products..."
+                                    value={searchTerm}
+                                    onChange={(e) => setSearchTerm(e.target.value)}
+                                />
+                            </Form.Group>
+
+                            {/* Category Filter */}
+                            <Form.Group className="mb-3">
+                                <Form.Label>Category</Form.Label>
+                                <Form.Select
+                                    value={selectedCategory}
+                                    onChange={(e) => setSelectedCategory(e.target.value)}
+                                >
+                                    <option value="">All Categories</option>
+                                    {categories.map(category => (
+                                        <option key={category} value={category}>
+                                            {category}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+
+                            {/* Price Range */}
+                            <Form.Group className="mb-3">
+                                <Form.Label>Price Range</Form.Label>
+                                <Row>
+                                    <Col>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="Min"
+                                            value={priceRange.min}
+                                            onChange={(e) => setPriceRange(prev => ({ ...prev, min: e.target.value }))}
+                                        />
+                                    </Col>
+                                    <Col>
+                                        <Form.Control
+                                            type="number"
+                                            placeholder="Max"
+                                            value={priceRange.max}
+                                            onChange={(e) => setPriceRange(prev => ({ ...prev, max: e.target.value }))}
+                                        />
+                                    </Col>
+                                </Row>
+                            </Form.Group>
+
+                            {/* State Filter */}
+                            <Form.Group className="mb-3">
+                                <Form.Label>State</Form.Label>
+                                <Form.Select
+                                    value={selectedState}
+                                    onChange={(e) => setSelectedState(e.target.value)}
+                                >
+                                    <option value="">All States</option>
+                                    {states.map(state => (
+                                        <option key={state} value={state}>
+                                            {state}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
+
+                            {/* Region Filter */}
+                            <Form.Group className="mb-3">
+                                <Form.Label>Region</Form.Label>
+                                <Form.Select
+                                    value={selectedRegion}
+                                    onChange={(e) => setSelectedRegion(e.target.value)}
+                                >
+                                    <option value="">All Regions</option>
+                                    {regions.map(region => (
+                                        <option key={region} value={region}>
+                                            {region}
+                                        </option>
+                                    ))}
+                                </Form.Select>
+                            </Form.Group>
                         </Card.Body>
                     </Card>
+                </Col>
 
-                    {/* Products Grid */}
-                    <Row>
-                        {filteredProducts.map((product) => (
-                            <Col key={product._id} md={6} lg={4} className="mb-4">
-                                <Card className="h-100 shadow-sm hover-shadow">
-                                    {/* Product Image */}
-                                    {product.images && product.images.length > 0 ? (
-                                        <Card.Img 
-                                            variant="top" 
-                                            src={product.images[0].url}
-                                            style={{ 
-                                                height: '200px', 
-                                                objectFit: 'cover',
-                                                cursor: 'pointer'
-                                            }}
-                                            onClick={() => handleViewDetails(product)}
-                                        />
-                                    ) : (
-                                        <div 
-                                            className="d-flex align-items-center justify-content-center bg-light"
-                                            style={{ height: '200px', cursor: 'pointer' }}
-                                            onClick={() => handleViewDetails(product)}
-                                        >
-                                            <i className="fas fa-image fa-2x text-muted"></i>
-                                        </div>
-                                    )}
-                                    
-                                    <Card.Body className="d-flex flex-column">
-                                        {/* Product Name - Fixed to use 'name' instead of 'title' */}
-                                        <Card.Title 
-                                            className="mb-2"
-                                            style={{ cursor: 'pointer' }}
-                                            onClick={() => handleViewDetails(product)}
-                                        >
-                                            {product.name}
-                                        </Card.Title>
-                                        
-                                        {/* Price */}
-                                        <div className="mb-2">
-                                            <h5 className="text-success mb-0">
-                                                {formatPrice(product.price)}
-                                            </h5>
-                                        </div>
-                                        
-                                        {/* Description */}
-                                        <Card.Text className="text-muted flex-grow-1">
-                                            {truncateText(product.description)}
-                                        </Card.Text>
-                                        
-                                        {/* Category Badge */}
-                                        <div className="mb-2">
-                                            <Badge bg="primary">{product.category}</Badge>
-                                            {product.isActive ? (
-                                                <Badge bg="success" className="ms-1">Available</Badge>
-                                            ) : (
-                                                <Badge bg="secondary" className="ms-1">Sold</Badge>
-                                            )}
-                                        </div>
-                                        
-                                        {/* Location and Date */}
-                                        <div className="d-flex justify-content-between align-items-center mb-3">
-                                            <small className="text-muted">
-                                                📍 {product.city}, {product.state}
-                                            </small>
-                                            <small className="text-muted">
-                                                {new Date(product.createdAt).toLocaleDateString()}
-                                            </small>
-                                        </div>
-                                        
-                                        {/* Action Button */}
-                                        <Button 
-                                            variant="primary" 
-                                            onClick={() => handleViewDetails(product)}
-                                            className="w-100"
-                                        >
-                                            View Details
-                                        </Button>
-                                    </Card.Body>
-                                </Card>
-                            </Col>
-                        ))}
-                    </Row>
+                {/* Products Grid */}
+                <Col lg={9}>
+                    <div className="d-flex justify-content-between align-items-center mb-3">
+                        <h5 className="mb-0">
+                            {filteredProducts.length} Product{filteredProducts.length !== 1 ? 's' : ''} Found
+                        </h5>
+                    </div>
 
-                    {/* No Results Message */}
-                    {filteredProducts.length === 0 && !loading && (
+                    {filteredProducts.length === 0 ? (
+                        <Card className="border-0 shadow-sm">
+                            <Card.Body className="text-center py-5">
+                                <div className="text-muted mb-3" style={{ fontSize: '4rem' }}>🔍</div>
+                                <h5 className="text-muted">No products found</h5>
+                                <p className="text-muted">
+                                    {products.length === 0 
+                                        ? 'No products have been listed yet.' 
+                                        : 'Try adjusting your search criteria.'}
+                                </p>
+                                {user && products.length === 0 && (
+                                    <Button 
+                                        variant="primary" 
+                                        onClick={() => setShowNewListing(true)}
+                                    >
+                                        Be the first to list something!
+                                    </Button>
+                                )}
+                            </Card.Body>
+                        </Card>
+                    ) : (
                         <Row>
-                            <Col className="text-center py-5">
-                                <i className="fas fa-search fa-3x text-muted mb-3"></i>
-                                <h4>No listings found</h4>
-                                <p className="text-muted">Try adjusting your search filters or browse all categories</p>
-                                <Button variant="outline-primary" onClick={clearFilters}>
-                                    Show All Listings
-                                </Button>
-                            </Col>
+                            {filteredProducts.map(product => (
+                                <Col key={product._id} sm={6} lg={4} xl={3} className="mb-4">
+                                    <ProductCard 
+                                        product={product}
+                                        onViewDetails={handleViewDetails}
+                                    />
+                                </Col>
+                            ))}
                         </Row>
                     )}
                 </Col>
             </Row>
 
             {/* Product Details Modal */}
-            <ProductDetails
-                show={showDetailsModal}
-                onHide={handleCloseModal}
+            <ProductDetailsModal
+                show={showProductDetails}
+                onHide={() => setShowProductDetails(false)}
                 product={selectedProduct}
             />
 
-            {/* Custom CSS for hover effects */}
-            <style jsx>{`
-                .hover-shadow:hover {
-                    box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15) !important;
-                    transition: box-shadow 0.15s ease-in-out;
-                }
-                
-                .card-img-top:hover {
-                    opacity: 0.9;
-                    transition: opacity 0.2s ease-in-out;
-                }
-                
-                .card-title:hover {
-                    color: #0d6efd;
-                    transition: color 0.2s ease-in-out;
-                }
-            `}</style>
+            {/* New Listing Modal */}
+            {user && (
+                <NewListing
+                    show={showNewListing}
+                    onHide={() => setShowNewListing(false)}
+                    onListingAdded={handleListingAdded}
+                />
+            )}
         </Container>
     );
 };

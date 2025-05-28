@@ -105,23 +105,44 @@ export function NewListing({ show, onHide, onListingAdded }) {
 	}
 
 	const handleImageUploadSuccess = (imageInfo) => {
-		const newImage = {
-			url: imageInfo.secure_url,
-			public_id: imageInfo.public_id,
-		}
+  console.log("Full Cloudinary response:", imageInfo); // Debug log
+  
+  const newImage = {
+    url: imageInfo.secure_url || imageInfo.url, // Fallback to url if secure_url isn't available
+    public_id: imageInfo.public_id,
+  }
 
-		setUploadedImages((prev) => {
-			const updated = [...prev, newImage]
-			// Update form data as well
-			setFormData((prevForm) => ({
-				...prevForm,
-				images: updated,
-			}))
-			return updated
-		})
+  // Validate the image URL
+  if (!newImage.url) {
+    console.error("No URL found in image response:", imageInfo);
+    setError("Failed to get image URL from upload");
+    return;
+  }
 
-		console.log("Image uploaded successfully:", newImage)
-	}
+  setUploadedImages((prev) => {
+    const updated = [...prev, newImage]
+    setFormData((prevForm) => ({
+      ...prevForm,
+      images: updated,
+    }))
+    return updated
+  })
+
+  console.log("Image uploaded successfully:", newImage)
+}
+
+// Also add this function to validate existing images:
+const validateImageUrl = (url) => {
+  // Check if it's a valid Cloudinary URL
+  if (url && (url.includes('cloudinary.com') || url.includes('res.cloudinary.com'))) {
+    return url;
+  }
+  // If it's not a full URL, construct it
+  if (url && !url.startsWith('http')) {
+    return `https://res.cloudinary.com/doaoflgje/image/upload/${url}`;
+  }
+  return url;
+};
 
 	// Handle Cloudinary upload error
 	const handleImageUploadError = (error) => {
