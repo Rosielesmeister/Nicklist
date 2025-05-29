@@ -70,7 +70,7 @@ const getProductsByUserId = async (req, res) => {
 	}
 }
 
-// get all the products
+// get all the products - PUBLIC ROUTE (no authentication required)
 const getProducts = async (req, res) => {
 	try {
 		// Extract query parameters for filtering
@@ -123,7 +123,7 @@ const getProducts = async (req, res) => {
 	}
 }
 
-// get a single product by id
+// get a single product by id - PROTECTED ROUTE
 const getProductById = async (req, res) => {
 	try {
 		const product = await products.findById(req.params.id)
@@ -138,7 +138,6 @@ const getProductById = async (req, res) => {
 	}
 }
 // update a product by id
-
 const updateProduct = async (req, res) => {
 	try {
 		const { name, description, price, category, region, images, contactEmail } =
