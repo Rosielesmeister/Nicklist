@@ -5,7 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
-import favoritesRoutes from "./routes/favorites.js"; // Add this import
+// Remove the separate favorites import since favorites are now in users.js
 import jwt from "jsonwebtoken";
 
 if (!process.env.JWT_SECRET) {
@@ -33,7 +33,7 @@ app.use(express.json());
 // Routes
 app.use("/", userRoutes);
 app.use("/", productRoutes);
-app.use("/", favoritesRoutes); // Add this line
+// Favorites routes are now included in userRoutes
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -45,3 +45,4 @@ app.listen(PORT, () => {
 });
 
 export { generateToken };
+export default app; // Export the app for testing purposes

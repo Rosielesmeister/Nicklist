@@ -1,100 +1,219 @@
-import { Modal, Form, Button } from "react-bootstrap"
-import { useAuth } from "../../hooks/useAuth"
+// components/auth/Register.jsx
+import React, { useState } from 'react';
+import { Modal, Form, Button, Alert, Spinner, Row, Col } from 'react-bootstrap';
+import { useAuth } from '../../hooks/useAuth';
+import { authAPI } from '../../api/api';
 
-//import port variable from frontend ENV file
-const API_BASE_URL = `http://localhost:${import.meta.env.VITE_API_PORT || 5000}` 
+const Register = () => {
+    const { showRegister, setShowRegister, login, setShowLogin } = useAuth();
+    const [formData, setFormData] = useState({
+        firstName: '',
+        lastName: '',
+        email: '',
+        password: '',
+        confirmPassword: ''
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-export default function Register({ show, onHide }) {
-	const { login } = useAuth()
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error when user starts typing
+        if (error) setError('');
+    };
 
-	const handleSubmit = async (e) => {
-		// Prevent page refresh on form submit
-		e.preventDefault()
+    const validateForm = () => {
+        if (!formData.firstName.trim()) {
+            setError('First name is required');
+            return false;
+        }
+        if (!formData.lastName.trim()) {
+            setError('Last name is required');
+            return false;
+        }
+        if (!formData.email.trim()) {
+            setError('Email is required');
+            return false;
+        }
+        if (formData.password.length < 6) {
+            setError('Password must be at least 6 characters long');
+            return false;
+        }
+        if (formData.password !== formData.confirmPassword) {
+            setError('Passwords do not match');
+            return false;
+        }
+        return true;
+    };
 
-		// Get form values
-		const formData = new FormData(e.target)
-		const firstName = formData.get("firstName")
-		const lastName = formData.get("lastName")
-		const email = formData.get("email")
-		const password = formData.get("password")
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
 
-		const response = await fetch(`${API_BASE_URL}/register`, {
-			method: "POST",
-			headers: { "Content-Type": "application/json" },
-			body: JSON.stringify({ firstName, lastName, email, password }),
-		})
+        if (!validateForm()) {
+            return;
+        }
 
-		// Handle response
-		if (response.ok) {
-			const userData = await response.json()
-			login(userData)
-			// Auto-login after registration
-			onHide() // Close the modal
-		} else {
-			const error = await response.json()
-			alert(error.message)
-		}
-	}
+        setLoading(true);
 
-	return (
-		<Modal
-			show={show}
-			onHide={onHide}>
-			<Modal.Header closeButton>
-				<Modal.Title>Sign Up</Modal.Title>
-			</Modal.Header>
+        try {
+            const { confirmPassword, ...registrationData } = formData;
+            const response = await authAPI.register(registrationData);
+            login(response);
+            setShowRegister(false);
+            resetForm();
+        } catch (err) {
+            setError(err.message || 'Registration failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-			<Modal.Body>
-				<Form onSubmit={handleSubmit}>
-					{/* First Name input */}
-					<Form.Group className="mb-3">
-						<Form.Control
-							type="text"
-							placeholder="First Name"
-							name="firstName"
-							required
-						/>
-					</Form.Group>
+    const resetForm = () => {
+        setFormData({
+            firstName: '',
+            lastName: '',
+            email: '',
+            password: '',
+            confirmPassword: ''
+        });
+        setError('');
+    };
 
-					{/* Last Name input */}
-					<Form.Group className="mb-3">
-						<Form.Control
-							type="text"
-							placeholder="Last Name"
-							name="lastName"
-							required
-						/>
-					</Form.Group>
+    const handleClose = () => {
+        resetForm();
+        setShowRegister(false);
+    };
 
-					{/* Email input */}
-					<Form.Group className="mb-3">
-						<Form.Control
-							type="email"
-							placeholder="Email"
-							name="email"
-							required
-						/>
-					</Form.Group>
+    const switchToLogin = () => {
+        resetForm();
+        setShowRegister(false);
+        setShowLogin(true);
+    };
 
-					{/* Password input */}
-					<Form.Group className="mb-3">
-						<Form.Control
-							type="password"
-							placeholder="Password"
-							name="password"
-							required
-						/>
-					</Form.Group>
+    return (
+        <Modal show={showRegister} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Create Your Account</Modal.Title>
+            </Modal.Header>
 
-					{/* Submit button triggers handleSubmit */}
-					<Button
-						variant="primary"
-						type="submit"
-						className="w-100">
-						Sign Up
-					</Button>
-				</Form>
-			</Modal.Body>
-		</Modal>
-	)
-}
+            <Modal.Body>
+                {error && (
+                    <Alert variant="danger" className="mb-3">
+                        {error}
+                    </Alert>
+                )}
+
+                <Form onSubmit={handleSubmit}>
+                    <Row>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>First Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="firstName"
+                                    value={formData.firstName}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter your first name"
+                                    required
+                                    disabled={loading}
+                                />
+                            </Form.Group>
+                        </Col>
+                        <Col md={6}>
+                            <Form.Group className="mb-3">
+                                <Form.Label>Last Name</Form.Label>
+                                <Form.Control
+                                    type="text"
+                                    name="lastName"
+                                    value={formData.lastName}
+                                    onChange={handleInputChange}
+                                    placeholder="Enter your last name"
+                                    required
+                                    disabled={loading}
+                                />
+                            </Form.Group>
+                        </Col>
+                    </Row>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email Address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="Enter your email"
+                            required
+                            disabled={loading}
+                        />
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            placeholder="Enter your password"
+                            required
+                            disabled={loading}
+                            minLength={6}
+                        />
+                        <Form.Text className="text-muted">
+                            Password must be at least 6 characters long.
+                        </Form.Text>
+                    </Form.Group>
+
+                    <Form.Group className="mb-3">
+                        <Form.Label>Confirm Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="confirmPassword"
+                            value={formData.confirmPassword}
+                            onChange={handleInputChange}
+                            placeholder="Confirm your password"
+                            required
+                            disabled={loading}
+                        />
+                    </Form.Group>
+
+                    <Button 
+                        variant="primary" 
+                        type="submit" 
+                        className="w-100"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <Spinner size="sm" className="me-2" />
+                                Creating Account...
+                            </>
+                        ) : (
+                            'Create Account'
+                        )}
+                    </Button>
+                </Form>
+
+                <div className="text-center mt-3">
+                    <span className="text-muted">Already have an account? </span>
+                    <Button 
+                        variant="link" 
+                        className="p-0"
+                        onClick={switchToLogin}
+                        disabled={loading}
+                    >
+                        Login here
+                    </Button>
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
+};
+
+export default Register;

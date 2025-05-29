@@ -18,7 +18,7 @@ const UnifiedNavbar = () => {
         navigate('/');
     };
 
-    const handleFavoritesClick = () => {
+    const handleProfileClick = () => {
         navigate('/profile'); // Navigate to profile page which has favorites tab
     };
 
@@ -45,23 +45,21 @@ const UnifiedNavbar = () => {
 
                 <Navbar.Collapse>
                     <Nav className="me-auto">
+                        <Nav.Link 
+                            onClick={handleHomeClick}
+                            style={{ cursor: 'pointer' }}
+                            className={location.pathname === '/' ? 'active' : ''}
+                        >
+                            Home
+                        </Nav.Link>
                         {user && (
-                            <>
-                                <Nav.Link 
-                                    onClick={handleHomeClick}
-                                    style={{ cursor: 'pointer' }}
-                                    className={location.pathname === '/' ? 'active' : ''}
-                                >
-                                    Home
-                                </Nav.Link>
-                                <Nav.Link 
-                                    onClick={handleFavoritesClick}
-                                    style={{ cursor: 'pointer' }}
-                                    className={location.pathname === '/profile' ? 'active' : ''}
-                                >
-                                    My Favorites
-                                </Nav.Link>
-                            </>
+                            <Nav.Link 
+                                onClick={handleProfileClick}
+                                style={{ cursor: 'pointer' }}
+                                className={location.pathname === '/profile' ? 'active' : ''}
+                            >
+                                My Profile
+                            </Nav.Link>
                         )}
                     </Nav>
 

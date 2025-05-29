@@ -1,125 +1,135 @@
-import React, { useState } from "react"
-import { Modal, Form, Button, Alert, Spinner } from "react-bootstrap"
-import { useAuth } from "../../hooks/useAuth"
-import { useNavigate } from "react-router-dom"
+// components/auth/Login.jsx
+import React, { useState } from 'react';
+import { Modal, Form, Button, Alert, Spinner } from 'react-bootstrap';
+import { useAuth } from '../../hooks/useAuth';
+import { authAPI } from '../../api/api';
 
-const API_BASE_URL = `http://localhost:${import.meta.env.VITE_API_PORT || 5000}`
+const Login = () => {
+    const { showLogin, setShowLogin, login, setShowRegister } = useAuth();
+    const [formData, setFormData] = useState({
+        email: '',
+        password: ''
+    });
+    const [error, setError] = useState('');
+    const [loading, setLoading] = useState(false);
 
-export default function Login({ show, onHide }) {
-	const { login } = useAuth()
-	const navigate = useNavigate()
-	const [error, setError] = useState("")
-	const [isLoading, setIsLoading] = useState(false)
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({
+            ...prev,
+            [name]: value
+        }));
+        // Clear error when user starts typing
+        if (error) setError('');
+    };
 
-	const handleSubmit = async (e) => {
-		e.preventDefault()
-		setError("")
-		setIsLoading(true)
+    const handleSubmit = async (e) => {
+        e.preventDefault();
+        setError('');
+        setLoading(true);
 
-		try {
-			const formData = new FormData(e.target)
-			const email = formData.get("email")
-			const password = formData.get("password")
+        try {
+            const response = await authAPI.login(formData);
+            login(response);
+            setShowLogin(false);
+            resetForm();
+        } catch (err) {
+            setError(err.message || 'Login failed. Please try again.');
+        } finally {
+            setLoading(false);
+        }
+    };
 
-			console.log("Attempting login with:", { email, password: "***" })
+    const resetForm = () => {
+        setFormData({
+            email: '',
+            password: ''
+        });
+        setError('');
+    };
 
-			const response = await fetch(`${API_BASE_URL}/login`, {
-				method: "POST",
-				headers: { "Content-Type": "application/json" },
-				body: JSON.stringify({ email, password }),
-			})
+    const handleClose = () => {
+        resetForm();
+        setShowLogin(false);
+    };
 
-			console.log("Response status:", response.status)
+    const switchToRegister = () => {
+        resetForm();
+        setShowLogin(false);
+        setShowRegister(true);
+    };
 
-			const data = await response.json()
-			console.log("Response data:", data)
+    return (
+        <Modal show={showLogin} onHide={handleClose} centered>
+            <Modal.Header closeButton>
+                <Modal.Title>Login to Your Account</Modal.Title>
+            </Modal.Header>
 
-			if (response.ok) {
-				console.log("Login successful, calling login function")
-				login(data)
-				navigate("/me")
-				onHide()
-				e.target.reset()
-			} else {
-				console.log("Login failed:", data.message)
-				setError(data.message || "Login failed. Please try again.")
-			}
-		} catch (err) {
-			console.error("Login error:", err)
-			setError("Network error. Please check your connection.")
-		} finally {
-			setIsLoading(false)
-		}
-	}
+            <Modal.Body>
+                {error && (
+                    <Alert variant="danger" className="mb-3">
+                        {error}
+                    </Alert>
+                )}
 
-	const handleHide = () => {
-		setError("")
-		onHide()
-	}
+                <Form onSubmit={handleSubmit}>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Email Address</Form.Label>
+                        <Form.Control
+                            type="email"
+                            name="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="Enter your email"
+                            required
+                            disabled={loading}
+                        />
+                    </Form.Group>
 
-	return (
-		<Modal
-			show={show}
-			onHide={handleHide}
-			backdrop="static">
-			<Modal.Header closeButton>
-				<Modal.Title>Login</Modal.Title>
-			</Modal.Header>
+                    <Form.Group className="mb-3">
+                        <Form.Label>Password</Form.Label>
+                        <Form.Control
+                            type="password"
+                            name="password"
+                            value={formData.password}
+                            onChange={handleInputChange}
+                            placeholder="Enter your password"
+                            required
+                            disabled={loading}
+                        />
+                    </Form.Group>
 
-			<Modal.Body>
-				{error && (
-					<Alert
-						variant="danger"
-						className="mb-3">
-						{error}
-					</Alert>
-				)}
+                    <Button 
+                        variant="primary" 
+                        type="submit" 
+                        className="w-100"
+                        disabled={loading}
+                    >
+                        {loading ? (
+                            <>
+                                <Spinner size="sm" className="me-2" />
+                                Logging in...
+                            </>
+                        ) : (
+                            'Login'
+                        )}
+                    </Button>
+                </Form>
 
-				<Form onSubmit={handleSubmit}>
-					<Form.Group className="mb-3">
-						<Form.Label>Email</Form.Label>
-						<Form.Control
-							type="email"
-							placeholder="Enter your email"
-							name="email"
-							required
-							disabled={isLoading}
-						/>
-					</Form.Group>
+                <div className="text-center mt-3">
+                    <span className="text-muted">Don't have an account? </span>
+                    <Button 
+                        variant="link" 
+                        className="p-0"
+                        onClick={switchToRegister}
+                        disabled={loading}
+                    >
+                        Register here
+                    </Button>
+                </div>
+            </Modal.Body>
+        </Modal>
+    );
+};
 
-					<Form.Group className="mb-3">
-						<Form.Label>Password</Form.Label>
-						<Form.Control
-							type="password"
-							placeholder="Enter your password"
-							name="password"
-							required
-							disabled={isLoading}
-						/>
-					</Form.Group>
-
-					<Button
-						variant="primary"
-						type="submit"
-						className="w-100"
-						disabled={isLoading}>
-						{isLoading ? (
-							<>
-								<Spinner
-									as="span"
-									animation="border"
-									size="sm"
-									role="status"
-									className="me-2"
-								/>
-								Logging in...
-							</>
-						) : (
-							"Login"
-						)}
-					</Button>
-				</Form>
-			</Modal.Body>
-		</Modal>
-	)
-}
+export default Login;

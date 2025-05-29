@@ -1,22 +1,20 @@
 import React, { useState } from "react"
-import { useCloudinaryImage } from "./hooks/useCloudinaryImage"
-import { AdvancedImage } from "@cloudinary/react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { useAuth, AuthProvider } from "./hooks/useAuth"
 import UserProfile from "./components/UserProfile"
 import NewListing from "./components/NewListing"
 import Home from "./pages/Home"
 import Login from "./components/auth/Login"
-import Auth from "./components/auth/Auth"
+import Register from "./components/auth/Register"
+import UnifiedNavbar from "./components/UnifiedNavbar"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Protected route component
 function ProtectedRoute({ children }) {
 	const { user, loading } = useAuth()
-	console.log("Protected route - user:", user, "loading:", loading)
 	
 	if (loading) {
-		return <div>Loading...</div> // Show loading while checking auth state
+		return <div>Loading...</div>
 	}
 	
 	return user ? children : <Navigate to="/" replace />
@@ -24,8 +22,6 @@ function ProtectedRoute({ children }) {
 
 // Main app content (needs to be inside AuthProvider)
 function AppContent() {
-	const { getOptimizedImage } = useCloudinaryImage("doaflgje")
-	const img = getOptimizedImage("cld-sample-5") 
 	const { user } = useAuth()
 	const [showAddListing, setShowAddListing] = useState(false)
 
@@ -37,9 +33,8 @@ function AppContent() {
 	return (
 		<Router>
 			<div style={{ minHeight: "100vh", backgroundColor: "#f5f5f5" }}>
-				{/* Layout components */}
-				<Auth />
-				{/* Layout End */}
+				{/* Use UnifiedNavbar instead of Auth */}
+				<UnifiedNavbar />
 
 				<Routes>
 					<Route path="/" element={<Home />} />
@@ -47,7 +42,7 @@ function AppContent() {
 
 					{/* Protected route for user profile */}
 					<Route
-						path="/me"
+						path="/profile"
 						element={
 							<ProtectedRoute>
 								<UserProfile />
@@ -67,6 +62,10 @@ function AppContent() {
 						onListingAdded={handleListingAdded}
 					/>
 				)}
+
+				{/* Login and Register Modals */}
+				<Login />
+				<Register />
 			</div>
 		</Router>
 	)

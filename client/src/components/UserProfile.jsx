@@ -1,10 +1,11 @@
-// pages/UserProfile.jsx - Updated with Edit functionality
+// pages/UserProfile.jsx
 import React, { useState, useEffect } from 'react'
-import { Container, Row, Col, Card, Button, Badge, Tab, Tabs, Modal } from 'react-bootstrap'
+import { Container, Row, Col, Card, Button, Badge, Tab, Tabs } from 'react-bootstrap'
 import { useAuth } from '../hooks/useAuth'
 import { useNavigate } from 'react-router-dom'
 import { productsAPI, favoritesAPI } from '../api/api'
-import EditListing from '../components/EditListing' // Import the new component
+import EditListing from '../components/EditListing'
+import NewListing from '../components/NewListing'
 
 export default function UserProfile() {
     const { user } = useAuth()
@@ -14,15 +15,9 @@ export default function UserProfile() {
     const [userFavorites, setUserFavorites] = useState([])
     const [loading, setLoading] = useState(true)
     const [favoritesLoading, setFavoritesLoading] = useState(false)
-    
-    // Edit listing states
     const [showEditListing, setShowEditListing] = useState(false)
+    const [showNewListing, setShowNewListing] = useState(false)
     const [selectedListing, setSelectedListing] = useState(null)
-    
-    // Delete confirmation states
-    const [showDeleteConfirm, setShowDeleteConfirm] = useState(false)
-    const [listingToDelete, setListingToDelete] = useState(null)
-    const [deleteLoading, setDeleteLoading] = useState(false)
 
     // Redirect if not logged in
     useEffect(() => {
@@ -37,13 +32,17 @@ export default function UserProfile() {
             if (!user) return;
 
             try {
+                console.log('Fetching user data for user:', user);
+                
                 // Fetch user's listings
                 const listingsResponse = await productsAPI.getUserProducts();
+                console.log('User listings response:', listingsResponse);
                 setUserListings(listingsResponse || []);
 
                 // Fetch user's favorites
                 try {
                     const favoritesResponse = await favoritesAPI.getUserFavorites();
+                    console.log('User favorites response:', favoritesResponse);
                     setUserFavorites(favoritesResponse || []);
                 } catch (favError) {
                     console.error('Error fetching favorites:', favError);
@@ -84,65 +83,37 @@ export default function UserProfile() {
         setShowEditListing(true);
     };
 
+    // Handle delete listing
+    const handleDeleteListing = async (listingId) => {
+        if (window.confirm('Are you sure you want to delete this listing?')) {
+            try {
+                await productsAPI.deleteProduct(listingId);
+                setUserListings(prev => prev.filter(listing => listing._id !== listingId));
+                alert('Listing deleted successfully');
+            } catch (error) {
+                console.error('Error deleting listing:', error);
+                alert('Failed to delete listing');
+            }
+        }
+    };
+
     // Handle listing updated
     const handleListingUpdated = (updatedListing) => {
-        setUserListings(prev => 
-            prev.map(listing => 
-                listing._id === updatedListing._id ? updatedListing : listing
-            )
-        );
+        setUserListings(prev => prev.map(listing => 
+            listing._id === updatedListing._id ? updatedListing : listing
+        ));
         setShowEditListing(false);
-        setSelectedListing(null);
     };
 
-    // Handle delete listing
-    const handleDeleteListing = (listing) => {
-        setListingToDelete(listing);
-        setShowDeleteConfirm(true);
-    };
-
-    // Confirm delete listing
-    const confirmDeleteListing = async () => {
-        if (!listingToDelete) return;
-
-        setDeleteLoading(true);
-        try {
-            await productsAPI.deleteProduct(listingToDelete._id);
-            // Remove from local state
-            setUserListings(prev => 
-                prev.filter(listing => listing._id !== listingToDelete._id)
-            );
-            setShowDeleteConfirm(false);
-            setListingToDelete(null);
-        } catch (error) {
-            console.error('Error deleting listing:', error);
-            alert('Failed to delete listing. Please try again.');
-        } finally {
-            setDeleteLoading(false);
-        }
+    // Handle new listing added
+    const handleListingAdded = (newListing) => {
+        setUserListings(prev => [newListing.product || newListing, ...prev]);
+        setShowNewListing(false);
     };
 
     const handleGoHome = () => {
         navigate('/')
     }
-
-    // Image URL validation function
-    const getValidImageUrl = (image) => {
-        if (!image || !image.url) return null;
-        
-        // If it's already a full URL, return as is
-        if (image.url.startsWith('http')) {
-            return image.url;
-        }
-        
-        // If it's a Cloudinary public_id, construct the full URL
-        if (image.public_id) {
-            return `https://res.cloudinary.com/doaoflgje/image/upload/${image.public_id}`;
-        }
-        
-        // Fallback
-        return image.url;
-    };
 
     if (loading) {
         return (
@@ -189,7 +160,7 @@ export default function UserProfile() {
                                     <Button variant="success" onClick={handleGoHome} className="me-2">
                                         Browse All Listings
                                     </Button>
-                                    <Button variant="primary">
+                                    <Button variant="primary" onClick={() => setShowNewListing(true)}>
                                         + Add New Listing
                                     </Button>
                                 </Col>
@@ -248,13 +219,9 @@ export default function UserProfile() {
                                                          className="d-flex align-items-center justify-content-center">
                                                         {listing.images && listing.images.length > 0 ? (
                                                             <img 
-                                                                src={getValidImageUrl(listing.images[0])} 
+                                                                src={listing.images[0].url} 
                                                                 alt={listing.name}
                                                                 style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                                                                onError={(e) => {
-                                                                    console.error('Image failed to load:', listing.images[0]);
-                                                                    e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4=';
-                                                                }}
                                                             />
                                                         ) : (
                                                             <span className="text-muted">📷 No Image</span>
@@ -292,7 +259,7 @@ export default function UserProfile() {
                                                             <Button 
                                                                 variant="outline-danger" 
                                                                 size="sm"
-                                                                onClick={() => handleDeleteListing(listing)}
+                                                                onClick={() => handleDeleteListing(listing._id)}
                                                             >
                                                                 Delete
                                                             </Button>
@@ -306,7 +273,7 @@ export default function UserProfile() {
                                         <div className="text-center py-5">
                                             <h5 className="text-muted">No listings yet</h5>
                                             <p className="text-muted">Start selling by creating your first listing!</p>
-                                            <Button variant="primary">
+                                            <Button variant="primary" onClick={() => setShowNewListing(true)}>
                                                 + Add Your First Listing
                                             </Button>
                                         </div>
@@ -325,13 +292,9 @@ export default function UserProfile() {
                                                              className="d-flex align-items-center justify-content-center">
                                                             {product.images && product.images.length > 0 ? (
                                                                 <img 
-                                                                    src={getValidImageUrl(product.images[0])} 
+                                                                    src={product.images[0].url} 
                                                                     alt={product.name}
                                                                     style={{width: '100%', height: '100%', objectFit: 'cover'}}
-                                                                    onError={(e) => {
-                                                                        console.error('Image failed to load:', product.images[0]);
-                                                                        e.target.src = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIE5vdCBGb3VuZDwvdGV4dD48L3N2Zz4=';
-                                                                    }}
                                                                 />
                                                             ) : (
                                                                 <span className="text-muted">📷 No Image</span>
@@ -398,44 +361,21 @@ export default function UserProfile() {
             </Row>
 
             {/* Edit Listing Modal */}
-            {selectedListing && (
+            {showEditListing && selectedListing && (
                 <EditListing
                     show={showEditListing}
-                    onHide={() => {
-                        setShowEditListing(false);
-                        setSelectedListing(null);
-                    }}
+                    onHide={() => setShowEditListing(false)}
                     listing={selectedListing}
                     onListingUpdated={handleListingUpdated}
                 />
             )}
 
-            {/* Delete Confirmation Modal */}
-            <Modal show={showDeleteConfirm} onHide={() => setShowDeleteConfirm(false)} centered>
-                <Modal.Header closeButton>
-                    <Modal.Title>Confirm Delete</Modal.Title>
-                </Modal.Header>
-                <Modal.Body>
-                    <p>Are you sure you want to delete "<strong>{listingToDelete?.name}</strong>"?</p>
-                    <p className="text-muted">This action cannot be undone.</p>
-                </Modal.Body>
-                <Modal.Footer>
-                    <Button 
-                        variant="secondary" 
-                        onClick={() => setShowDeleteConfirm(false)}
-                        disabled={deleteLoading}
-                    >
-                        Cancel
-                    </Button>
-                    <Button 
-                        variant="danger" 
-                        onClick={confirmDeleteListing}
-                        disabled={deleteLoading}
-                    >
-                        {deleteLoading ? 'Deleting...' : 'Delete Listing'}
-                    </Button>
-                </Modal.Footer>
-            </Modal>
+            {/* New Listing Modal */}
+            <NewListing
+                show={showNewListing}
+                onHide={() => setShowNewListing(false)}
+                onListingAdded={handleListingAdded}
+            />
         </Container>
     )
 }

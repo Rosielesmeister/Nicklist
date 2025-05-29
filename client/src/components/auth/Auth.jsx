@@ -1,32 +1,74 @@
-import { Navbar, Nav, Button } from "react-bootstrap"
-import { useAuth } from "../../hooks/useAuth"
-import Login from "./Login"
-import Register from "./Register"
+import { useState, useContext, createContext, useEffect } from "react"
+import { authAPI } from "../api/api"
 
-export default function Auth() {
-	const { user, logout, setShowLogin, setShowRegister, showLogin, showRegister } =
-		useAuth()
-		return (
-			<>
-				<Navbar bg="dark" variant="dark" expand="lg">
-					<Navbar.Brand>Alan'sCollapsibleNavBar</Navbar.Brand>
-					<Navbar.Toggle />
-					<Navbar.Collapse>
-						<Nav className="ms-auto">
-							{user ? (
-								<Button onClick={logout}>Logout</Button>
-							) : (
-								<>
-									<Button onClick={() => setShowLogin(true)}>Login</Button>
-									<Button onClick={() => setShowRegister(true)}>Sign Up</Button>
-								</>
-							)}
-						</Nav>
-					</Navbar.Collapse>
-				</Navbar>
-	
-				<Login show={showLogin} onHide={() => setShowLogin(false)} />
-				<Register show={showRegister} onHide={() => setShowRegister(false)} />
-			</>
-		);
+// Create auth context
+const AuthContext = createContext()
+
+// Auth provider component
+export function AuthProvider({ children }) {
+	const [user, setUser] = useState(null)
+	const [loading, setLoading] = useState(true)
+	const [showLogin, setShowLogin] = useState(false)
+	const [showRegister, setShowRegister] = useState(false)
+
+	// Check for existing token on app load
+	useEffect(() => {
+		const checkAuthState = async () => {
+			try {
+				const token = localStorage.getItem("token")
+				if (token) {
+					// Verify token is still valid by getting current user
+					const userData = await authAPI.getCurrentUser()
+					if (userData) {
+						setUser({ ...userData, token })
+					} else {
+						// Token invalid, remove it
+						localStorage.removeItem("token")
+					}
+				}
+			} catch (error) {
+				console.error("Error checking auth state:", error)
+				localStorage.removeItem("token")
+			} finally {
+				setLoading(false)
+			}
+		}
+
+		checkAuthState()
+	}, [])
+
+	const login = (userData) => {
+		setUser(userData)
+		if (userData.token) {
+			localStorage.setItem("token", userData.token)
+		}
 	}
+
+	const logout = () => {
+		setUser(null)
+		localStorage.removeItem("token")
+		authAPI.logout()
+	}
+
+	const value = {
+		user,
+		login,
+		logout,
+		loading,
+		showLogin,
+		setShowLogin,
+		showRegister,
+		setShowRegister,
+	}
+
+	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
+}
+
+// Hook to use auth context
+export function useAuth() {
+	const context = useContext(AuthContext)
+	if (context === undefined) {
+		throw new Error("useAuth must be used within an AuthProvider")
+	}
+	return context
+}

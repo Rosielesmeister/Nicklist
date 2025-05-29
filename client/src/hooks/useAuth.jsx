@@ -1,65 +1,78 @@
-import { useState, useEffect, createContext, useContext } from "react"
+// hooks/useAuth.jsx
+import { useState, useContext, createContext, useEffect } from "react"
+import { authAPI } from "../api/api"
 
-// Create the auth context
+// Create auth context
 const AuthContext = createContext()
 
-// Provider component that wraps your app
-export const AuthProvider = ({ children }) => {
-	// Track current user - null means not logged in
+// Auth provider component
+export function AuthProvider({ children }) {
 	const [user, setUser] = useState(null)
 	const [loading, setLoading] = useState(true)
-
-	// Control visibility of login modal
 	const [showLogin, setShowLogin] = useState(false)
-
-	// Control visibility of register modal
 	const [showRegister, setShowRegister] = useState(false)
 
-	// Check for existing user on app load
+	// Check for existing token on app load
 	useEffect(() => {
-		const savedUser = localStorage.getItem("user")
-		if (savedUser) {
+		const checkAuthState = async () => {
 			try {
-				setUser(JSON.parse(savedUser))
+				const token = localStorage.getItem("token")
+				if (token) {
+					// Verify token is still valid by getting current user
+					const userData = await authAPI.getCurrentUser()
+					if (userData) {
+						setUser({ ...userData, token })
+					} else {
+						// Token invalid, remove it
+						localStorage.removeItem("token")
+					}
+				}
 			} catch (error) {
-				console.error("Error parsing saved user data:", error)
-				localStorage.removeItem("user") // Clean up invalid data
+				console.error("Error checking auth state:", error)
+				localStorage.removeItem("token")
+			} finally {
+				setLoading(false)
 			}
 		}
-		setLoading(false)
+
+		checkAuthState()
 	}, [])
 
-	// Set user data when they successfully log in
 	const login = (userData) => {
-		console.log("Setting user in context:", userData)
+		console.log('Login called with:', userData)
 		setUser(userData)
-		localStorage.setItem("user", JSON.stringify(userData))
+		if (userData.token) {
+			localStorage.setItem("token", userData.token)
+		}
 	}
 
-	// Clear user data on logout
 	const logout = () => {
+		console.log('Logout called')
 		setUser(null)
-		localStorage.removeItem("user")
+		localStorage.removeItem("token")
+		authAPI.logout()
 	}
 
 	const value = {
 		user,
-		loading,
 		login,
 		logout,
+		loading,
 		showLogin,
 		setShowLogin,
 		showRegister,
 		setShowRegister,
 	}
 
+	console.log('Auth context value:', { user: user?.email, showLogin, showRegister })
+
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }
 
-// Custom hook to use the auth context
-export const useAuth = () => {
+// Hook to use auth context
+export function useAuth() {
 	const context = useContext(AuthContext)
-	if (!context) {
+	if (context === undefined) {
 		throw new Error("useAuth must be used within an AuthProvider")
 	}
 	return context
