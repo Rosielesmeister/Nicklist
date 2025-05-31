@@ -122,7 +122,8 @@ export const productsAPI = {
       let errorData;
       try {
         errorData = JSON.parse(errorText);
-      } catch (e) {
+      } catch {
+        // Removed unused 'e' parameter
         errorData = { message: errorText };
       }
 
