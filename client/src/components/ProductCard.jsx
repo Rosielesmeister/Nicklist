@@ -1,163 +1,274 @@
-// components/ProductCard.jsx - Updated with better image handling
-import React from 'react';
-import { Card, Button, Badge } from 'react-bootstrap';
-import FavoriteButton from './FavoriteButton';
+// components/ProductCard.jsx - Updated with messaging feature
+import React, { useState } from "react";
+import { Card, Button, Badge, Modal, Form, Alert } from "react-bootstrap";
+import FavoriteButton from "./FavoriteButton";
+import { useAuth } from "../hooks/useAuth";
+import { messagesAPI } from "../api/api";
 
-const ProductCard = ({ product, onViewDetails, showActions = false, onEdit, onDelete }) => {
-    if (!product) return null;
+const ProductCard = ({
+  product,
+  onViewDetails,
+  showActions,
+  onEdit,
+  onDelete,
+}) => {
+  const { user } = useAuth();
+  const [showMessageModal, setShowMessageModal] = useState(false);
+  const [messageText, setMessageText] = useState("");
+  const [sendingMessage, setSendingMessage] = useState(false);
+  const [messageError, setMessageError] = useState("");
 
-    const handleViewDetails = () => {
-        if (onViewDetails) {
-            onViewDetails(product);
-        }
-    };
+  const handleMessageSeller = (e) => {
+    e.stopPropagation();
+    if (!user) {
+      alert("Please log in to message sellers");
+      return;
+    }
+    if (product.user === user._id) {
+      alert("You cannot message yourself");
+      return;
+    }
+    setShowMessageModal(true);
+    setMessageText(
+      `Hi! I'm interested in your listing "${product.name}". Is it still available?`
+    );
+  };
 
-    const handleEdit = (e) => {
-        e.stopPropagation();
-        if (onEdit) onEdit(product);
-    };
+  const handleSendMessage = async (e) => {
+    e.preventDefault();
 
-    const handleDelete = (e) => {
-        e.stopPropagation();
-        if (onDelete) onDelete(product);
-    };
+    if (!messageText.trim()) {
+      setMessageError("Please enter a message");
+      return;
+    }
 
-    // Function to get a valid image URL
-    const getValidImageUrl = (image) => {
-        if (!image || !image.url) return null;
-        
-        // If it's already a full URL, return as is
-        if (image.url.startsWith('http')) {
-            return image.url;
-        }
-        
-        // If it's a Cloudinary public_id, construct the full URL
-        if (image.public_id) {
-            return `https://res.cloudinary.com/doaoflgje/image/upload/${image.public_id}`;
-        }
-        
-        // Fallback
-        return image.url;
-    };
+    setSendingMessage(true);
+    setMessageError("");
 
-    // Create a placeholder image data URL
-    const placeholderImage = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2EpIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIyMCIgZmlsbD0iIzk5OTk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPk5vIEltYWdlPC90ZXh0Pjwvc3ZnPg==';
+    try {
+      await messagesAPI.sendMessage({
+        recipient: product.user,
+        product: product._id,
+        content: messageText.trim(),
+      });
 
-    const imageUrl = product.images && product.images.length > 0 
-        ? getValidImageUrl(product.images[0]) 
-        : null;
+      setShowMessageModal(false);
+      setMessageText("");
+      alert("Message sent successfully!");
+    } catch (error) {
+      console.error("Error sending message:", error);
+      setMessageError("Failed to send message. Please try again.");
+    } finally {
+      setSendingMessage(false);
+    }
+  };
 
-    return (
-        <Card className="h-100 shadow-sm border-0 product-card" style={{ cursor: 'pointer' }}>
-            {/* Image Section */}
-            <div 
-                style={{ height: '200px', backgroundColor: '#f8f9fa', position: 'relative' }} 
-                className="d-flex align-items-center justify-content-center"
-                onClick={handleViewDetails}
-            >
-                {imageUrl ? (
-                    <img 
-                        src={imageUrl} 
-                        alt={product.name}
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        className="card-img-top"
-                        onError={(e) => {
-                            console.error('Image failed to load:', imageUrl);
-                            e.target.src = placeholderImage;
-                        }}
-                    />
-                ) : (
-                    <img 
-                        src={placeholderImage}
-                        alt="No image available"
-                        style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-                        className="card-img-top"
-                    />
-                )}
-                
-                {/* Favorite Button Overlay */}
-                <div style={{ position: 'absolute', top: '10px', right: '10px' }}>
-                    <FavoriteButton productId={product._id} size="sm" />
-                </div>
+  const handleViewDetails = () => {
+    if (onViewDetails) {
+      onViewDetails(product);
+    }
+  };
 
-                {/* Status Badge */}
-                <div style={{ position: 'absolute', top: '10px', left: '10px' }}>
-                    <Badge bg={product.isActive ? 'success' : 'secondary'}>
-                        {product.isActive ? 'Available' : 'Sold'}
-                    </Badge>
-                </div>
+  const handleEdit = () => {
+    if (onEdit) {
+      onEdit(product);
+    }
+  };
+
+  const handleDelete = () => {
+    if (onDelete) {
+      onDelete(product._id);
+    }
+  };
+
+  const placeholderImage =
+    "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNhKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4=";
+
+  return (
+    <>
+      <Card
+        className="h-100 border-0 shadow-sm product-card"
+        style={{ cursor: "pointer" }}
+      >
+        {/* Image Section */}
+        <div
+          style={{ position: "relative", height: "200px", overflow: "hidden" }}
+        >
+          {product.images && product.images.length > 0 ? (
+            <img
+              src={product.images[0].url}
+              alt={product.name}
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              onError={(e) => {
+                e.target.src = placeholderImage;
+              }}
+              className="card-img-top"
+            />
+          ) : (
+            <img
+              src={placeholderImage}
+              alt="No image available"
+              style={{
+                width: "100%",
+                height: "100%",
+                objectFit: "cover",
+              }}
+              className="card-img-top"
+            />
+          )}
+
+          {/* Favorite Button Overlay */}
+          <div style={{ position: "absolute", top: "10px", right: "10px" }}>
+            <FavoriteButton productId={product._id} size="sm" />
+          </div>
+
+          {/* Status Badge */}
+          <div style={{ position: "absolute", top: "10px", left: "10px" }}>
+            <Badge bg={product.isActive ? "success" : "secondary"}>
+              {product.isActive ? "Available" : "Sold"}
+            </Badge>
+          </div>
+        </div>
+
+        <Card.Body className="d-flex flex-column">
+          <div onClick={handleViewDetails} className="flex-grow-1">
+            {/* Title and Price */}
+            <div className="d-flex justify-content-between align-items-start mb-2">
+              <Card.Title
+                className="h6 mb-0 text-truncate"
+                style={{ maxWidth: "70%" }}
+              >
+                {product.name}
+              </Card.Title>
+              <strong className="text-primary fs-5">
+                ${product.price?.toLocaleString()}
+              </strong>
             </div>
 
-            <Card.Body className="d-flex flex-column">
-                <div onClick={handleViewDetails} className="flex-grow-1">
-                    {/* Title and Price */}
-                    <div className="d-flex justify-content-between align-items-start mb-2">
-                        <Card.Title className="h6 mb-0 text-truncate" style={{ maxWidth: '70%' }}>
-                            {product.name}
-                        </Card.Title>
-                        <strong className="text-primary fs-5">
-                            ${product.price?.toLocaleString()}
-                        </strong>
-                    </div>
+            {/* Category */}
+            <div className="mb-2">
+              <Badge bg="light" text="dark" className="me-2">
+                {product.category}
+              </Badge>
+              <Badge bg="outline-secondary" className="text-muted">
+                {product.region}
+              </Badge>
+            </div>
 
-                    {/* Category */}
-                    <div className="mb-2">
-                        <Badge bg="light" text="dark" className="me-2">
-                            {product.category}
-                        </Badge>
-                        <Badge bg="outline-secondary" className="text-muted">
-                            {product.region}
-                        </Badge>
-                    </div>
+            {/* Description */}
+            <Card.Text className="text-muted small mb-2">
+              {product.description?.length > 80
+                ? `${product.description.substring(0, 80)}...`
+                : product.description}
+            </Card.Text>
 
-                    {/* Description */}
-                    <Card.Text className="text-muted small mb-2">
-                        {product.description?.length > 80 
-                            ? `${product.description.substring(0, 80)}...` 
-                            : product.description}
-                    </Card.Text>
+            {/* Location */}
+            <div className="text-muted small mb-2">
+              📍 {product.city}, {product.state}
+            </div>
+          </div>
 
-                    {/* Location */}
-                    <div className="text-muted small mb-2">
-                        📍 {product.city}, {product.state}
-                    </div>
-                </div>
+          {/* Action Buttons */}
+          <div className="mt-auto pt-2">
+            <div className="d-flex gap-2">
+              <Button
+                variant="primary"
+                size="sm"
+                className="flex-grow-1"
+                onClick={handleViewDetails}
+              >
+                View Details
+              </Button>
 
-                {/* Action Buttons */}
-                <div className="mt-auto pt-2">
-                    <div className="d-flex gap-2">
-                        <Button 
-                            variant="primary" 
-                            size="sm" 
-                            className="flex-grow-1"
-                            onClick={handleViewDetails}
-                        >
-                            View Details
-                        </Button>
-                        
-                        {showActions && (
-                            <>
-                                <Button 
-                                    variant="outline-secondary" 
-                                    size="sm"
-                                    onClick={handleEdit}
-                                >
-                                    Edit
-                                </Button>
-                                <Button 
-                                    variant="outline-danger" 
-                                    size="sm"
-                                    onClick={handleDelete}
-                                >
-                                    Delete
-                                </Button>
-                            </>
-                        )}
-                    </div>
-                </div>
-            </Card.Body>
-        </Card>
-    );
+              {/* Message Seller Button */}
+              {user && product.user !== user._id && (
+                <Button
+                  variant="outline-success"
+                  size="sm"
+                  onClick={handleMessageSeller}
+                  title="Message Seller"
+                >
+                  💬
+                </Button>
+              )}
+
+              {showActions && (
+                <>
+                  <Button
+                    variant="outline-secondary"
+                    size="sm"
+                    onClick={handleEdit}
+                  >
+                    Edit
+                  </Button>
+                  <Button
+                    variant="outline-danger"
+                    size="sm"
+                    onClick={handleDelete}
+                  >
+                    Delete
+                  </Button>
+                </>
+              )}
+            </div>
+          </div>
+        </Card.Body>
+      </Card>
+
+      {/* Message Modal */}
+      <Modal
+        show={showMessageModal}
+        onHide={() => setShowMessageModal(false)}
+        centered
+      >
+        <Modal.Header closeButton>
+          <Modal.Title>Message Seller</Modal.Title>
+        </Modal.Header>
+        <Form onSubmit={handleSendMessage}>
+          <Modal.Body>
+            {messageError && <Alert variant="danger">{messageError}</Alert>}
+
+            <div className="mb-3">
+              <strong>Item:</strong> {product.name}
+            </div>
+
+            <Form.Group>
+              <Form.Label>Your Message</Form.Label>
+              <Form.Control
+                as="textarea"
+                rows={4}
+                value={messageText}
+                onChange={(e) => setMessageText(e.target.value)}
+                placeholder="Type your message to the seller..."
+                required
+                disabled={sendingMessage}
+              />
+            </Form.Group>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button
+              variant="secondary"
+              onClick={() => setShowMessageModal(false)}
+              disabled={sendingMessage}
+            >
+              Cancel
+            </Button>
+            <Button
+              variant="primary"
+              type="submit"
+              disabled={sendingMessage || !messageText.trim()}
+            >
+              {sendingMessage ? "Sending..." : "Send Message"}
+            </Button>
+          </Modal.Footer>
+        </Form>
+      </Modal>
+    </>
+  );
 };
 
 export default ProductCard;
