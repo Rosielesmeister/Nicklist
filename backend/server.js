@@ -5,7 +5,8 @@ import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
-import messageRoutes from "./routes/messageRoutes.js"; // Add this import
+import messageRoutes from "./routes/messageRoutes.js";
+import adminRoutes from "./routes/admin.js" // Add this import
 import jwt from "jsonwebtoken";
 
 if (!process.env.JWT_SECRET) {
@@ -38,7 +39,8 @@ app.get("/", (req, res) => {
 // API Routes
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
-app.use("/api/messages", messageRoutes); // Add this line
+app.use("/api/messages", messageRoutes);
+app.use("/admin", adminRoutes) // Add this line
 
 // Error handling middleware
 app.use((err, req, res, next) => {

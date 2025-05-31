@@ -6,7 +6,7 @@ const AdminDashboard = () => {
   const [users, setUsers] = useState([]);
   const [products, setProducts] = useState([]);
   const [recentActivity, setRecentActivity] = useState({});
-  const [loading, setLoading] = useState(false);
+  // const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
   // API Base URL
