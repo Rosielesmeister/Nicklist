@@ -91,23 +91,46 @@ export const productsAPI = {
 	},
 
 	// DELETE product - AUTH REQUIRED
-	deleteProduct: async (id) => {
-		if (!id) throw new Error("Product ID required");
+	// Updated api.jsx - deleteProduct function with better error handling
 
-		const token = localStorage.getItem("token");
-		if (!token) throw new Error("Authentication required");
+// DELETE product - AUTH REQUIRED
+deleteProduct: async (id) => {
+    if (!id) throw new Error("Product ID required");
 
-		const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-			method: "DELETE",
-			headers: {
-				"Content-Type": "application/json",
-				Authorization: `Bearer ${token}`,
-			},
-		});
+    const token = localStorage.getItem("token");
+    if (!token) throw new Error("Authentication required");
 
-		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-		return await response.json();
-	},
+    console.log('Deleting product with ID:', id);
+    console.log('Using token:', token ? 'Token present' : 'No token');
+
+    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+        method: "DELETE",
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+        },
+    });
+
+    console.log('Delete response status:', response.status);
+    
+    if (!response.ok) {
+        const errorText = await response.text();
+        console.error('Delete failed with response:', errorText);
+        
+        let errorData;
+        try {
+            errorData = JSON.parse(errorText);
+        } catch (e) {
+            errorData = { message: errorText };
+        }
+        
+        throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+    }
+    
+    const result = await response.json();
+    console.log('Delete successful:', result);
+    return result;
+},
 
 	// Search products - NO AUTH REQUIRED
 	searchProducts: async (searchTerm, filters = {}) => {

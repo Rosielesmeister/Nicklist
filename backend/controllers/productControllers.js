@@ -147,25 +147,42 @@ const updateProduct = async (req, res) => {
 };
 
 // delete a product by id
+// Updated productControllers.js - deleteProduct function with better error handling
+
 const deleteProduct = async (req, res) => {
   try {
+    console.log("Delete request received for product ID:", req.params.id);
+    console.log("User making request:", req.user);
+
     // Find product first
     const product = await products.findById(req.params.id);
     if (!product) {
+      console.log("Product not found");
       return res.status(404).json({ message: "Product not found." });
     }
 
+    console.log("Product found:", product);
+    console.log("Product owner:", product.user.toString());
+    console.log("Current user:", req.user.userId);
+
     // Authorization check: only owner can delete
-    if (product.user.toString() !== req.user.userId) {
+    if (product.user.toString() !== req.user.userId.toString()) {
+      console.log("Authorization failed - user does not own this product");
       return res
         .status(403)
         .json({ message: "You can only delete your own listings." });
     }
 
+    // Delete the product
     await products.findByIdAndDelete(req.params.id);
+    console.log("Product deleted successfully");
 
-    res.status(200).json({ message: "Product deleted successfully." });
+    res.status(200).json({
+      message: "Product deleted successfully.",
+      deletedId: req.params.id,
+    });
   } catch (error) {
+    console.error("Delete product error:", error);
     res
       .status(500)
       .json({ message: "Error deleting product.", error: error.message });

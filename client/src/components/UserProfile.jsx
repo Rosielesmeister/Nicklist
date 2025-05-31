@@ -84,18 +84,57 @@ export default function UserProfile() {
     };
 
     // Handle delete listing
-    const handleDeleteListing = async (listingId) => {
-        if (window.confirm('Are you sure you want to delete this listing?')) {
-            try {
-                await productsAPI.deleteProduct(listingId);
-                setUserListings(prev => prev.filter(listing => listing._id !== listingId));
-                alert('Listing deleted successfully');
-            } catch (error) {
-                console.error('Error deleting listing:', error);
-                alert('Failed to delete listing');
-            }
+    // Updated UserProfile.jsx - handleDeleteListing function with better error handling
+
+const handleDeleteListing = async (listingId) => {
+    if (!window.confirm('Are you sure you want to delete this listing? This action cannot be undone.')) {
+        return;
+    }
+
+    try {
+        console.log('Attempting to delete listing:', listingId);
+        console.log('Current user:', user);
+        
+        // Show loading state
+        const listingElement = document.querySelector(`[data-listing-id="${listingId}"]`);
+        if (listingElement) {
+            listingElement.style.opacity = '0.5';
         }
-    };
+
+        const response = await productsAPI.deleteProduct(listingId);
+        console.log('Delete response:', response);
+        
+        // Remove from local state only after successful deletion
+        setUserListings(prev => prev.filter(listing => listing._id !== listingId));
+        
+        // Show success message
+        alert('Listing deleted successfully!');
+        
+    } catch (error) {
+        console.error('Error deleting listing:', error);
+        
+        // Reset loading state
+        const listingElement = document.querySelector(`[data-listing-id="${listingId}"]`);
+        if (listingElement) {
+            listingElement.style.opacity = '1';
+        }
+        
+        // Show specific error message
+        let errorMessage = 'Failed to delete listing. ';
+        
+        if (error.message.includes('403')) {
+            errorMessage += 'You do not have permission to delete this listing.';
+        } else if (error.message.includes('404')) {
+            errorMessage += 'Listing not found.';
+        } else if (error.message.includes('401')) {
+            errorMessage += 'Please log in again.';
+        } else {
+            errorMessage += error.message || 'Please try again.';
+        }
+        
+        alert(errorMessage);
+    }
+};
 
     // Handle listing updated
     const handleListingUpdated = (updatedListing) => {
