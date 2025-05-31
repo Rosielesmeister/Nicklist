@@ -1,7 +1,9 @@
-// components/ProductCard.jsx - Updated with messaging feature
+// components/ProductCard.jsx - Updated with simple buy feature
 import React, { useState } from "react";
 import { Card, Button, Badge, Modal, Form, Alert } from "react-bootstrap";
+import { MessageCircle, ShoppingBag } from "lucide-react";
 import FavoriteButton from "./FavoriteButton";
+import BuyNowModal from "./BuyNowModal"; // Import the new component
 import { useAuth } from "../hooks/useAuth";
 import { messagesAPI } from "../api/api";
 
@@ -14,9 +16,16 @@ const ProductCard = ({
 }) => {
   const { user } = useAuth();
   const [showMessageModal, setShowMessageModal] = useState(false);
+  const [showBuyModal, setShowBuyModal] = useState(false); 
   const [messageText, setMessageText] = useState("");
   const [sendingMessage, setSendingMessage] = useState(false);
   const [messageError, setMessageError] = useState("");
+
+  // Check if user owns this product
+  const isOwnProduct = user && (product.user === user._id || product.user?._id === user._id);
+  
+  // Check if product is available for purchase
+  const isAvailableForPurchase = product.isActive && !isOwnProduct;
 
   const handleMessageSeller = (e) => {
     e.stopPropagation();
@@ -24,7 +33,7 @@ const ProductCard = ({
       alert("Please log in to message sellers");
       return;
     }
-    if (product.user === user._id) {
+    if (isOwnProduct) {
       alert("You cannot message yourself");
       return;
     }
@@ -32,6 +41,35 @@ const ProductCard = ({
     setMessageText(
       `Hi! I'm interested in your listing "${product.name}". Is it still available?`
     );
+  };
+
+  // NEW: Handle buy now button
+  const handleBuyNow = (e) => {
+    e.stopPropagation();
+    
+    if (!user) {
+      alert("Please log in to purchase items");
+      return;
+    }
+
+    if (isOwnProduct) {
+      alert("You cannot purchase your own product");
+      return;
+    }
+
+    if (!product.isActive) {
+      alert("This item is no longer available");
+      return;
+    }
+
+    setShowBuyModal(true);
+  };
+
+  // Handle successful order
+  const handleOrderComplete = (order) => {
+    console.log("Order completed:", order);
+    // You might want to refresh the product list or show a success message
+    // You could also mark the product as sold if it's a one-time item
   };
 
   const handleSendMessage = async (e) => {
@@ -42,7 +80,6 @@ const ProductCard = ({
       return;
     }
 
-    // ADD DEBUG LOGGING
     console.log("Product data:", product);
     console.log("Product.user:", product.user);
     console.log("Type of product.user:", typeof product.user);
@@ -51,7 +88,6 @@ const ProductCard = ({
     setMessageError("");
 
     try {
-      // IMPROVED RECIPIENT HANDLING
       let recipientId;
 
       if (typeof product.user === "object" && product.user._id) {
@@ -67,7 +103,7 @@ const ProductCard = ({
       console.log("Sending message to recipient:", recipientId);
 
       await messagesAPI.sendMessage({
-        recipient: recipientId, // Send just the ID string
+        recipient: recipientId,
         product: product._id,
         content: messageText.trim(),
       });
@@ -194,47 +230,83 @@ const ProductCard = ({
 
           {/* Action Buttons */}
           <div className="mt-auto pt-2">
-            <div className="d-flex gap-2">
-              <Button
-                variant="primary"
-                size="sm"
-                className="flex-grow-1"
-                onClick={handleViewDetails}
-              >
-                View Details
-              </Button>
-
-              {/* Message Seller Button */}
-              {user && product.user !== user._id && (
+            {/* Show different buttons based on user relationship to product */}
+            {isOwnProduct ? (
+              // Owner actions
+              <div className="d-flex gap-2">
                 <Button
-                  variant="outline-success"
+                  variant="primary"
                   size="sm"
-                  onClick={handleMessageSeller}
-                  title="Message Seller"
+                  className="flex-grow-1"
+                  onClick={handleViewDetails}
                 >
-                  💬
+                  View Details
                 </Button>
-              )}
+                {showActions && (
+                  <>
+                    <Button
+                      variant="outline-secondary"
+                      size="sm"
+                      onClick={handleEdit}
+                    >
+                      Edit
+                    </Button>
+                    <Button
+                      variant="outline-danger"
+                      size="sm"
+                      onClick={handleDelete}
+                    >
+                      Delete
+                    </Button>
+                  </>
+                )}
+              </div>
+            ) : (
+              // Buyer actions
+              <div className="d-grid gap-2">
+                {/* Primary buy button */}
+                <Button
+                  variant="success"
+                  size="sm"
+                  onClick={handleBuyNow}
+                  disabled={!isAvailableForPurchase}
+                  className="d-flex align-items-center justify-content-center"
+                >
+                  <ShoppingBag size={16} className="me-2" />
+                  {!product.isActive ? "Sold Out" : "Buy Now"}
+                </Button>
 
-              {showActions && (
-                <>
+                {/* Secondary actions */}
+                <div className="d-flex gap-2">
                   <Button
-                    variant="outline-secondary"
+                    variant="outline-primary"
                     size="sm"
-                    onClick={handleEdit}
+                    className="flex-grow-1"
+                    onClick={handleViewDetails}
                   >
-                    Edit
+                    View Details
                   </Button>
-                  <Button
-                    variant="outline-danger"
-                    size="sm"
-                    onClick={handleDelete}
-                  >
-                    Delete
-                  </Button>
-                </>
-              )}
-            </div>
+
+                  {user && (
+                    <Button
+                      variant="outline-info"
+                      size="sm"
+                      onClick={handleMessageSeller}
+                      title="Message Seller"
+                    >
+                      <MessageCircle size={16} />
+                    </Button>
+                  )}
+                </div>
+              </div>
+            )}
+
+            {/* Show status message for unavailable items */}
+            {!product.isActive && (
+              <div className="text-center mt-2">
+                <small className="text-muted">This item is no longer available</small>
+              </div>
+            )}
           </div>
         </Card.Body>
       </Card>
@@ -287,6 +359,14 @@ const ProductCard = ({
           </Modal.Footer>
         </Form>
       </Modal>
+
+      {/* Buy Now Modal */}
+      {/* <BuyNowModal
+        show={showBuyModal}
+        onHide={() => setShowBuyModal(false)}
+        product={product}
+        onOrderComplete={handleOrderComplete}
+      /> */}
     </>
   );
 };

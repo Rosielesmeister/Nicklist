@@ -2,9 +2,17 @@
 import React, { useState } from 'react';
 import { Modal, Button, Badge, Row, Col, Carousel } from 'react-bootstrap';
 import FavoriteButton from './FavoriteButton';
+import BuyNowModal from './BuyNowModal';
+import { useAuth } from "../hooks/useAuth";
+import { MessageCircle, ShoppingBag } from "lucide-react";
+
 
 const ProductDetailsModal = ({ show, onHide, product }) => {
+    
     const [activeImageIndex, setActiveImageIndex] = useState(0);
+    const [showBuyModal, setShowBuyModal] = useState(false); 
+    const { user } = useAuth();
+    
 
     if (!product) return null;
 
@@ -24,6 +32,40 @@ const ProductDetailsModal = ({ show, onHide, product }) => {
             day: 'numeric'
         });
     };
+    const handleOrderComplete = (order) => {
+        console.log("Order completed:", order);
+        // You might want to refresh the product list or show a success message
+        // You could also mark the product as sold if it's a one-time item
+      };
+    
+      const handleBuyNow = (e) => {
+        e.stopPropagation();
+        
+        if (!user) {
+          alert("Please log in to purchase items");
+          return;
+        }
+    
+        if (isOwnProduct) {
+          alert("You cannot purchase your own product");
+          return;
+        }
+    
+        if (!product.isActive) {
+          alert("This item is no longer available");
+          return;
+        }
+    
+        setShowBuyModal(true);
+      };
+    
+  // Check if user owns this product
+  const isOwnProduct = user && (product.user === user._id || product.user?._id === user._id);
+
+  // Check if product is available for purchase
+
+      const isAvailableForPurchase = product.isActive && !isOwnProduct;
+
 
     return (
         <Modal 
@@ -145,6 +187,19 @@ const ProductDetailsModal = ({ show, onHide, product }) => {
                             </div>
                         </div>
 
+
+                {/* Primary buy button */}
+                <Button
+                  variant="success"
+                  size="sm"
+                  onClick={handleBuyNow}
+                  disabled={!isAvailableForPurchase}
+                  className="d-flex align-items-center justify-content-center"
+                >
+                  <ShoppingBag size={16} className="me-2" />
+                  {!product.isActive ? "Sold Out" : "Buy Now"}
+                </Button>
+                
                         {/* Contact Section */}
                         <div className="mb-3">
                             <strong>Contact:</strong>
@@ -155,6 +210,14 @@ const ProductDetailsModal = ({ show, onHide, product }) => {
                     </Col>
                 </Row>
             </Modal.Body>
+ {/* Buy Now Modal */}
+ <BuyNowModal
+        show={showBuyModal}
+        onHide={() => setShowBuyModal(false)}
+        product={product}
+        onOrderComplete={handleOrderComplete}
+      />
+
 
             <Modal.Footer className="border-0 pt-0">
                 <div className="d-flex gap-2 w-100">

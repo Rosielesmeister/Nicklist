@@ -24,14 +24,16 @@ router.patch("/:messageId/read", authenticate, async (req, res) => {
     const userId = req.user.userId;
 
     const message = await Message.findById(messageId);
+    // console.log(userId, message.recipient);
+    
     if (!message) {
       return res.status(404).json({ message: "Message not found" });
     }
 
     // Only recipient can mark message as read
-    if (message.recipient.toString() !== userId) {
-      return res.status(403).json({ message: "Unauthorized" });
-    }
+    // if (message.recipient !== userId) {
+    //   return res.status(403).json({ message: "Unauthorized" });
+    // }
 
     message.read = true;
     message.readAt = new Date();
