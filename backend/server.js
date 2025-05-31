@@ -5,6 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
+import adminRoutes from "./routes/admin.js"; // Add admin routes import
 // Remove the separate favorites import since favorites are now in users.js
 import jwt from "jsonwebtoken";
 
@@ -33,6 +34,7 @@ app.use(express.json());
 // Routes
 app.use("/", userRoutes);
 app.use("/", productRoutes);
+app.use("/admin", adminRoutes); // Mount admin routes at /admin
 // Favorites routes are now included in userRoutes
 
 mongoose

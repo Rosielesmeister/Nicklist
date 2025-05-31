@@ -22,6 +22,10 @@ const UnifiedNavbar = () => {
         navigate('/profile'); // Navigate to profile page which has favorites tab
     };
 
+    const handleAdminClick = () => {
+        navigate('/admin'); // Navigate to admin dashboard
+    };
+
     const handleLoginClick = () => {
         setShowLogin(true);
     };
@@ -59,6 +63,16 @@ const UnifiedNavbar = () => {
                                 className={location.pathname === '/profile' ? 'active' : ''}
                             >
                                 My Profile
+                            </Nav.Link>
+                        )}
+                        {user && user.isAdmin && (
+                            <Nav.Link 
+                                onClick={handleAdminClick}
+                                style={{ cursor: 'pointer' }}
+                                className={location.pathname === '/admin' ? 'active' : ''}
+                            >
+                                <i className="bi bi-shield-check me-1"></i>
+                                Admin Dashboard
                             </Nav.Link>
                         )}
                     </Nav>

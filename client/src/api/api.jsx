@@ -279,6 +279,165 @@ export const authAPI = {
 	},
 };
 
+// Admin API for admin functionality - ADMIN AUTH REQUIRED
+export const adminAPI = {
+	// GET admin statistics
+	getStats: async () => {
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/stats`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+		return await response.json();
+	},
+
+	// GET recent activity
+	getRecentActivity: async () => {
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/activity`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+		return await response.json();
+	},
+
+	// GET all users
+	getAllUsers: async () => {
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/users`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+		return await response.json();
+	},
+
+	// GET all products
+	getAllProducts: async () => {
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/products`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
+		return await response.json();
+	},
+
+	// DELETE user
+	deleteUser: async (userId) => {
+		if (!userId) throw new Error("User ID required");
+
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/users/${userId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+		}
+		return await response.json();
+	},
+
+	// PATCH toggle user admin status
+	toggleUserAdmin: async (userId) => {
+		if (!userId) throw new Error("User ID required");
+
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/users/${userId}/toggle-admin`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+		}
+		return await response.json();
+	},
+
+	// DELETE product
+	deleteProduct: async (productId) => {
+		if (!productId) throw new Error("Product ID required");
+
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/products/${productId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+		}
+		return await response.json();
+	},
+
+	// PATCH toggle product active status
+	toggleProductActive: async (productId) => {
+		if (!productId) throw new Error("Product ID required");
+
+		const token = localStorage.getItem("token");
+		if (!token) throw new Error("Authentication required");
+
+		const response = await fetch(`${API_BASE_URL}/admin/products/${productId}/toggle-active`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		});
+
+		if (!response.ok) {
+			const errorData = await response.json();
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`);
+		}
+		return await response.json();
+	},
+};
+
 // Utility function to check if user is authenticated
 export const isAuthenticated = () => {
 	const token = localStorage.getItem("token");
@@ -364,4 +523,4 @@ export const favoritesAPI = {
 	},
 };
 
-export default { productsAPI, postsAPI, authAPI, favoritesAPI };
+export default { productsAPI, postsAPI, authAPI, adminAPI, favoritesAPI };

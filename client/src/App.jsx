@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-d
 import { useAuth, AuthProvider } from "./hooks/useAuth"
 import UserProfile from "./components/UserProfile"
 import NewListing from "./components/NewListing"
+import AdminDashboard from "./components/AdminDashboard"
 import Home from "./pages/Home"
 import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
@@ -10,14 +11,23 @@ import UnifiedNavbar from "./components/UnifiedNavbar"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Protected route component
-function ProtectedRoute({ children }) {
+function ProtectedRoute({ children, adminOnly = false }) {
 	const { user, loading } = useAuth()
 	
 	if (loading) {
 		return <div>Loading...</div>
 	}
 	
-	return user ? children : <Navigate to="/" replace />
+	if (!user) {
+		return <Navigate to="/" replace />
+	}
+	
+	// Check if admin access is required
+	if (adminOnly && !user.isAdmin) {
+		return <Navigate to="/" replace />
+	}
+	
+	return children
 }
 
 // Main app content (needs to be inside AuthProvider)
@@ -46,6 +56,16 @@ function AppContent() {
 						element={
 							<ProtectedRoute>
 								<UserProfile />
+							</ProtectedRoute>
+						}
+					/>
+
+					{/* Protected admin-only route for admin dashboard */}
+					<Route
+						path="/admin"
+						element={
+							<ProtectedRoute adminOnly={true}>
+								<AdminDashboard />
 							</ProtectedRoute>
 						}
 					/>
