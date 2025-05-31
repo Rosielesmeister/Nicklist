@@ -2,30 +2,24 @@ import React from "react";
 import { Navigate } from "react-router-dom";
 import { useAuth } from "../hooks/useAuth";
 
-const ProtectedRoute = ({ children }) => {
-  const { user, loading } = useAuth();
-
-  // Show loading spinner while checking authentication
+// Protected route component
+function ProtectedRoute({ children, adminOnly = false }) {
+  const { user, loading } = useAuth()
+  
   if (loading) {
-    return (
-      <div
-        className="d-flex justify-content-center align-items-center"
-        style={{ minHeight: "50vh" }}
-      >
-        <div className="spinner-border text-primary" role="status">
-          <span className="visually-hidden">Loading...</span>
-        </div>
-      </div>
-    );
+    return <div>Loading...</div>
   }
-
-  // If user is not authenticated, redirect to home page
+  
   if (!user) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/" replace />
   }
-
-  // If user is authenticated, render the protected component
+  
+  // Check if admin access is required
+  if (adminOnly && !user.isAdmin) {
+    return <Navigate to="/" replace />
+  }
+  
   return children;
-};
+}
 
 export default ProtectedRoute;

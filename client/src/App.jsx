@@ -16,24 +16,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 import AdminDashboard from "./components/AdminDashboard"
 
-// Protected route component
-function ProtectedRoute({ children, adminOnly = false }) {
-	const { user, loading } = useAuth()
-	
-	if (loading) {
-		return <div>Loading...</div>
-	}
-	
-	if (!user) {
-		return <Navigate to="/" replace />
-	}
-	
-	// Check if admin access is required
-	if (adminOnly && !user.isAdmin) {
-		return <Navigate to="/" replace />
-	}
-	
-	return children
 
 
 function App() {
@@ -82,15 +64,6 @@ function AppContent() {
               </ProtectedRoute>
             }
           />
-					{/* Protected route for user profile */}
-					<Route
-						path="/profile"
-						element={
-							<ProtectedRoute>
-								<UserProfile />
-							</ProtectedRoute>
-						}
-					/>
 
 					{/* Protected admin-only route for admin dashboard */}
 					<Route
