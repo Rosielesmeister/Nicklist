@@ -5,8 +5,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
-import adminRoutes from "./routes/admin.js"; // Add admin routes import
-// Remove the separate favorites import since favorites are now in users.js
+import messageRoutes from "./routes/messageRoutes.js"; // Add this import
 import jwt from "jsonwebtoken";
 
 if (!process.env.JWT_SECRET) {
@@ -31,11 +30,21 @@ const generateToken = (userId) => {
 app.use(cors());
 app.use(express.json());
 
-// Routes
-app.use("/", userRoutes);
-app.use("/", productRoutes);
-app.use("/admin", adminRoutes); // Mount admin routes at /admin
-// Favorites routes are now included in userRoutes
+// Health check route
+app.get("/", (req, res) => {
+  res.json({ message: "Nicklist API is running!" });
+});
+
+// API Routes
+app.use("/api", userRoutes);
+app.use("/api", productRoutes);
+app.use("/api/messages", messageRoutes); // Add this line
+
+// Error handling middleware
+app.use((err, req, res, next) => {
+  console.error(err.stack);
+  res.status(500).json({ message: "Something went wrong!" });
+});
 
 mongoose
   .connect(process.env.MONGODB_URI)
@@ -44,7 +53,8 @@ mongoose
 
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
+  console.log(`API available at http://localhost:${PORT}/api`);
 });
 
 export { generateToken };
-export default app; // Export the app for testing purposes
+export default app;
