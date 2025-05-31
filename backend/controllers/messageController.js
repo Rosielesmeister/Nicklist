@@ -6,6 +6,11 @@ export const sendMessage = async (req, res) => {
   try {
     const { recipient, product, content } = req.body;
 
+    // ADD DEBUG LOGGING
+    console.log("Message request data:", { recipient, product, content });
+    console.log("Recipient type:", typeof recipient);
+    console.log("Current user:", req.user.userId);
+
     // Validation
     if (!recipient || !content) {
       return res.status(400).json({
@@ -25,14 +30,25 @@ export const sendMessage = async (req, res) => {
       });
     }
 
+    // IMPROVED RECIPIENT VALIDATION
+    let recipientId = recipient;
+
+    // Handle case where recipient is an object with _id
+    if (typeof recipient === "object" && recipient._id) {
+      recipientId = recipient._id;
+    }
+
+    console.log("Looking for recipient with ID:", recipientId);
+
     // Check if recipient exists
-    const recipientExists = await User.findById(recipient);
+    const recipientExists = await User.findById(recipientId);
     if (!recipientExists) {
+      console.log("Recipient not found in database:", recipientId);
       return res.status(404).json({ message: "Recipient not found" });
     }
 
     // Prevent self-messaging
-    if (req.user.userId === recipient) {
+    if (req.user.userId === recipientId) {
       return res.status(400).json({
         message: "Cannot send message to yourself",
       });
@@ -40,7 +56,7 @@ export const sendMessage = async (req, res) => {
 
     const message = await Message.create({
       sender: req.user.userId,
-      recipient,
+      recipient: recipientId, // Use the processed recipientId
       product: product || null,
       content: content.trim(),
     });

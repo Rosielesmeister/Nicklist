@@ -42,12 +42,32 @@ const ProductCard = ({
       return;
     }
 
+    // ADD DEBUG LOGGING
+    console.log("Product data:", product);
+    console.log("Product.user:", product.user);
+    console.log("Type of product.user:", typeof product.user);
+
     setSendingMessage(true);
     setMessageError("");
 
     try {
+      // IMPROVED RECIPIENT HANDLING
+      let recipientId;
+
+      if (typeof product.user === "object" && product.user._id) {
+        recipientId = product.user._id;
+      } else if (typeof product.user === "string") {
+        recipientId = product.user;
+      } else if (product.userId) {
+        recipientId = product.userId;
+      } else {
+        throw new Error("Cannot determine product owner");
+      }
+
+      console.log("Sending message to recipient:", recipientId);
+
       await messagesAPI.sendMessage({
-        recipient: product.user,
+        recipient: recipientId, // Send just the ID string
         product: product._id,
         content: messageText.trim(),
       });

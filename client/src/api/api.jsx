@@ -571,7 +571,7 @@ export const messagesAPI = {
     const token = localStorage.getItem("token");
     if (!token) throw new Error("Authentication required");
 
-    console.log("Sending message:", data); // Debug log
+    console.log("API: Sending message with data:", data); // ADD THIS
 
     const response = await fetch(`${API_BASE_URL}/messages`, {
       method: "POST",
@@ -584,6 +584,7 @@ export const messagesAPI = {
 
     if (!response.ok) {
       const errorData = await response.json();
+      console.error("API: Message send failed:", errorData); // ADD THIS
       throw new Error(
         errorData.message || `HTTP error! status: ${response.status}`
       );

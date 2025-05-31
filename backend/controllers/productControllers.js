@@ -82,7 +82,11 @@ const getProductsByUserId = async (req, res) => {
 // get all the products - PUBLIC ROUTE (no authentication required)
 const getProducts = async (req, res) => {
   try {
-    const allProducts = await products.find();
+    const allProducts = await products
+      .find()
+      .populate("user", "_id firstName lastName email") // ENSURE THIS LINE EXISTS
+      .sort({ createdAt: -1 });
+
     res.status(200).json(allProducts);
   } catch (error) {
     res
@@ -94,10 +98,14 @@ const getProducts = async (req, res) => {
 // get a single product by id - PROTECTED ROUTE
 const getProductById = async (req, res) => {
   try {
-    const product = await products.findById(req.params.id);
+    const product = await products
+      .findById(req.params.id)
+      .populate("user", "_id firstName lastName email"); // ENSURE THIS LINE EXISTS
+
     if (!product) {
       return res.status(404).json({ message: "Product not found." });
     }
+
     res.status(200).json(product);
   } catch (error) {
     res
