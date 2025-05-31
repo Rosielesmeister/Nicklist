@@ -113,7 +113,7 @@ const Messages = () => {
       try {
         await messagesAPI.markAsRead(msg._id);
       } catch (error) {
-        console.error("Error marking message as read:", error);
+        console.error("Error marking message as read:", error.message);
       }
     }
 
