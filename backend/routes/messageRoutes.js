@@ -1,27 +1,27 @@
-import express from "express";
-const router = express.Router();
-import { authenticate } from "../middleware/auth.js";
-import Message from "../models/message.js"; // Add this import
+import express from "express"
+const router = express.Router()
+import { authenticate } from "../middleware/auth.js"
+import Message from "../models/message.js" // Add this import
 import {
-  sendMessage,
-  getMessagesForUser,
-  getMessagesForProduct,
-} from "../controllers/messageController.js";
+	sendMessage,
+	getMessagesForUser,
+	getMessagesForProduct,
+} from "../controllers/messageController.js"
 
 // POST /api/messages - Send a new message
-router.post("/", authenticate, sendMessage);
+router.post("/", authenticate, sendMessage)
 
 // GET /api/messages/user - Get all messages for the current user
-router.get("/user", authenticate, getMessagesForUser);
+router.get("/user", authenticate, getMessagesForUser)
 
 // GET /api/messages/product/:productId - Get messages for a specific product
-router.get("/product/:productId", authenticate, getMessagesForProduct);
+router.get("/product/:productId", authenticate, getMessagesForProduct)
 
 // PATCH /api/messages/:messageId/read - Mark message as read
 router.patch("/:messageId/read", authenticate, async (req, res) => {
-  try {
-    const { messageId } = req.params;
-    const userId = req.user.userId;
+	try {
+		const { messageId } = req.params
+		const userId = req.user.userId
 
     const message = await Message.findById(messageId);
     // console.log(userId, message.recipient);
@@ -48,4 +48,4 @@ router.patch("/:messageId/read", authenticate, async (req, res) => {
   }
 });
 
-export default router;
+export default router

@@ -50,7 +50,7 @@ function AppContent() {
             path="/profile"
             element={
               <ProtectedRoute>
-                <UserProfile />
+                <UserProfile  />
               </ProtectedRoute>
             }
           />
