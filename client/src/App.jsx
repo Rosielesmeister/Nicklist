@@ -6,7 +6,7 @@ import { BrowserRouter as Router, Routes,
 import { AuthProvider, useAuth } from "./hooks/useAuth";
 import Home from "./pages/home";
 import UserProfile from "./components/UserProfile";
-import Messages from "./pages/Messages"; // ADD THIS IMPORT
+import Messages from "./pages/Messages"; 
 import UnifiedNavbar from "./components/UnifiedNavbar";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -17,6 +17,8 @@ import "./App.css";
 import AdminDashboard from "./components/AdminDashboard"
 
 
+//!!! We need to add delete any product under admin profile
+//!!! Some admin registration 
 
 function App() {
   return (

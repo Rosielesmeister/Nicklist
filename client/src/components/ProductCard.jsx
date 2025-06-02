@@ -356,12 +356,12 @@ const ProductCard = ({
       </Modal>
 
       {/* Buy Now Modal */}
-      {/* <BuyNowModal
+    <BuyNowModal
         show={showBuyModal}
         onHide={() => setShowBuyModal(false)}
         product={product}
         onOrderComplete={handleOrderComplete}
-      /> */}
+      /> 
     </>
   );
 };
