@@ -3,8 +3,8 @@ import { BrowserRouter as Router, Routes,
   Route,
   Navigate,
 } from "react-router-dom";
-import { AuthProvider, useAuth } from "./hooks/useAuth";
-import Home from "./pages/home";
+import { AuthProvider, useAuth } from "./hooks/UseAuth";
+import Home from "./pages/Home";
 import UserProfile from "./components/UserProfile";
 import Messages from "./pages/Messages"; 
 import UnifiedNavbar from "./components/UnifiedNavbar";
@@ -13,6 +13,8 @@ import Register from "./components/auth/Register";
 import NewListing from "./components/NewListing";
 import ProtectedRoute from "./components/ProtectedRoute";
 import "bootstrap/dist/css/bootstrap.min.css";
+import "bootstrap-icons/font/bootstrap-icons.css";
+
 import "./App.css";
 import AdminDashboard from "./components/AdminDashboard"
 

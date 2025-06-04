@@ -2,6 +2,11 @@ import React, { useState, useRef } from 'react';
 import { Button, Alert, Card, Row, Col, Spinner } from 'react-bootstrap';
 import { X, Upload, Image as ImageIcon } from 'lucide-react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
 
 const ImageUpload = ({ 
   images = [], 

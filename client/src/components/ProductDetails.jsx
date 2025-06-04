@@ -1,216 +1,409 @@
-import React, { useState } from "react"
-import { Modal, Button, Row, Col, Badge, Carousel, Alert } from "react-bootstrap"
+import React, { useState } from "react";
+import { Modal, Button, Row, Col, Badge, Carousel, Alert, Spinner } from "react-bootstrap";
+import { Heart, Mail, MapPin, Calendar, User, Shield } from "lucide-react";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
+// You might want to import your favorites API here in the future
+
+// =============================================================================
+// CONSTANTS AND CONFIGURATION
+// =============================================================================
+
+const UI_CONFIG = {
+  IMAGE_HEIGHT: "400px",
+  THUMBNAIL_SIZE: "60px",
+  MODAL_SIZE: "lg",
+};
+
+const CONTACT_TEMPLATE = {
+  subject: (productName) => `Interested in: ${productName}`,
+  body: (productName, price) => 
+    `Hi,\n\nI'm interested in your listing "${productName}" for ${price}.\n\nPlease let me know if it's still available.\n\nThanks!`,
+};
+
+const SAFETY_MESSAGE = "Meet in a public place when buying/selling items. Never send money or personal information before meeting the seller.";
+
+// =============================================================================
+// UTILITY FUNCTIONS
+// =============================================================================
+
+// Format price as currency
+const formatPrice = (price) => {
+  if (!price && price !== 0) return "Price not available";
+  
+  return new Intl.NumberFormat("en-US", {
+    style: "currency",
+    currency: "USD",
+  }).format(price);
+};
+
+// Format date in readable format
+const formatDate = (dateString) => {
+  if (!dateString) return "Date not available";
+  
+  try {
+    return new Date(dateString).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric",
+    });
+  } catch (error) {
+    console.error("Error formatting date:", error);
+    return "Invalid date";
+  }
+};
+
+// =============================================================================
+// MAIN COMPONENT
+// =============================================================================
 
 const ProductDetailsModal = ({ show, onHide, product }) => {
-	const [imageIndex, setImageIndex] = useState(0)
+  // =============================================================================
+  // STATE MANAGEMENT
+  // =============================================================================
+  
+  const [imageIndex, setImageIndex] = useState(0);
+  const [addingToFavorites, setAddingToFavorites] = useState(false);
 
-	if (!product) return null
+  // =============================================================================
+  // EVENT HANDLERS
+  // =============================================================================
 
-	const formatPrice = (price) => {
-		return new Intl.NumberFormat("en-US", {
-			style: "currency",
-			currency: "USD",
-		}).format(price)
-	}
+  // Handle contact seller via email
+  const handleContactSeller = () => {
+    if (!product?.contactEmail) {
+      alert("Seller contact information is not available");
+      return;
+    }
 
-	const formatDate = (dateString) => {
-		return new Date(dateString).toLocaleDateString("en-US", {
-			year: "numeric",
-			month: "long",
-			day: "numeric",
-		})
-	}
+    try {
+      const subject = encodeURIComponent(CONTACT_TEMPLATE.subject(product.name));
+      const body = encodeURIComponent(
+        CONTACT_TEMPLATE.body(product.name, formatPrice(product.price))
+      );
 
-	const handleContactSeller = () => {
-		// Create mailto link or show contact info
-		const subject = encodeURIComponent(`Interested in: ${product.name}`)
-		const body = encodeURIComponent(
-			`Hi,\n\nI'm interested in your listing "${product.name}" for ${formatPrice(
-				product.price,
-			)}.\n\nPlease let me know if it's still available.\n\nThanks!`,
-		)
+      window.location.href = `mailto:${product.contactEmail}?subject=${subject}&body=${body}`;
+    } catch (error) {
+      console.error("Error creating mailto link:", error);
+      alert("Unable to open email client. Please contact the seller directly at: " + product.contactEmail);
+    }
+  };
 
-		window.location.href = `mailto:${product.contactEmail}?subject=${subject}&body=${body}`
-	}
+  // Handle add to favorites
+  const handleAddToFavorites = async () => {
+    if (!product?._id) {
+      alert("Unable to add to favorites - product information is missing");
+      return;
+    }
 
-	return (
-		<Modal show={show} onHide={onHide} size="lg" centered>
-			<Modal.Header closeButton>
-				<Modal.Title>{product.name}</Modal.Title>
-			</Modal.Header>
+    setAddingToFavorites(true);
 
-			<Modal.Body>
-				<Row>
-					{/* Images Section */}
-					<Col md={6}>
-						{product.images && product.images.length > 0 ? (
-							<div className="product-images">
-								{product.images.length === 1 ? (
-									<img
-										src={product.images[0].url}
-										alt={product.name}
-										className="img-fluid rounded"
-										style={{ width: "100%", maxHeight: "400px", objectFit: "cover" }}
-									/>
-								) : (
-									<Carousel
-										activeIndex={imageIndex}
-										onSelect={(selectedIndex) => setImageIndex(selectedIndex)}
-										indicators={product.images.length > 1}
-										controls={product.images.length > 1}>
-										{product.images.map((image, index) => (
-											<Carousel.Item key={index}>
-												<img
-													src={image.url}
-													alt={`${product.name} ${index + 1}`}
-													className="d-block w-100 rounded"
-													style={{ height: "400px", objectFit: "cover" }}
-												/>
-											</Carousel.Item>
-										))}
-									</Carousel>
-								)}
+    try {
+      // TODO: Implement actual favorites API call
+      // await favoritesAPI.addToFavorites(product._id);
+      
+      // For now, just simulate the action
+      await new Promise(resolve => setTimeout(resolve, 1000));
+      
+      console.log("Add to favorites:", product._id);
+      alert("Added to favorites! (This is a demo - implement favoritesAPI for real functionality)");
+      
+    } catch (error) {
+      console.error("Error adding to favorites:", error);
+      alert("Failed to add to favorites. Please try again.");
+    } finally {
+      setAddingToFavorites(false);
+    }
+  };
 
-								{/* Thumbnail navigation for multiple images */}
-								{product.images.length > 1 && (
-									<div className="d-flex gap-2 mt-2 justify-content-center">
-										{product.images.map((image, index) => (
-											<img
-												key={index}
-												src={image.url}
-												alt={`Thumbnail ${index + 1}`}
-												className={`img-thumbnail ${
-													index === imageIndex ? "border-primary" : ""
-												}`}
-												style={{
-													width: "60px",
-													height: "60px",
-													objectFit: "cover",
-													cursor: "pointer",
-												}}
-												onClick={() => setImageIndex(index)}
-											/>
-										))}
-									</div>
-								)}
-							</div>
-						) : (
-							<div
-								className="d-flex align-items-center justify-content-center bg-light rounded"
-								style={{ height: "400px" }}>
-								<div className="text-center text-muted">
-									<i className="fas fa-image fa-3x mb-2"></i>
-									<p>No images available</p>
-								</div>
-							</div>
-						)}
-					</Col>
+  // Handle modal close with state reset
+  const handleClose = () => {
+    setImageIndex(0);
+    setAddingToFavorites(false);
+    onHide();
+  };
 
-					{/* Product Info Section */}
-					<Col md={6}>
-						<div className="product-info">
-							{/* Price */}
-							<div className="mb-3">
-								<h2 className="text-success mb-0">{formatPrice(product.price)}</h2>
-							</div>
+  // Handle thumbnail click
+  const handleThumbnailClick = (index) => {
+    setImageIndex(index);
+  };
 
-							{/* Category and Status */}
-							<div className="mb-3">
-								<Badge bg="primary" className="me-2">
-									{product.category}
-								</Badge>
-								{product.isActive ? (
-									<Badge bg="success">Available</Badge>
-								) : (
-									<Badge bg="secondary">Not Available</Badge>
-								)}
-							</div>
+  // =============================================================================
+  // UI COMPONENTS
+  // =============================================================================
 
-							{/* Description */}
-							<div className="mb-3">
-								<h5>Description</h5>
-								<p className="text-muted">{product.description}</p>
-							</div>
+  // Image gallery component
+  const ImageGallery = () => {
+    if (!product.images || product.images.length === 0) {
+      return (
+        <div
+          className="d-flex align-items-center justify-content-center bg-light rounded"
+          style={{ height: UI_CONFIG.IMAGE_HEIGHT }}
+        >
+          <div className="text-center text-muted">
+            <i className="fas fa-image fa-3x mb-2"></i>
+            <p>No images available</p>
+          </div>
+        </div>
+      );
+    }
 
-							{/* Details */}
-							<div className="mb-3">
-								<h5>Details</h5>
-								<Row className="g-2">
-									<Col sm={6}>
-										<strong>Location:</strong>
-										<p className="mb-1">
-											{product.city}, {product.state}
-										</p>
-									</Col>
-									<Col sm={6}>
-										<strong>Region:</strong>
-										<p className="mb-1">{product.region}</p>
-									</Col>
-									<Col sm={6}>
-										<strong>Posted:</strong>
-										<p className="mb-1">{formatDate(product.createdAt)}</p>
-									</Col>
-									<Col sm={6}>
-										<strong>Updated:</strong>
-										<p className="mb-1">{formatDate(product.updatedAt)}</p>
-									</Col>
-								</Row>
-							</div>
+    // Single image display
+    if (product.images.length === 1) {
+      return (
+        <img
+          src={product.images[0].url}
+          alt={product.name}
+          className="img-fluid rounded"
+          style={{ 
+            width: "100%", 
+            maxHeight: UI_CONFIG.IMAGE_HEIGHT, 
+            objectFit: "cover" 
+          }}
+          onError={(e) => {
+            e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIEVycm9yPC90ZXh0Pjwvc3ZnPg==";
+          }}
+        />
+      );
+    }
 
-							{/* Contact Section */}
-							<div className="mb-3">
-								<h5>Seller Information</h5>
-								<p className="mb-1">
-									<strong>Contact:</strong> {product.contactEmail}
-								</p>
-								{product.user && (
-									<p className="mb-1">
-										<strong>Seller ID:</strong> {product.user}
-									</p>
-								)}
-							</div>
+    // Multiple images with carousel
+    return (
+      <div className="product-images">
+        <Carousel
+          activeIndex={imageIndex}
+          onSelect={setImageIndex}
+          indicators={true}
+          controls={true}
+          interval={null} // Disable auto-advance
+        >
+          {product.images.map((image, index) => (
+            <Carousel.Item key={index}>
+              <img
+                src={image.url}
+                alt={`${product.name} ${index + 1}`}
+                className="d-block w-100 rounded"
+                style={{ height: UI_CONFIG.IMAGE_HEIGHT, objectFit: "cover" }}
+                onError={(e) => {
+                  e.target.src = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjQwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxOCIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIEVycm9yPC90ZXh0Pjwvc3ZnPg==";
+                }}
+              />
+            </Carousel.Item>
+          ))}
+        </Carousel>
 
-							{/* Action Buttons */}
-							<div className="d-grid gap-2">
-								<Button
-									variant="success"
-									size="lg"
-									onClick={handleContactSeller}
-									disabled={!product.isActive}>
-									<i className="fas fa-envelope me-2"></i>
-									Contact Seller
-								</Button>
+        {/* Thumbnail navigation */}
+        <div className="d-flex gap-2 mt-2 justify-content-center flex-wrap">
+          {product.images.map((image, index) => (
+            <img
+              key={index}
+              src={image.url}
+              alt={`Thumbnail ${index + 1}`}
+              className={`img-thumbnail ${
+                index === imageIndex ? "border-primary border-2" : ""
+              }`}
+              style={{
+                width: UI_CONFIG.THUMBNAIL_SIZE,
+                height: UI_CONFIG.THUMBNAIL_SIZE,
+                objectFit: "cover",
+                cursor: "pointer",
+              }}
+              onClick={() => handleThumbnailClick(index)}
+              onError={(e) => {
+                e.target.style.display = 'none';
+              }}
+            />
+          ))}
+        </div>
+      </div>
+    );
+  };
 
-								<Button
-									variant="outline-primary"
-									onClick={() => {
-										// Add to favorites functionality
-										console.log("Add to favorites:", product._id)
-										// You can implement this later
-									}}>
-									<i className="fas fa-heart me-2"></i>
-									Save to Favorites
-								</Button>
-							</div>
+  // Product information section
+  const ProductInfo = () => (
+    <div className="product-info">
+      {/* Price */}
+      <div className="mb-3">
+        <h2 className="text-success mb-0">{formatPrice(product.price)}</h2>
+      </div>
 
-							{/* Safety Notice */}
-							<Alert variant="warning" className="mt-3 small">
-								<strong>Safety Tip:</strong> Meet in a public place when
-								buying/selling items. Never send money or personal information before
-								meeting the seller.
-							</Alert>
-						</div>
-					</Col>
-				</Row>
-			</Modal.Body>
+      {/* Category and Status */}
+      <div className="mb-3">
+        <Badge bg="primary" className="me-2">
+          {product.category || "Uncategorized"}
+        </Badge>
+        <Badge bg={product.isActive ? "success" : "secondary"}>
+          {product.isActive ? "Available" : "Not Available"}
+        </Badge>
+      </div>
 
-			<Modal.Footer>
-				<Button variant="secondary" onClick={onHide}>
-					Close
-				</Button>
-			</Modal.Footer>
-		</Modal>
-	)
-}
+      {/* Description */}
+      <div className="mb-3">
+        <h5>Description</h5>
+        <p className="text-muted">
+          {product.description || "No description available"}
+        </p>
+      </div>
+    </div>
+  );
 
-// export default ProductDetailsModal
+  // Product details section
+  const ProductDetails = () => (
+    <div className="mb-3">
+      <h5>Details</h5>
+      <Row className="g-2">
+        <Col sm={6}>
+          <div className="d-flex align-items-center mb-2">
+            <MapPin size={16} className="me-2 text-muted" />
+            <div>
+              <strong>Location:</strong>
+              <p className="mb-0 text-muted">
+                {product.city && product.state 
+                  ? `${product.city}, ${product.state}` 
+                  : "Location not specified"}
+              </p>
+            </div>
+          </div>
+        </Col>
+        <Col sm={6}>
+          <div className="d-flex align-items-center mb-2">
+            <MapPin size={16} className="me-2 text-muted" />
+            <div>
+              <strong>Region:</strong>
+              <p className="mb-0 text-muted">{product.region || "Not specified"}</p>
+            </div>
+          </div>
+        </Col>
+        <Col sm={6}>
+          <div className="d-flex align-items-center mb-2">
+            <Calendar size={16} className="me-2 text-muted" />
+            <div>
+              <strong>Posted:</strong>
+              <p className="mb-0 text-muted">{formatDate(product.createdAt)}</p>
+            </div>
+          </div>
+        </Col>
+        <Col sm={6}>
+          <div className="d-flex align-items-center mb-2">
+            <Calendar size={16} className="me-2 text-muted" />
+            <div>
+              <strong>Updated:</strong>
+              <p className="mb-0 text-muted">{formatDate(product.updatedAt)}</p>
+            </div>
+          </div>
+        </Col>
+      </Row>
+    </div>
+  );
+
+  // Seller information section
+  const SellerInfo = () => (
+    <div className="mb-3">
+      <h5 className="d-flex align-items-center">
+        <User size={18} className="me-2" />
+        Seller Information
+      </h5>
+      <div className="ps-4">
+        <p className="mb-1">
+          <strong>Contact:</strong> {product.contactEmail || "Not provided"}
+        </p>
+        {product.user && (
+          <p className="mb-1">
+            <strong>Seller ID:</strong> {typeof product.user === 'object' ? product.user._id : product.user}
+          </p>
+        )}
+      </div>
+    </div>
+  );
+
+  // Action buttons section
+  const ActionButtons = () => (
+    <div className="d-grid gap-2">
+      <Button
+        variant="success"
+        size="lg"
+        onClick={handleContactSeller}
+        disabled={!product.isActive || !product.contactEmail}
+      >
+        <Mail size={18} className="me-2" />
+        Contact Seller
+      </Button>
+
+      <Button
+        variant="outline-primary"
+        onClick={handleAddToFavorites}
+        disabled={addingToFavorites}
+      >
+        {addingToFavorites ? (
+          <>
+            <Spinner size="sm" className="me-2" />
+            Adding to Favorites...
+          </>
+        ) : (
+          <>
+            <Heart size={18} className="me-2" />
+            Save to Favorites
+          </>
+        )}
+      </Button>
+    </div>
+  );
+
+  // Safety notice component
+  const SafetyNotice = () => (
+    <Alert variant="warning" className="mt-3">
+      <div className="d-flex align-items-start">
+        <Shield size={18} className="me-2 mt-1 flex-shrink-0" />
+        <div>
+          <strong>Safety Tip:</strong> {SAFETY_MESSAGE}
+        </div>
+      </div>
+    </Alert>
+  );
+
+  // =============================================================================
+  // MAIN RENDER
+  // =============================================================================
+
+  // Don't render if no product provided
+  if (!product) return null;
+
+  return (
+    <Modal show={show} onHide={handleClose} size={UI_CONFIG.MODAL_SIZE} centered>
+      <Modal.Header closeButton>
+        <Modal.Title className="text-truncate">
+          {product.name || "Product Details"}
+        </Modal.Title>
+      </Modal.Header>
+
+      <Modal.Body>
+        <Row>
+          {/* Images Section */}
+          <Col md={6}>
+            <ImageGallery />
+          </Col>
+
+          {/* Product Info Section */}
+          <Col md={6}>
+            <ProductInfo />
+            <ProductDetails />
+            <SellerInfo />
+            <ActionButtons />
+            <SafetyNotice />
+          </Col>
+        </Row>
+      </Modal.Body>
+
+      <Modal.Footer>
+        <Button variant="secondary" onClick={handleClose}>
+          Close
+        </Button>
+      </Modal.Footer>
+    </Modal>
+  );
+};
+
+export default ProductDetailsModal;

@@ -1,8 +1,11 @@
 // components/auth/Login.jsx
 import React, { useState } from 'react';
 import { Modal, Form, Button, Alert, Spinner } from 'react-bootstrap';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/UseAuth';
 import { authAPI } from '../../api/api';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 
 const Login = () => {
     const { showLogin, setShowLogin, login, setShowRegister } = useAuth();

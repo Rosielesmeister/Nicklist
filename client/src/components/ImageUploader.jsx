@@ -1,5 +1,10 @@
 import React, { useState, useRef } from "react";
 import { uploadImageToCloudinary } from "../utils/cloudinary";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
 
 const ImageUploader = ({
   onUploadSuccess,

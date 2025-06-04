@@ -1,5 +1,8 @@
 import { useState } from 'react';
 import { cloudinaryConfig } from '../utils/cloudinaryConfig.js.jsx';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import "../App.css";
+
 
 export const useImageUpload = () => {
   const [uploading, setUploading] = useState(false);

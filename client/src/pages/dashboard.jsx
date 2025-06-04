@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { postsAPI } from "../api/api";
 import PostCard from "../components/PostCard";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
 
 export default function Dashboard() {
   const [myPosts, setMyPosts] = useState([]);

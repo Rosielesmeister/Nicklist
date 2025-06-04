@@ -1,5 +1,10 @@
 import React from "react";
 import PostCard from "../components/PostCard";
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
 
 const PostList = ({ posts, showActions, onEdit, onDelete }) => {
   const filteredPosts = posts.filter((post) => post.isActive); // Example filter

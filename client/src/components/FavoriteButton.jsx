@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { Button } from 'react-bootstrap';
 import { favoritesAPI } from '../api/api';
-import { useAuth } from '../hooks/useAuth';
+import { useAuth } from '../hooks/UseAuth';
+import "bootstrap-icons/font/bootstrap-icons.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
+
+import "../App.css";
+
 
 const FavoriteButton = ({ productId, size = "sm", variant = "outline-danger" }) => {
     const { user } = useAuth();

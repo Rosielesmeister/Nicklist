@@ -1,8 +1,9 @@
 // components/auth/Register.jsx
 import React, { useState } from 'react';
 import { Modal, Form, Button, Alert, Spinner, Row, Col } from 'react-bootstrap';
-import { useAuth } from '../../hooks/useAuth';
+import { useAuth } from '../../hooks/UseAuth';
 import { authAPI } from '../../api/api';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const Register = () => {
     const { showRegister, setShowRegister, login, setShowLogin } = useAuth();
