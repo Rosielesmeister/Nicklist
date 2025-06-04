@@ -1,665 +1,709 @@
 // Frontend API Configuration
 // Make sure this matches your backend server
-const API_BASE_URL = `http://localhost:${
-  import.meta.env.VITE_API_PORT || 5000
-}/api`; // Important: Include /api prefix
+const API_BASE_URL = `http://localhost:${import.meta.env.VITE_API_PORT || 5000}/api` // Important: Include /api prefix
 
 // Products API - matches your backend routes
 export const productsAPI = {
-  // GET all products - NO AUTH REQUIRED
-  getAllProducts: async () => {
-    const response = await fetch(`${API_BASE_URL}/products`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+	// GET all products - NO AUTH REQUIRED
+	getAllProducts: async () => {
+		const response = await fetch(`${API_BASE_URL}/products`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET single product by ID - NO AUTH REQUIRED
-  getProduct: async (id) => {
-    if (!id) throw new Error("Product ID required");
+	// GET single product by ID - NO AUTH REQUIRED
+	getProduct: async (id) => {
+		if (!id) throw new Error("Product ID required")
 
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // POST create product - AUTH REQUIRED
-  createProduct: async (productData) => {
-    if (!productData) throw new Error("Product data required");
+	// POST create product - AUTH REQUIRED
+	createProduct: async (productData) => {
+		if (!productData) throw new Error("Product data required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/products`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(productData),
-    });
+		const response = await fetch(`${API_BASE_URL}/products`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(productData),
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET user's own products - AUTH REQUIRED
-  getUserProducts: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET user's own products - AUTH REQUIRED
+	getUserProducts: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/user/products`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/user/products`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // PUT update product - AUTH REQUIRED
-  updateProduct: async (id, productData) => {
-    if (!id) throw new Error("Product ID required");
-    if (!productData) throw new Error("Product data required");
+	// PUT update product - AUTH REQUIRED
+	updateProduct: async (id, productData) => {
+		if (!id) throw new Error("Product ID required")
+		if (!productData) throw new Error("Product data required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(productData),
-    });
+		const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(productData),
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // DELETE product - AUTH REQUIRED
-  // Updated api.jsx - deleteProduct function with better error handling
+	// DELETE product - AUTH REQUIRED
+	// Updated api.jsx - deleteProduct function with better error handling
 
-  // DELETE product - AUTH REQUIRED
-  deleteProduct: async (id) => {
-    if (!id) throw new Error("Product ID required");
+	// DELETE product - AUTH REQUIRED
+	deleteProduct: async (id) => {
+		if (!id) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    console.log("Deleting product with ID:", id);
-    console.log("Using token:", token ? "Token present" : "No token");
+		console.log("Deleting product with ID:", id)
+		console.log("Using token:", token ? "Token present" : "No token")
 
-    const response = await fetch(`${API_BASE_URL}/products/${id}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/products/${id}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    console.log("Delete response status:", response.status);
+		console.log("Delete response status:", response.status)
 
-    if (!response.ok) {
-      const errorText = await response.text();
-      console.error("Delete failed with response:", errorText);
+		if (!response.ok) {
+			const errorText = await response.text()
+			console.error("Delete failed with response:", errorText)
 
-      let errorData;
-      try {
-        errorData = JSON.parse(errorText);
-      } catch {
-        // Removed unused 'e' parameter
-        errorData = { message: errorText };
-      }
+			let errorData
+			try {
+				errorData = JSON.parse(errorText)
+			} catch {
+				// Removed unused 'e' parameter
+				errorData = { message: errorText }
+			}
 
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
 
-    const result = await response.json();
-    console.log("Delete successful:", result);
-    return result;
-  },
+		const result = await response.json()
+		console.log("Delete successful:", result)
+		return result
+	},
 
-  // Search products - NO AUTH REQUIRED
-  searchProducts: async (searchTerm, filters = {}) => {
-    const queryParams = new URLSearchParams({
-      ...(searchTerm && { search: searchTerm }),
-      ...filters,
-    });
+	// Search products - NO AUTH REQUIRED
+	searchProducts: async (searchTerm, filters = {}) => {
+		const queryParams = new URLSearchParams({
+			...(searchTerm && { search: searchTerm }),
+			...filters,
+		})
 
-    const response = await fetch(
-      `${API_BASE_URL}/products/search?${queryParams}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      }
-    );
+		const response = await fetch(`${API_BASE_URL}/products/search?${queryParams}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
-};
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
+}
 
 // Legacy postsAPI for backward compatibility - points to productsAPI
 export const postsAPI = {
-  getAllPosts: () => productsAPI.getAllProducts(),
-  getPost: (id) => productsAPI.getProduct(id),
-  createPost: (postData) => productsAPI.createProduct(postData),
-  getUserPosts: () => productsAPI.getUserProducts(), // Fixed to use correct method
-  updatePost: (id, postData) => productsAPI.updateProduct(id, postData),
-  deletePost: (id) => productsAPI.deleteProduct(id),
-};
+	getAllPosts: () => productsAPI.getAllProducts(),
+	getPost: (id) => productsAPI.getProduct(id),
+	createPost: (postData) => productsAPI.createProduct(postData),
+	getUserPosts: () => productsAPI.getUserProducts(), // Fixed to use correct method
+	updatePost: (id, postData) => productsAPI.updateProduct(id, postData),
+	deletePost: (id) => productsAPI.deleteProduct(id),
+}
 
 // Auth API for user management - matches your backend routes
 export const authAPI = {
-  // Register new user
-  register: async (userData) => {
-    if (!userData) throw new Error("User data required");
+	// Register new user
+	register: async (userData) => {
+		if (!userData) throw new Error("User data required")
 
-    const response = await fetch(`${API_BASE_URL}/register`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(userData),
-    });
+		const response = await fetch(`${API_BASE_URL}/register`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(userData),
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
 
-    const data = await response.json();
-    // Store token in localStorage for subsequent API calls
-    if (data.token) localStorage.setItem("token", data.token);
-    return data;
-  },
+		const data = await response.json()
+		// Store token in localStorage for subsequent API calls
+		if (data.token) localStorage.setItem("token", data.token)
+		return data
+	},
 
-  // Login user
-  login: async (credentials) => {
-    if (!credentials) throw new Error("Credentials required");
+	// Login user
+	login: async (credentials) => {
+		if (!credentials) throw new Error("Credentials required")
 
-    const response = await fetch(`${API_BASE_URL}/login`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(credentials),
-    });
+		const response = await fetch(`${API_BASE_URL}/login`, {
+			method: "POST",
+			headers: { "Content-Type": "application/json" },
+			body: JSON.stringify(credentials),
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
 
-    const data = await response.json();
-    // Store token in localStorage for subsequent API calls
-    if (data.token) localStorage.setItem("token", data.token);
-    return data;
-  },
+		const data = await response.json()
+		// Store token in localStorage for subsequent API calls
+		if (data.token) localStorage.setItem("token", data.token)
+		return data
+	},
 
-  // Logout user (client-side)
-  logout: () => {
-    localStorage.removeItem("token");
-  },
+	// Logout user (client-side)
+	logout: () => {
+		localStorage.removeItem("token")
+	},
 
-  // Get current user info
-  getCurrentUser: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) return null;
+	// Get current user info
+	getCurrentUser: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) return null
 
-    const response = await fetch(`${API_BASE_URL}/me`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/me`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      // If token is invalid, remove it
-      if (response.status === 401) {
-        localStorage.removeItem("token");
-      }
-      throw new Error(`HTTP error! status: ${response.status}`);
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			// If token is invalid, remove it
+			if (response.status === 401) {
+				localStorage.removeItem("token")
+			}
+			throw new Error(`HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // Update user profile
-  updateUser: async (userId, userData) => {
-    if (!userId || !userData) throw new Error("User ID and data required");
+	// Update user profile
+	updateUser: async (userId, userData) => {
+		if (!userId || !userData) throw new Error("User ID and data required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/update/${userId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(userData),
-    });
+		const response = await fetch(`${API_BASE_URL}/update/${userId}`, {
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(userData),
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // Delete user account
-  deleteUser: async (userId) => {
-    if (!userId) throw new Error("User ID required");
+	// Delete user account
+	deleteUser: async (userId) => {
+		if (!userId) throw new Error("User ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/user/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/user/${userId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
-};
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
+}
 
 // Admin API for admin functionality - ADMIN AUTH REQUIRED
 export const adminAPI = {
-  // GET admin statistics
-  getStats: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET admin statistics
+	getStats: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/admin/stats`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/admin/stats`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET recent activity
-  getRecentActivity: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET recent activity
+	getRecentActivity: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/admin/activity`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/admin/activity`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET all users
-  getAllUsers: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET all users
+	getAllUsers: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/admin/users`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/admin/users`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET all products
-  getAllProducts: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET all products
+	getAllProducts: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/admin/products`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/admin/products`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // DELETE user
-  deleteUser: async (userId) => {
-    if (!userId) throw new Error("User ID required");
+	// DELETE user
+	deleteUser: async (userId) => {
+		if (!userId) throw new Error("User ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/admin/users/${userId}`, {
-      method: "DELETE",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/admin/users/${userId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // PATCH toggle user admin status
-  toggleUserAdmin: async (userId) => {
-    if (!userId) throw new Error("User ID required");
+	// PATCH toggle user admin status
+	toggleUserAdmin: async (userId) => {
+		if (!userId) throw new Error("User ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/admin/users/${userId}/toggle-admin`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(
+			`${API_BASE_URL}/admin/users/${userId}/toggle-admin`,
+			{
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			},
+		)
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // DELETE product
-  deleteProduct: async (productId) => {
-    if (!productId) throw new Error("Product ID required");
+	// DELETE product
+	deleteProduct: async (productId) => {
+		if (!productId) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/admin/products/${productId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(`${API_BASE_URL}/admin/products/${productId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // PATCH toggle product active status
-  toggleProductActive: async (productId) => {
-    if (!productId) throw new Error("Product ID required");
+	// PATCH toggle product active status
+	toggleProductActive: async (productId) => {
+		if (!productId) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/admin/products/${productId}/toggle-active`,
-      {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(
+			`${API_BASE_URL}/admin/products/${productId}/toggle-active`,
+			{
+				method: "PATCH",
+				headers: {
+					"Content-Type": "application/json",
+					Authorization: `Bearer ${token}`,
+				},
+			},
+		)
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
-};
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
+}
 
 // Utility function to check if user is authenticated
 export const isAuthenticated = () => {
-  const token = localStorage.getItem("token");
-  return !!token;
-};
+	const token = localStorage.getItem("token")
+	return !!token
+}
 
 // Utility function to get auth token
 export const getAuthToken = () => {
-  return localStorage.getItem("token");
-};
+	return localStorage.getItem("token")
+}
 
 // Favorites API for user favorites management
 export const favoritesAPI = {
-  // GET user's favorite products - AUTH REQUIRED
-  getUserFavorites: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// GET user's favorite products - AUTH REQUIRED
+	getUserFavorites: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/user/favorites`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/user/favorites`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // POST add product to favorites - AUTH REQUIRED
-  addToFavorites: async (productId) => {
-    if (!productId) throw new Error("Product ID required");
+	// POST add product to favorites - AUTH REQUIRED
+	addToFavorites: async (productId) => {
+		if (!productId) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/user/favorites/${productId}`,
-      {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(`${API_BASE_URL}/user/favorites/${productId}`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // DELETE remove product from favorites - AUTH REQUIRED
-  removeFromFavorites: async (productId) => {
-    if (!productId) throw new Error("Product ID required");
+	// DELETE remove product from favorites - AUTH REQUIRED
+	removeFromFavorites: async (productId) => {
+		if (!productId) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/user/favorites/${productId}`,
-      {
-        method: "DELETE",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(`${API_BASE_URL}/user/favorites/${productId}`, {
+			method: "DELETE",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`);
-    return await response.json();
-  },
+		if (!response.ok) throw new Error(`HTTP error! status: ${response.status}`)
+		return await response.json()
+	},
 
-  // GET check if product is favorited - AUTH REQUIRED
-  isFavorited: async (productId) => {
-    if (!productId) throw new Error("Product ID required");
+	// GET check if product is favorited - AUTH REQUIRED
+	isFavorited: async (productId) => {
+		if (!productId) throw new Error("Product ID required")
 
-    const token = localStorage.getItem("token");
-    if (!token) return false;
+		const token = localStorage.getItem("token")
+		if (!token) return false
 
-    try {
-      const favorites = await favoritesAPI.getUserFavorites();
-      return favorites.some(
-        (fav) => fav._id === productId || fav.product?._id === productId
-      );
-    } catch (error) {
-      console.error("Error checking favorite status:", error);
-      return false;
-    }
-  },
-};
+		try {
+			const favorites = await favoritesAPI.getUserFavorites()
+			return favorites.some(
+				(fav) => fav._id === productId || fav.product?._id === productId,
+			)
+		} catch (error) {
+			console.error("Error checking favorite status:", error)
+			return false
+		}
+	},
+}
 
 // Messages API
 export const messagesAPI = {
-  // Send message
-  sendMessage: async (data) => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// Send message
+	sendMessage: async (data) => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    console.log("API: Sending message with data:", data); // ADD THIS
+		console.log("API: Sending message with data:", data) // ADD THIS
 
-    const response = await fetch(`${API_BASE_URL}/messages`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(data),
-    });
+		const response = await fetch(`${API_BASE_URL}/messages`, {
+			method: "POST",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(data),
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      console.error("API: Message send failed:", errorData); // ADD THIS
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			console.error("API: Message send failed:", errorData) // ADD THIS
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // Get messages for current user
-  getMessagesForUser: async () => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// Get messages for current user
+	getMessagesForUser: async () => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/messages/user`, {
-      method: "GET",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/messages/user`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // Get messages for a product
-  getMessagesForProduct: async (productId) => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// Get messages for a product
+	getMessagesForProduct: async (productId) => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(
-      `${API_BASE_URL}/messages/product/${productId}`,
-      {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-      }
-    );
+		const response = await fetch(`${API_BASE_URL}/messages/product/${productId}`, {
+			method: "GET",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
 
-  // Mark message as read
-  markAsRead: async (messageId) => {
-    const token = localStorage.getItem("token");
-    if (!token) throw new Error("Authentication required");
+	// Mark message as read
+	markAsRead: async (messageId) => {
+		const token = localStorage.getItem("token")
+		if (!token) throw new Error("Authentication required")
 
-    const response = await fetch(`${API_BASE_URL}/messages/${messageId}/read`, {
-      method: "PATCH",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-    });
+		const response = await fetch(`${API_BASE_URL}/messages/${messageId}/read`, {
+			method: "PATCH",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+		})
 
-    if (!response.ok) {
-      const errorData = await response.json();
-      throw new Error(
-        errorData.message || `HTTP error! status: ${response.status}`
-      );
-    }
-    return await response.json();
-  },
-};
+		if (!response.ok) {
+			const errorData = await response.json()
+			throw new Error(errorData.message || `HTTP error! status: ${response.status}`)
+		}
+		return await response.json()
+	},
+}
 
-export default { productsAPI, postsAPI, authAPI, favoritesAPI, messagesAPI };
+// Mock Orders API
+export const ordersAPI = {
+	// Mock create order - simulates API call with delay
+	createOrder: async (orderData) => {
+		if (!orderData) throw new Error("Order data required")
+
+		console.log("Mock: Creating order with data:", orderData)
+
+		// Simulate network delay
+		await new Promise((resolve) => setTimeout(resolve, 1500))
+
+		// Simulate successful order creation
+		const mockOrder = {
+			_id: `order_${Date.now()}`, // Generate unique ID
+			id: `order_${Date.now()}`, // Backup ID field
+			...orderData,
+			status: "confirmed",
+			orderNumber: `ORD-${Math.random().toString(36).substr(2, 9).toUpperCase()}`,
+			createdAt: new Date().toISOString(),
+			estimatedDelivery: new Date(
+				Date.now() + 7 * 24 * 60 * 60 * 1000,
+			).toISOString(), // 7 days from now
+		}
+
+		console.log("Mock: Order created successfully:", mockOrder)
+
+		// Store in localStorage for the success page to access
+		localStorage.setItem("lastOrder", JSON.stringify(mockOrder))
+
+		return mockOrder
+	},
+
+	// Mock get user orders - returns sample data
+	getUserOrders: async () => {
+		await new Promise((resolve) => setTimeout(resolve, 500))
+
+		// Return some mock orders
+		return [
+			{
+				_id: "order_123",
+				orderNumber: "ORD-ABC123",
+				product: { name: "Sample Product", price: 29.99 },
+				status: "delivered",
+				total: 32.39,
+				createdAt: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000).toISOString(),
+			},
+			{
+				_id: "order_124",
+				orderNumber: "ORD-DEF456",
+				product: { name: "Another Product", price: 45.0 },
+				status: "shipped",
+				total: 51.6,
+				createdAt: new Date(Date.now() - 2 * 24 * 60 * 60 * 1000).toISOString(),
+			},
+		]
+	},
+
+	// Mock get single order
+	getOrder: async (orderId) => {
+		await new Promise((resolve) => setTimeout(resolve, 300))
+
+		// Try to get from localStorage first
+		const lastOrder = localStorage.getItem("lastOrder")
+		if (lastOrder) {
+			const order = JSON.parse(lastOrder)
+			if (order._id === orderId || order.id === orderId) {
+				return order
+			}
+		}
+
+		// Return mock order
+		return {
+			_id: orderId,
+			orderNumber: "ORD-SAMPLE",
+			status: "confirmed",
+			createdAt: new Date().toISOString(),
+		}
+	},
+}
+
+export default {
+	productsAPI,
+	postsAPI,
+	authAPI,
+	favoritesAPI,
+	messagesAPI,
+	ordersAPI,
+}
