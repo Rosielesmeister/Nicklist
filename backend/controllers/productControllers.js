@@ -1,4 +1,5 @@
 import products from "../models/products.js";
+import User from "../models/User.js"; // Import User model
 import dotenv from "dotenv";
 dotenv.config();
 
@@ -147,6 +148,10 @@ const updateProduct = async (req, res) => {
       message: "Product updated successfully.",
       product: updatedProduct,
     });
+    res.status(200).json({
+      message: "Product updated successfully.",
+      product: updatedProduct,
+    });
   } catch (error) {
     res
       .status(500)
@@ -204,4 +209,7 @@ export {
   updateProduct,
   deleteProduct,
   getProductsByUserId,
+  //addBookmark,
+  //removeBookmark,
+  //getBookmarks, i comment these out b/c they are used above and it cause the code to break using them in both places. rosie
 };
