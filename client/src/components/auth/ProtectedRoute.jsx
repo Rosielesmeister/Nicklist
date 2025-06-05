@@ -1,6 +1,6 @@
 import React from "react";
 import { Navigate } from "react-router-dom";
-import { useAuth } from "../hooks/UseAuth";
+import { useAuth } from "../../hooks/UseAuth";
 
 // Protected route component
 function ProtectedRoute({ children, adminOnly = false }) {

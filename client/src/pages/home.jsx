@@ -1,124 +1,130 @@
-import React, { useState } from "react";
-import { Container, Row, Col } from "react-bootstrap";
-import "bootstrap-icons/font/bootstrap-icons.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
+import React, { useState } from "react"
+import { Container, Row, Col } from "react-bootstrap"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
-import { useAuth } from "../hooks/UseAuth";
-import { useProducts } from "../hooks/UseProducts";
-import { useFilters } from "../hooks/UseFilters";
-import { usePagination } from "../hooks/UsePagination";
+import { useAuth } from "../hooks/UseAuth"
+import { useProducts } from "../hooks/UseProducts"
+import { useFilters } from "../hooks/UseFilters"
+import { usePagination } from "../hooks/UsePagination"
 
 // All UI components from single file
 import {
-  LoadingState,
-  PageHeader,
-  ErrorAlert,
-  FiltersSidebar,
-  ProductsHeader,
-  ProductsGrid,
-  PaginationComponent
-} from "../components/HomePageComponents";
+	LoadingState,
+	PageHeader,
+	ErrorAlert,
+	FiltersSidebar,
+	ProductsHeader,
+	ProductsGrid,
+	PaginationComponent,
+} from "../components/common/HomePageComponents"
 
-import ProductDetailsModal from "../components/ProductDetailsModal";
-import NewListing from "../components/NewListing";
+import ProductDetailsModal from "../components/products/ProductDetailsModal"
+import NewListing from "../components/products/NewListing"
 
 const Home = () => {
-  const { user } = useAuth();
-  
-  // Modal state
-  const [selectedProduct, setSelectedProduct] = useState(null);
-  const [showProductDetails, setShowProductDetails] = useState(false);
-  const [showNewListing, setShowNewListing] = useState(false);
+	const { user } = useAuth()
 
-  // Custom hooks for data and logic
-  const { products, loading, error, fetchProducts, addProduct, clearError } = useProducts();
-  const { filters, filteredProducts, hasActiveFilters, handleFilterChange, handlePriceRangeChange, clearAllFilters } = useFilters(products);
-  const { currentPage, currentProducts, paginationData, handlePageChange } = usePagination(filteredProducts, filters);
+	// Modal state
+	const [selectedProduct, setSelectedProduct] = useState(null)
+	const [showProductDetails, setShowProductDetails] = useState(false)
+	const [showNewListing, setShowNewListing] = useState(false)
 
-  // Event handlers
-  const handleViewDetails = (product) => {
-    setSelectedProduct(product);
-    setShowProductDetails(true);
-  };
+	// Custom hooks for data and logic
+	const { products, loading, error, fetchProducts, addProduct, clearError } =
+		useProducts()
+	const {
+		filters,
+		filteredProducts,
+		hasActiveFilters,
+		handleFilterChange,
+		handlePriceRangeChange,
+		clearAllFilters,
+	} = useFilters(products)
+	const { currentPage, currentProducts, paginationData, handlePageChange } =
+		usePagination(filteredProducts, filters)
 
-  const handleListingAdded = (newListing) => {
-    addProduct(newListing);
-    setShowNewListing(false);
-  };
+	// Event handlers
+	const handleViewDetails = (product) => {
+		setSelectedProduct(product)
+		setShowProductDetails(true)
+	}
 
-  const handleShowNewListing = () => setShowNewListing(true);
+	const handleListingAdded = (newListing) => {
+		addProduct(newListing)
+		setShowNewListing(false)
+	}
 
-  // Show loading state
-  if (loading) {
-    return <LoadingState />;
-  }
+	const handleShowNewListing = () => setShowNewListing(true)
 
-  return (
-    <>
-      <Container fluid className="py-4">
-        <PageHeader 
-          user={user}
-          onShowNewListing={handleShowNewListing}
-        />
-        
-        <ErrorAlert 
-          error={error}
-          onClearError={clearError}
-          onRetry={fetchProducts}
-        />
+	// Show loading state
+	if (loading) {
+		return <LoadingState />
+	}
 
-        <Row>
-          <FiltersSidebar 
-            filters={filters}
-            hasActiveFilters={hasActiveFilters}
-            onFilterChange={handleFilterChange}
-            onPriceRangeChange={handlePriceRangeChange}
-            onClearFilters={clearAllFilters}
-          />
+	return (
+		<>
+			<Container fluid className="py-4">
+				<PageHeader user={user} onShowNewListing={handleShowNewListing} />
 
-          <Col lg={9}>
-            <ProductsHeader 
-              totalItems={paginationData.totalItems}
-              totalProducts={products.length}
-              hasActiveFilters={hasActiveFilters}
-            />
-            
-            <ProductsGrid 
-              filteredProducts={filteredProducts}
-              currentProducts={currentProducts}
-              onViewDetails={handleViewDetails}
-              user={user}
-              products={products}
-              hasActiveFilters={hasActiveFilters}
-              onShowNewListing={handleShowNewListing}
-              onClearFilters={clearAllFilters}
-            />
-          </Col>
-        </Row>
+				<ErrorAlert
+					error={error}
+					onClearError={clearError}
+					onRetry={fetchProducts}
+				/>
 
-        <PaginationComponent 
-          paginationData={paginationData}
-          currentPage={currentPage}
-          onPageChange={handlePageChange}
-        />
-      </Container>
+				<Row>
+					<FiltersSidebar
+						filters={filters}
+						hasActiveFilters={hasActiveFilters}
+						onFilterChange={handleFilterChange}
+						onPriceRangeChange={handlePriceRangeChange}
+						onClearFilters={clearAllFilters}
+					/>
 
-      {/* Modals */}
-      <ProductDetailsModal
-        show={showProductDetails}
-        onHide={() => setShowProductDetails(false)}
-        product={selectedProduct}
-      />
+					<Col lg={9}>
+						<ProductsHeader
+							totalItems={paginationData.totalItems}
+							totalProducts={products.length}
+							hasActiveFilters={hasActiveFilters}
+						/>
 
-      {user && (
-        <NewListing
-          show={showNewListing}
-          onHide={() => setShowNewListing(false)}
-          onListingAdded={handleListingAdded}
-        />
-      )}
-    </>
-  );
-};
+						<ProductsGrid
+							filteredProducts={filteredProducts}
+							currentProducts={currentProducts}
+							onViewDetails={handleViewDetails}
+							user={user}
+							products={products}
+							hasActiveFilters={hasActiveFilters}
+							onShowNewListing={handleShowNewListing}
+							onClearFilters={clearAllFilters}
+						/>
+					</Col>
+				</Row>
 
-export default Home;
+				<PaginationComponent
+					paginationData={paginationData}
+					currentPage={currentPage}
+					onPageChange={handlePageChange}
+				/>
+			</Container>
+
+			{/* Modals */}
+			<ProductDetailsModal
+				show={showProductDetails}
+				onHide={() => setShowProductDetails(false)}
+				product={selectedProduct}
+			/>
+
+			{user && (
+				<NewListing
+					show={showNewListing}
+					onHide={() => setShowNewListing(false)}
+					onListingAdded={handleListingAdded}
+				/>
+			)}
+		</>
+	)
+}
+
+export default Home
