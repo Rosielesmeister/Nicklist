@@ -5,19 +5,19 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Hooks
-import { useBuyNowForm } from "../../hooks/useBuyNowForm"
-import { useOrderProcessing } from "../../hooks/useOrderProcessing"
+import { useBuyNowForm } from "../../../hooks/useBuyNowForm"
+import { useOrderProcessing } from "../../../hooks/useOrderProcessing"
 
 // Components
-import ProductSummary from "./components/ProductSummary"
-import ContactForm from "./components/ContactForm"
-import PaymentForm from "./components/PaymentForm"
-import OrderSummary from "./components/OrderSummary"
-import OrderNotes from "./components/OrderNotes"
-import SuccessScreen from "./components/SuccessScreen"
+import ProductSummary from "../BuyNowModal/children/ProductSummary"
+import ContactForm from "../BuyNowModal/children/ContactForm"
+import PaymentForm from "./children/PaymentForm"
+import OrderSummary from "./children/OrderSummary"
+import OrderNotes from "./children/OrderNotes"
+import SuccessScreen from "./children/SuccesScreen"
 
 // Utils
-import { calculatePricing } from "../../utils/priceCalculations"
+import { calculatePricing } from "../../../utils/priceCalculations"
 
 const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 	// Custom hooks for state management
@@ -31,16 +31,11 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 		validateForm,
 		resetForm,
 		setGeneralError,
-		clearErrors
+		clearErrors,
 	} = useBuyNowForm()
 
-	const {
-		processing,
-		orderSuccess,
-		completedOrder,
-		submitOrder,
-		resetOrderState
-	} = useOrderProcessing()
+	const { processing, orderSuccess, completedOrder, submitOrder, resetOrderState } =
+		useOrderProcessing()
 
 	// Calculate pricing
 	const pricing = calculatePricing(product?.price || 0)
@@ -55,7 +50,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 	// Handle form submission
 	const handleSubmit = async (e) => {
 		e.preventDefault()
-		
+
 		// Validate form first
 		if (!validateForm()) {
 			return
@@ -68,7 +63,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 			const order = await submitOrder({
 				formData,
 				product,
-				pricing
+				pricing,
 			})
 
 			// Notify parent component
@@ -77,7 +72,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 			}
 		} catch (error) {
 			console.error("Error creating order:", error)
-			
+
 			// Show user-friendly error message
 			setGeneralError(error.message)
 		}
@@ -136,10 +131,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 							/>
 
 							{/* Order Notes */}
-							<OrderNotes
-								value={formData.orderNotes}
-								onChange={handleInputChange}
-							/>
+							<OrderNotes value={formData.orderNotes} onChange={handleInputChange} />
 						</Col>
 
 						<Col md={4}>
@@ -158,8 +150,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 					variant="success"
 					onClick={handleSubmit}
 					disabled={processing}
-					className="d-flex align-items-center"
-				>
+					className="d-flex align-items-center">
 					{processing ? (
 						<>
 							<Spinner size="sm" className="me-2" />
