@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Button } from "react-bootstrap"
 import { favoritesAPI } from "../../api/api"
-import { useAuth } from "../../hook/useAuth"
+import { useAuth } from "../../hooks/useAuth"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 

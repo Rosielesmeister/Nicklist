@@ -3,7 +3,7 @@ import { Modal, Button, Badge, Row, Col } from "react-bootstrap"
 import { MessageCircle, ShoppingBag, MapPin, Calendar, Mail } from "lucide-react"
 import FavoriteButton from "../common/FavoriteButton"
 import BuyNowModal from "./BuyNowModal"
-import { useAuth } from "../../hooks/UseAuth"
+import { useAuth } from "../../hooks/useAuth"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 

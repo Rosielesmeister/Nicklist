@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { Modal, Form, Button, Alert, Row, Col, Card, Spinner } from "react-bootstrap"
 import { CreditCard, MapPin, Lock, CheckCircle } from "lucide-react"
-import { useAuth } from "../../hooks/UseAuth"
+import { useAuth } from "../../hooks/useAuth"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 

@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from "react"
-import CLOUDINARY_CONFIG from "../../utils/cloudinary"
+import { CLOUDINARY_CONFIG } from "../../utils/cloudinary"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
