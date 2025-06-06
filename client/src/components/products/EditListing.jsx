@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react"
 import { Modal, Form, Button, Row, Col, Alert, Spinner, Card } from "react-bootstrap"
-import { useAuth } from "../../hooks/UseAuth"
+import { useAuth } from "../../hooks/useAuth"
 import CloudinaryUploadWidget from "../common/CloudinaryUploadWidget"
 import { productsAPI } from "../../api/api"
 import "bootstrap-icons/font/bootstrap-icons.css"

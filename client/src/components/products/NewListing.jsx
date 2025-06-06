@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import { Modal, Form, Button, Row, Col, Alert, Spinner, Card } from "react-bootstrap"
-import { useAuth } from "../../hooks/UseAuth"
+import { useAuth } from "../../hooks/useAuth"
 import CloudinaryUploadWidget from "../common/CloudinaryUploadWidget"
 // Import our centralized API instead of duplicating code
 import { productsAPI } from "../../api/api" // Adjust path based on your folder structure

@@ -2,11 +2,12 @@ import React, { useState } from "react"
 import { Container, Row, Col } from "react-bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
-
-import { useAuth } from "../hooks/UseAuth"
-import { useProducts } from "../hooks/UseProducts"
-import { useFilters } from "../hooks/UseFilters"
-import { usePagination } from "../hooks/UsePagination"
+import { useAuth } from "../hooks/useAuth"
+import { useProducts } from "../hooks/useProducts"
+import { useFilters } from "../hooks/useFilters"
+import { usePagination } from "../hooks/usePagination"
+import ProductDetailsModal from "../components/products/ProductDetailsModal"
+import NewListing from "../components/products/NewListing"
 
 // All UI components from single file
 import {
@@ -18,9 +19,6 @@ import {
 	ProductsGrid,
 	PaginationComponent,
 } from "../components/common/HomePageComponents"
-
-import ProductDetailsModal from "../components/products/ProductDetailsModal"
-import NewListing from "../components/products/NewListing"
 
 const Home = () => {
 	const { user } = useAuth()

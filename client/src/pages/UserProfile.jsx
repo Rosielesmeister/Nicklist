@@ -12,7 +12,7 @@ import {
 	Spinner,
 } from "react-bootstrap"
 import { User, Plus, Home, Heart, Package, Activity } from "lucide-react"
-import { useAuth } from "../hooks/UseAuth"
+import { useAuth } from "../hooks/useAuth"
 import { useNavigate } from "react-router-dom"
 import { productsAPI, favoritesAPI } from "../api/api"
 import EditListing from "../components/products/EditListing"

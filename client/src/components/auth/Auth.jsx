@@ -1,8 +1,7 @@
 import { useState, useContext, createContext, useEffect } from "react"
-import { authAPI } from "../../api"
-import "bootstrap-icons/font/bootstrap-icons.css";
-import 'bootstrap/dist/css/bootstrap.min.css';
-
+import { authAPI } from "../api/api"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import "bootstrap/dist/css/bootstrap.min.css"
 
 // Create auth context
 const AuthContext = createContext()

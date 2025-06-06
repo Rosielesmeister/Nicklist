@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react"
 import { Navbar, Nav, Button, Container, Badge } from "react-bootstrap"
 import { Shield, MessageCircle, User, Home, LogOut } from "lucide-react"
-import { useAuth } from "../../hooks/UseAuth"
+import { useAuth } from "../../hooks/useAuth"
 import { useNavigate, useLocation } from "react-router-dom"
 // Import our centralized API instead of duplicate import
 import { messagesAPI } from "../../api/api" // Adjust path based on your folder structure
