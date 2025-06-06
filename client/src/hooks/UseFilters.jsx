@@ -1,5 +1,3 @@
-// src/pages/Home/hooks/useFilters.js
-
 import { useState, useMemo } from "react"
 import {
 	getInitialFilters,
