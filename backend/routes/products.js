@@ -9,12 +9,9 @@ import {
   updateProduct,
   deleteProduct,
   getProductsByUserId,
-  addBookmark,
-  removeBookmark,
-  getBookmarks,
 } from "../controllers/productControllers.js";
 
-router.get("/products", getProducts);
+// Duplicate route removed
 
 router.post("/products", authenticate, createProduct);
 router.get("/products", getProducts);
@@ -22,8 +19,5 @@ router.get("/products/:id", getProductById);
 router.put("/products/:id", authenticate, updateProduct);
 router.get("/user/products", authenticate, getProductsByUserId);
 router.delete("/products/:id", authenticate, deleteProduct);
-router.post("/products/:id/bookmark", authenticate, addBookmark);
-router.delete("/products/:id/bookmark", authenticate, removeBookmark);
-router.get("/user/bookmarks", authenticate, getBookmarks);
 
 export default router;
