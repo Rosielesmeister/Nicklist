@@ -48,9 +48,9 @@ const UnifiedNavbar = () => {
     navigate("/messages");
   };
 
-    const handleAdminClick = () => {
-        navigate('/admin'); // Navigate to admin dashboard
-    };
+  const handleAdminClick = () => {
+    navigate("/admin"); // Navigate to admin dashboard
+  };
 
   const handleLoginClick = () => {
     setShowLogin(true);
@@ -66,8 +66,16 @@ const UnifiedNavbar = () => {
         <Navbar.Brand
           onClick={handleHomeClick}
           style={{ cursor: "pointer" }}
-          className="fw-bold"
+          className="fw-bold d-flex align-items-center"
         >
+          <img
+            src="/logo.png"
+            alt="Nicklist"
+            height="40"
+            width="auto"
+            className="me-2"
+            style={{ maxHeight: "50px", objectFit: "contain" }}
+          />
           Nicklist
         </Navbar.Brand>
 
@@ -105,16 +113,16 @@ const UnifiedNavbar = () => {
                 </Nav.Link>
               </>
             )}
-                        {user && user.isAdmin && (
-                            <Nav.Link 
-                                onClick={handleAdminClick}
-                                style={{ cursor: 'pointer' }}
-                                className={location.pathname === '/admin' ? 'active' : ''}
-                            >
-                                <i className="bi bi-shield-check me-1"></i>
-                                Admin Dashboard
-                            </Nav.Link>
-                        )}
+            {user && user.isAdmin && (
+              <Nav.Link
+                onClick={handleAdminClick}
+                style={{ cursor: "pointer" }}
+                className={location.pathname === "/admin" ? "active" : ""}
+              >
+                <i className="bi bi-shield-check me-1"></i>
+                Admin Dashboard
+              </Nav.Link>
+            )}
           </Nav>
 
           <Nav className="ms-auto">
