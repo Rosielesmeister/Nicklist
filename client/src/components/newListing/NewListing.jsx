@@ -4,20 +4,20 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Hooks
-import { useEditListingForm } from "../../hooks/useEditListingForm"
-import { useListingImages } from "../../hooks/useListingImages"
-import { useListingUpdate } from "../../hooks/useListingUpdate"
+import { useNewListingForm } from "../../hooks/useNewListingForm"
+import { useNewListingImages } from "../../hooks/useNewListingImages"
+import { useListingCreation } from "../../hooks/useListingCreation"
 
 // Components
 import BasicInfoForm from "../BasicInfoForm"
-import LocationForm from "../LocationForm"
+import LocationForm from "../LocationForm" // Reuse from EditListing
 import DescriptionForm from "../DescriptionForm"
 import ImageUploadSection from "../ImageUploadSection"
 
 // Utils
-import { hasValidationErrors } from "../../utils/editListingValidation"
+import { hasValidationErrors } from "../../utils/newListingValidation"
 
-const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
+const NewListing = ({ show, onHide, onListingAdded }) => {
 	// Custom hooks for state management
 	const {
 		formData,
@@ -28,7 +28,7 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 		resetForm,
 		setErrorMessage,
 		clearError
-	} = useEditListingForm(listing, show)
+	} = useNewListingForm()
 
 	const {
 		uploadedImages,
@@ -36,12 +36,12 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 		handleImageUploadError,
 		removeImage,
 		resetImages
-	} = useListingImages(listing, show, setFormData)
+	} = useNewListingImages(setFormData)
 
 	const {
 		isLoading,
-		updateListing
-	} = useListingUpdate()
+		createListing
+	} = useListingCreation()
 
 	// Handle image upload with error handling
 	const handleImageUpload = (imageInfo) => {
@@ -73,14 +73,16 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 		}
 
 		try {
-			const updatedListing = await updateListing(listing, formData, uploadedImages)
+			const newListing = await createListing(formData, uploadedImages)
 
-			// Notify parent component
-			if (onListingUpdated) {
-				onListingUpdated(updatedListing)
+			// Reset form and notify parent
+			resetForm()
+			resetImages()
+			
+			if (onListingAdded) {
+				onListingAdded(newListing)
 			}
-
-			// Close modal
+			
 			handleClose()
 		} catch (err) {
 			setErrorMessage(err.message)
@@ -94,13 +96,10 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 		onHide()
 	}
 
-	// Don't render if no listing provided
-	if (!listing) return null
-
 	return (
 		<Modal show={show} onHide={handleClose} size="lg" backdrop="static">
 			<Modal.Header closeButton>
-				<Modal.Title>Edit Listing: {listing.name}</Modal.Title>
+				<Modal.Title>Add New Listing</Modal.Title>
 			</Modal.Header>
 
 			<Modal.Body style={{ maxHeight: "70vh", overflowY: "auto" }}>
@@ -120,7 +119,7 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 						isLoading={isLoading}
 					/>
 
-					{/* Location Information */}
+					{/* Location Information - Reuse from EditListing */}
 					<LocationForm
 						formData={formData}
 						onChange={handleInputChange}
@@ -156,10 +155,10 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 					{isLoading ? (
 						<>
 							<Spinner size="sm" className="me-2" />
-							Updating Listing...
+							Creating Listing...
 						</>
 					) : (
-						"Update Listing"
+						"Create Listing"
 					)}
 				</Button>
 			</Modal.Footer>
@@ -167,4 +166,4 @@ const EditListing = ({ show, onHide, listing, onListingUpdated }) => {
 	)
 }
 
-export default EditListing
+export default NewListing

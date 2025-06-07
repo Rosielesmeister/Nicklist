@@ -1,6 +1,6 @@
 import React from "react"
 import { Form, Row, Col } from "react-bootstrap"
-import { US_STATES, REGIONS } from "../common/Constant"
+import { US_STATES, REGIONS } from "./common/Constant"
 
 const LocationForm = ({ formData, onChange, isLoading }) => {
 	return (

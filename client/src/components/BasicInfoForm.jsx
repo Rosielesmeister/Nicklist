@@ -1,9 +1,8 @@
-// EditListing/components/BasicInfoForm.jsx
 import React from "react"
 import { Form, Row, Col } from "react-bootstrap"
-import { CATEGORIES } from "../common/Constant"
-import { VALIDATION_RULES } from "../common/Constant"
-import { getCharacterCounts } from "../../utils/editListingValidation"
+import { CATEGORIES } from "./common/Constant"
+import { VALIDATION_RULES } from "./common/Constant"
+import { getCharacterCounts } from "../utils/editListingValidation"
 import CharacterCounter from "./CharacterCounter"
 
 const BasicInfoForm = ({ formData, onChange, isLoading }) => {

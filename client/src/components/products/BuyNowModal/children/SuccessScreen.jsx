@@ -1,4 +1,3 @@
-// BuyNowModal/components/SuccessScreen.jsx
 import React from "react"
 import { Modal, Button, Card } from "react-bootstrap"
 import { CheckCircle } from "lucide-react"

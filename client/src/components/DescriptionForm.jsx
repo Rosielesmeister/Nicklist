@@ -1,7 +1,7 @@
 import React from "react"
 import { Form } from "react-bootstrap"
-import { VALIDATION_RULES } from "../common/Constant"
-import { getCharacterCounts } from "../../utils/editListingValidation"
+import { VALIDATION_RULES } from "./common/Constant"
+import { getCharacterCounts } from "../utils/newListingValidation"
 import CharacterCounter from "./CharacterCounter"
 
 const DescriptionForm = ({ formData, onChange, isLoading }) => {
@@ -32,6 +32,13 @@ const DescriptionForm = ({ formData, onChange, isLoading }) => {
 						: ""
 				}
 			/>
+			{characterCounts.description >
+				VALIDATION_RULES.DESCRIPTION_MAX_LENGTH && (
+				<Form.Control.Feedback type="invalid">
+					Description is too long ({characterCounts.description}/
+					{VALIDATION_RULES.DESCRIPTION_MAX_LENGTH})
+				</Form.Control.Feedback>
+			)}
 		</Form.Group>
 	)
 }

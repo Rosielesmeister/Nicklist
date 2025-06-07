@@ -11,7 +11,7 @@ import {
 	Pagination,
 } from "react-bootstrap"
 import { Search, Filter, Plus, Package, X } from "lucide-react"
-import ProductCard from "../products/ProductCard"
+import ProductCard from "../productCard/ProductCard"
 import {
 	CATEGORIES,
 	US_STATES,

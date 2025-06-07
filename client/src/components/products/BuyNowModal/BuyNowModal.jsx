@@ -14,7 +14,7 @@ import ContactForm from "../BuyNowModal/children/ContactForm"
 import PaymentForm from "./children/PaymentForm"
 import OrderSummary from "./children/OrderSummary"
 import OrderNotes from "./children/OrderNotes"
-import SuccessScreen from "./children/SuccesScreen"
+import SuccessScreen from "./children/SuccessScreen"
 
 // Utils
 import { calculatePricing } from "../../../utils/priceCalculations"
@@ -80,6 +80,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 
 	// Show success screen if order completed
 	if (orderSuccess && completedOrder) {
+		
 		return (
 			<SuccessScreen
 				show={show}

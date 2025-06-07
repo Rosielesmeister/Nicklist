@@ -1,7 +1,8 @@
 import React from "react"
 import { Form, Row, Col, Card, Button } from "react-bootstrap"
-import CloudinaryUploadWidget from "../common/CloudinaryUploadWidget"
-import { VALIDATION_RULES } from "../common/Constant"
+import CloudinaryUploadWidget from "./common/CloudinaryUploadWidget"
+import { VALIDATION_RULES } from "./common/Constant"
+import { validateImageUrl } from "../utils/newListingValidation"
 
 const ImageUploadSection = ({
 	uploadedImages,
@@ -22,7 +23,7 @@ const ImageUploadSection = ({
 							<Card className="h-100">
 								<Card.Img
 									variant="top"
-									src={image.url}
+									src={validateImageUrl(image.url)}
 									style={{
 										height: "120px",
 										objectFit: "cover",
@@ -53,7 +54,7 @@ const ImageUploadSection = ({
 
 	return (
 		<Form.Group className="mb-3">
-			<Form.Label>Images</Form.Label>
+			<Form.Label>Images (Optional)</Form.Label>
 			<div className="d-flex align-items-center gap-3 mb-3">
 				<CloudinaryUploadWidget
 					onUploadSuccess={onUploadSuccess}
