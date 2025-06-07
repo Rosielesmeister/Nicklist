@@ -1,6 +1,10 @@
 // hooks/useAuth.jsx
 import { useState, useContext, createContext, useEffect } from "react"
 import { authAPI } from "../api/api"
+import "bootstrap-icons/font/bootstrap-icons.css"
+import "bootstrap/dist/css/bootstrap.min.css"
+
+import "../App.css"
 
 // Create auth context
 const AuthContext = createContext()
@@ -39,7 +43,7 @@ export function AuthProvider({ children }) {
 	}, [])
 
 	const login = (userData) => {
-		console.log('Login called with:', userData)
+		console.log("Login called with:", userData)
 		setUser(userData)
 		if (userData.token) {
 			localStorage.setItem("token", userData.token)
@@ -47,7 +51,7 @@ export function AuthProvider({ children }) {
 	}
 
 	const logout = () => {
-		console.log('Logout called')
+		console.log("Logout called")
 		setUser(null)
 		localStorage.removeItem("token")
 		authAPI.logout()
@@ -64,7 +68,7 @@ export function AuthProvider({ children }) {
 		setShowRegister,
 	}
 
-	console.log('Auth context value:', { user: user?.email, showLogin, showRegister })
+	console.log("Auth context value:", { user: user?.email, showLogin, showRegister })
 
 	return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>
 }

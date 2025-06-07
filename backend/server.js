@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api/messages", messageRoutes);
-app.use("/admin", adminRoutes); // Add this line
+app.use("/api/admin", adminRoutes); // Add this line
 app.use("/api/:messageId/read", messageRoutes);
 
 // Error handling middleware

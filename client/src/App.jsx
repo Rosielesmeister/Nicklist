@@ -1,19 +1,19 @@
 import React, { useState } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { AuthProvider, useAuth } from "./hooks/useAuth"
-import Home from "./pages/home"
-import UserProfile from "./components/UserProfile"
+import Home from "./pages/Home"
+import UserProfile from "./pages/UserProfile"
 import Messages from "./pages/Messages"
-import UnifiedNavbar from "./components/UnifiedNavbar"
+import UnifiedNavbar from "./components/common/UnifiedNavbar"
 import Login from "./components/auth/Login"
 import Register from "./components/auth/Register"
-import NewListing from "./components/NewListing"
-import ProtectedRoute from "./components/ProtectedRoute"
+import NewListing from "./components/products/NewListing"
+import ProtectedRoute from "./components/auth/ProtectedRoute"
 import "bootstrap/dist/css/bootstrap.min.css"
+import "bootstrap-icons/font/bootstrap-icons.css"
+
 import "./App.css"
-import AdminDashboard from "./components/AdminDashboard"
-import OrderSuccess from "./components/OrderSuccessComponent"
-import Orders from "./pages/Orders"
+import AdminDashboard from "./pages/AdminDashboard"
 
 //!!! We need to add delete any product under admin profile
 //!!! Some admin registration
@@ -44,8 +44,6 @@ function AppContent() {
 				<Routes>
 					<Route path="/" element={<Home />} />
 					<Route path="/login" element={<Login />} />
-					<Route path="/order-success" element={<OrderSuccess />} />
-					<Route path="/orders" element={<Orders />} />
 
 					{/* Protected route for user profile */}
 					<Route
