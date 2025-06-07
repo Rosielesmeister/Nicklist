@@ -83,7 +83,7 @@ const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 		
 		return (
 			<SuccessScreen
-				show={show}
+				show={true}
 				onClose={handleClose}
 				order={completedOrder}
 				product={product}
