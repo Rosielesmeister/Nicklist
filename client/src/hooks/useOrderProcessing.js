@@ -1,90 +1,55 @@
-import { useState } from "react"
-// You'll need to import your orders API - adjust path as needed
-// import { ordersAPI } from "../api/orders" or wherever your API functions are located
+import { useState } from "react";
 
 export const useOrderProcessing = () => {
-	const [processing, setProcessing] = useState(false)
-	const [orderSuccess, setOrderSuccess] = useState(false)
-	const [completedOrder, setCompletedOrder] = useState(null)
+  const [processing, setProcessing] = useState(false);
+  const [orderSuccess, setOrderSuccess] = useState(false);
+  const [completedOrder, setCompletedOrder] = useState(null);
 
-	const submitOrder = async ({ formData, product, pricing }) => {
-		// Check if product exists
-		if (!product) {
-			throw new Error("Product information is missing")
-		}
+  const submitOrder = async ({ formData, product, pricing }) => {
+    if (!product) throw new Error("Product information is missing");
 
-		setProcessing(true)
+    setProcessing(true);
 
-		try {
-			// Prepare order data
-			const orderData = {
-				product: product._id,
-				seller: product.user?._id || product.user,
-				quantity: 1,
-				price: product.price,
+    try {
+      // Simulate processing
+      await new Promise((resolve) => setTimeout(resolve, 2500));
 
-				shippingAddress: {
-					fullName: formData.fullName.trim(),
-					address: formData.address.trim(),
-					city: formData.city.trim(),
-					state: formData.state.trim(),
-					zipCode: formData.zipCode.trim(),
-					country: "United States",
-				},
+      // Create mock order
+      const order = {
+        _id: `ORD-${Date.now()}`,
+        id: `ORD-${Date.now()}`,
+        status: "confirmed",
+        total: pricing?.total || product.price,
+        trackingNumber: `TRK${Math.random()
+          .toString(36)
+          .substr(2, 9)
+          .toUpperCase()}`,
+        product: product._id,
+        shippingAddress: formData,
+        contactInfo: { email: formData.email, phone: formData.phone },
+      };
 
-				contactInfo: {
-					email: formData.email.trim(),
-					phone: formData.phone.trim(),
-				},
+      setCompletedOrder(order);
+      setOrderSuccess(true);
+      return order;
+    } catch (error) {
+      throw new Error(`Failed to process order: ${error.message}`);
+    } finally {
+      setProcessing(false);
+    }
+  };
 
-				paymentInfo: {
-					cardLast4: formData.cardNumber.replace(/\s/g, "").slice(-4),
-					cardType: "Card",
-					cardName: formData.cardName.trim(),
-				},
+  const resetOrderState = () => {
+    setProcessing(false);
+    setOrderSuccess(false);
+    setCompletedOrder(null);
+  };
 
-				pricing: pricing,
-
-				orderNotes: formData.orderNotes.trim(),
-			}
-
-			console.log("Submitting order:", orderData)
-
-			// Create the order using our centralized API
-			const order = await ordersAPI.createOrder(orderData)
-
-			console.log("Order created successfully:", order)
-
-			// Simulate payment processing delay (remove in production)
-			await new Promise((resolve) => setTimeout(resolve, 1500))
-
-			// Set success state
-			setCompletedOrder(order)
-			setOrderSuccess(true)
-
-			return order
-		} catch (error) {
-			console.error("Error creating order:", error)
-			
-			// Re-throw with user-friendly message
-			throw new Error(`Failed to process order: ${error.message || "Please try again."}`)
-		} finally {
-			setProcessing(false)
-		}
-	}
-
-	// Reset order state
-	const resetOrderState = () => {
-		setProcessing(false)
-		setOrderSuccess(false)
-		setCompletedOrder(null)
-	}
-
-	return {
-		processing,
-		orderSuccess,
-		completedOrder,
-		submitOrder,
-		resetOrderState
-	}
-}
+  return {
+    processing,
+    orderSuccess,
+    completedOrder,
+    submitOrder,
+    resetOrderState,
+  };
+};
