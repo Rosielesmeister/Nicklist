@@ -5,7 +5,7 @@ import {
 	matchesSearch,
 	matchesPriceRange,
 } from "../utils/HomeUtils"
-import { PAGE_CONFIG } from "../components/common/HomeConstant"
+import { PAGE_CONFIG } from "../components/common/Constant"
 
 export const useFilters = (products) => {
 	const [filters, setFilters] = useState(getInitialFilters())

@@ -49,3 +49,11 @@ export const PAGE_CONFIG = {
     minPrice: "Min",
     maxPrice: "Max",
   };
+
+  
+  export const VALIDATION_RULES = {
+    NAME_MAX_LENGTH: 50,
+    DESCRIPTION_MAX_LENGTH: 500,
+    MAX_IMAGES: 5,
+    MIN_PRICE: 0.01,
+  }

@@ -19,7 +19,7 @@ import {
 	MESSAGES,
 	FILTER_LABELS,
 	PAGE_CONFIG,
-} from "./HomeConstant"
+} from "./Constant"
 
 // =============================================================================
 // LOADING STATE COMPONENT

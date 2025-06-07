@@ -1,7 +1,7 @@
 // src/pages/Home/hooks/usePagination.js
 
 import { useState, useEffect, useMemo } from "react"
-import { PAGE_CONFIG } from "../components/common/HomeConstant"
+import { PAGE_CONFIG } from "../components/common/Constant"
 
 export const usePagination = (filteredProducts, filters) => {
 	const [currentPage, setCurrentPage] = useState(1)

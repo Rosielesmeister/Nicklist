@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { productsAPI } from "../api/api"
-import { MESSAGES } from "../components/common/HomeConstant"
+import { MESSAGES } from "../components/common/Constant"
 
 export const useProducts = () => {
 	const [products, setProducts] = useState([])
