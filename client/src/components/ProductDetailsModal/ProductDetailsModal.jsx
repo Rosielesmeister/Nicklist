@@ -19,7 +19,7 @@ import {
 } from "./ProductInfoSections"
 import BuyNowButton from "./BuyNowButton"
 import ModalFooter from "./ModalFooter"
-import BuyNowModal from "../products/BuyNowModal/BuyNowModal"
+import BuyNowModal from "../BuyNowModal/BuyNowModal"
 
 // Constants
 import { UI_CONFIG_PRODUCTS } from "../common/Constant"

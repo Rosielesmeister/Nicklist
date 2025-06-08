@@ -1,4 +1,3 @@
-// hooks/useNewListingForm.js
 import { useState } from "react"
 import { validateNewListingForm } from "../utils/newListingValidation"
 

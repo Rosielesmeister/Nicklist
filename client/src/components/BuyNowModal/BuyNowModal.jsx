@@ -5,19 +5,19 @@ import "bootstrap-icons/font/bootstrap-icons.css"
 import "bootstrap/dist/css/bootstrap.min.css"
 
 // Hooks
-import { useBuyNowForm } from "../../../hooks/useBuyNowForm"
-import { useOrderProcessing } from "../../../hooks/useOrderProcessing"
+import { useBuyNowForm } from "../../hooks/useBuyNowForm"
+import { useOrderProcessing } from "../../hooks/useOrderProcessing"
 
 // Components
-import ProductSummary from "../BuyNowModal/children/ProductSummary"
-import ContactForm from "../BuyNowModal/children/ContactForm"
+import ProductSummary from "./children/ProductSummary"
+import ContactForm from "./children/ContactForm"
 import PaymentForm from "./children/PaymentForm"
 import OrderSummary from "./children/OrderSummary"
 import OrderNotes from "./children/OrderNotes"
 import SuccessScreen from "./children/SuccessScreen"
 
 // Utils
-import { calculatePricing } from "../../../utils/priceCalculations"
+import { calculatePricing } from "../../utils/priceCalculations"
 
 const BuyNowModal = ({ show, onHide, product, onOrderComplete }) => {
 	// Custom hooks for state management

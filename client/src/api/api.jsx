@@ -111,8 +111,16 @@ export const authAPI = {
 
 export const favoritesAPI = {
   getUserFavorites: () => http.get("/user/favorites", true),
-  addToFavorites: (id) => http.post(`/user/favorites/${required(id, "Product ID required")}`, null, true),
-  removeFromFavorites: (id) => http.delete(`/user/favorites/${required(id, "Product ID required")}`, true),
+  addToFavorites: (id) => {
+    required(id, "Product ID required");
+    console.log("Adding to favorites with ID:", id);
+    return http.post(`/user/favorites/${id}`, null, true);
+  },
+  removeFromFavorites: (id) => {
+    required(id, "Product ID required");
+    console.log("Removing from favorites with ID:", id);
+    return http.delete(`/user/favorites/${id}`, true);
+  },
   
   isFavorited: async (productId) => {
     if (!required(productId, "Product ID required") || !auth.getToken()) return false;

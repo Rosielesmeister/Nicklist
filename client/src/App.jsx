@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom"
 import { AuthProvider, useAuth } from "./hooks/useAuth"
-import Home from "./pages/Home"
+import Home from "./pages/home"
 import UserProfile from "./pages/UserProfile"
 import Messages from "./pages/Messages"
 import UnifiedNavbar from "./components/common/UnifiedNavbar"

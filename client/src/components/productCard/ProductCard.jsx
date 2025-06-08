@@ -12,7 +12,7 @@ import ProductImage from "./ProductImage"
 import ProductInfo from "./ProductInfo"
 import ActionButtons from "./ActionButtons"
 import MessageModal from "./MessageModal"
-import BuyNowModal from "../../components/products/BuyNowModal/BuyNowModal"
+import BuyNowModal from "../BuyNowModal/BuyNowModal"
 
 const ProductCard = ({
 	product,

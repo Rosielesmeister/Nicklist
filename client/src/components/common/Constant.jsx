@@ -145,3 +145,83 @@ export const SUCCESS_MESSAGES = {
 export const STORAGE_KEYS = {
 	LAST_ORDER: "lastOrder",
 }
+
+// constants/adminDashboardConfig.js
+
+export const DASHBOARD_TABS = {
+	OVERVIEW: "overview",
+	USERS: "users",
+	PRODUCTS: "products",
+}
+
+export const TAB_CONFIG = [
+	{
+		id: DASHBOARD_TABS.OVERVIEW,
+		label: "Overview",
+		icon: "bi bi-graph-up",
+	},
+	{
+		id: DASHBOARD_TABS.USERS,
+		label: "Users",
+		icon: "bi bi-people",
+	},
+	{
+		id: DASHBOARD_TABS.PRODUCTS,
+		label: "Products",
+		icon: "bi bi-box",
+	},
+]
+
+export const STAT_CARDS_CONFIG = [
+	{
+		key: "totalUsers",
+		title: "Total Users",
+		icon: "bi bi-people-fill",
+		color: "primary",
+	},
+	{
+		key: "totalProducts",
+		title: "Total Products",
+		icon: "bi bi-box-fill",
+		color: "success",
+	},
+	{
+		key: "activeProducts",
+		title: "Active Products",
+		icon: "bi bi-graph-up",
+		color: "info",
+	},
+	{
+		key: "adminUsers",
+		title: "Admin Users",
+		icon: "bi bi-shield-fill",
+		color: "warning",
+	},
+]
+
+export const UI_CONFIG_ADMIN = {
+	RECENT_ITEMS_LIMIT: 5,
+	AVATAR_SIZE: "40px",
+	PRODUCT_ICON_SIZE: "48px",
+	ICON_FONT_SIZE: "3rem",
+	TABLE_ICON_SIZE: "1.5rem",
+}
+
+export const MESSAGES_ADMIN = {
+	HEADER_TITLE: "Admin Dashboard",
+	HEADER_SUBTITLE: "Manage users, products, and monitor system activity",
+	DELETE_USER_CONFIRM: "Are you sure you want to delete this user? This will also delete all their products.",
+	DELETE_PRODUCT_CONFIRM: "Are you sure you want to delete this product?",
+	LOADING_TEXT: "Loading...",
+	USER_MANAGEMENT_TITLE: "User Management",
+	USER_MANAGEMENT_SUBTITLE: "Manage user accounts and permissions",
+	PRODUCT_MANAGEMENT_TITLE: "Product Management",
+	PRODUCT_MANAGEMENT_SUBTITLE: "Manage products and their status",
+	RECENT_USERS_TITLE: "Recent Users",
+	RECENT_PRODUCTS_TITLE: "Recent Products",
+}
+
+export const TABLE_HEADERS = {
+	USERS: ["User", "Email", "Role", "Joined", "Actions"],
+	PRODUCTS: ["Product", "Owner", "Price", "Status", "Created", "Actions"],
+}
