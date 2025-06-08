@@ -1,4 +1,3 @@
-// hooks/useProductMessages.js
 import { useState } from "react"
 import { messagesAPI } from "../api/api"
 import { UI_CONFIG } from "../components/common/Constant"
@@ -49,7 +48,7 @@ export const useProductMessages = () => {
 			// Close modal and reset form
 			closeMessageModal()
 
-			// Show success message (could be improved with toast notifications)
+			// Show success message 
 			alert("Message sent successfully!")
 			return true
 		} catch (error) {

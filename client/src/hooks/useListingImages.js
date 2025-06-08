@@ -1,4 +1,3 @@
-// hooks/useListingImages.js
 import { useState, useEffect } from "react"
 
 export const useListingImages = (listing, show, setFormData) => {

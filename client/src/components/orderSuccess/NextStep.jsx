@@ -1,4 +1,3 @@
-// OrderSuccess/components/NextSteps.jsx
 import React from "react"
 import { Alert } from "react-bootstrap"
 import { NEXT_STEPS, SUCCESS_MESSAGES } from "../common/Constant"

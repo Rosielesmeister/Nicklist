@@ -1,5 +1,3 @@
-// src/pages/Home/hooks/useProducts.js
-
 import { useState, useEffect } from "react"
 import { productsAPI } from "../api/api"
 import { MESSAGES } from "../components/common/Constant"

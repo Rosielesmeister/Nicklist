@@ -1,4 +1,3 @@
-// hooks/useEditListingForm.js
 import { useState, useEffect } from "react"
 import { validateEditListingForm } from "../utils/editListingValidation"
 

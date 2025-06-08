@@ -1,4 +1,3 @@
-// hooks/useProductDetailsPurchase.js
 import { useState } from "react"
 import { validatePurchaseAction } from "../utils/productDetailsHelpers"
 

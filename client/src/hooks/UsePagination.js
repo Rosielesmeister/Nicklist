@@ -1,5 +1,3 @@
-// src/pages/Home/hooks/usePagination.js
-
 import { useState, useEffect, useMemo } from "react"
 import { PAGE_CONFIG } from "../components/common/Constant"
 

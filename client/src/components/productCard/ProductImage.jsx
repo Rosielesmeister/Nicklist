@@ -1,4 +1,3 @@
-// ProductCard/components/ProductImage.jsx
 import React from "react"
 import { Badge } from "react-bootstrap"
 import FavoriteButton from "../common/FavoriteButton"

@@ -1,4 +1,3 @@
-// OrderSuccess/components/ShippingPaymentCards.jsx
 import React from "react"
 import { Row, Col, Card } from "react-bootstrap"
 import { MapPin, CreditCard } from "lucide-react"

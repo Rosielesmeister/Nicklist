@@ -1,4 +1,3 @@
-// hooks/useProductPurchase.js
 import { useState } from "react"
 
 export const useProductPurchase = () => {

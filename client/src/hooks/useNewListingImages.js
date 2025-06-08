@@ -1,4 +1,3 @@
-// hooks/useNewListingImages.js
 import { useState } from "react"
 
 export const useNewListingImages = (setFormData) => {

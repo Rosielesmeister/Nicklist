@@ -1,4 +1,3 @@
-// OrderSuccess/components/OrderDetailsCard.jsx
 import React from "react"
 import { Card, Row, Col } from "react-bootstrap"
 import { Package, Calendar } from "lucide-react"

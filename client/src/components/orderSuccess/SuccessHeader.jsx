@@ -1,4 +1,3 @@
-// OrderSuccess/components/SuccessHeader.jsx
 import React from "react"
 import { CheckCircle } from "lucide-react"
 import { UI_CONFIG_ORDER_SUCCESS, SUCCESS_MESSAGES } from "../common/Constant"

@@ -1,4 +1,3 @@
-// EditListing/components/CharacterCounter.jsx
 import React from "react"
 
 const CharacterCounter = ({ current, max }) => {

@@ -1,4 +1,3 @@
-// utils/productDetailsHelpers.js
 import { CONTACT_TEMPLATE } from "../components/common/Constant"
 
 // Format date in readable format

@@ -1,4 +1,3 @@
-// AdminDashboard/components/TabNavigation.jsx
 import React from "react"
 import { TAB_CONFIG } from "../common/Constant"
 

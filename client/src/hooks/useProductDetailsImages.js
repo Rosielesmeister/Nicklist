@@ -1,4 +1,3 @@
-// hooks/useProductDetailsImages.js
 import { useState } from "react"
 
 export const useProductDetailsImages = () => {

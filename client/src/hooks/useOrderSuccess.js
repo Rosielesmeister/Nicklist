@@ -1,4 +1,3 @@
-// hooks/useOrderSuccess.js
 import { useOrderSuccessData } from "./useOrderSuccessData"
 import { useOrderSuccessNavigation } from "./useOrderSuccessNavigation"
 

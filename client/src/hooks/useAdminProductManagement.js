@@ -1,4 +1,3 @@
-// hooks/useAdminProductManagement.js
 import { useState } from "react"
 import { adminAPI } from "../api/api"
 import { confirmProductDeletion, formatApiError } from "../utils/adminDashboardHelpers"

@@ -1,4 +1,3 @@
-// OrderSuccess/components/NoOrderFallback.jsx
 import React from "react"
 import { Container, Row, Col, Alert } from "react-bootstrap"
 import { SUCCESS_MESSAGES } from "../common/Constant"

@@ -1,4 +1,3 @@
-// AdminDashboard/components/UIElements.jsx
 import React from "react"
 import { UI_CONFIG_ADMIN, MESSAGES_ADMIN } from "../common/Constant"
 

@@ -1,4 +1,3 @@
-// hooks/useBuyNowForm.js
 import { useState } from "react"
 import { useAuth } from "./useAuth"
 import { formatCardNumber, formatExpiryDate, formatCvv } from "../utils/inputFormatters"

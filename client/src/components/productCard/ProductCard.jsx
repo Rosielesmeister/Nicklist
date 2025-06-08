@@ -1,4 +1,3 @@
-// ProductCard/index.jsx
 import React from "react"
 import { Card } from "react-bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
@@ -21,7 +20,6 @@ const ProductCard = ({
 	onEdit,
 	onDelete,
 }) => {
-	// Main hook that orchestrates all product card functionality
 	const {
 		// User state
 		isLoggedIn,

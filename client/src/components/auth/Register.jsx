@@ -1,4 +1,3 @@
-// components/auth/Register.jsx
 import React, { useState } from "react"
 import { Modal, Form, Button, Alert, Spinner, Row, Col } from "react-bootstrap"
 import { useAuth } from "../../hooks/useAuth"

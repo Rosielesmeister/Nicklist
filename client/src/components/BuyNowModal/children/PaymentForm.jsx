@@ -1,4 +1,3 @@
-// BuyNowModal/components/PaymentForm.jsx
 import React from "react"
 import { Form, Row, Col } from "react-bootstrap"
 import { CreditCard } from "lucide-react"

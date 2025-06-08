@@ -1,4 +1,3 @@
-// hooks/useProductCard.js
 import { useAuth } from "./useAuth"
 import { useProductMessages } from "./useProductMessages"
 import { useProductPurchase } from "./useProductPurchases"

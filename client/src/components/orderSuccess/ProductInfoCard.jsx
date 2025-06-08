@@ -1,4 +1,3 @@
-// OrderSuccess/components/ProductInfoCard.jsx
 import React from "react"
 import { Card } from "react-bootstrap"
 import { Package } from "lucide-react"

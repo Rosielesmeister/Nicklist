@@ -1,4 +1,3 @@
-// ProductDetailsModal/components/ModalFooter.jsx
 import React from "react"
 import { Modal, Button } from "react-bootstrap"
 import { Mail } from "lucide-react"

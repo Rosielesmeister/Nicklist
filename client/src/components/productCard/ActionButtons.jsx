@@ -1,4 +1,3 @@
-// ProductCard/components/ActionButtons.jsx
 import React from "react"
 import OwnerActions from "./OwnerActions"
 import BuyerActions from "./BuyerActions"

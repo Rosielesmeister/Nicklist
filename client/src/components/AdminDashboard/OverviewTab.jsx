@@ -1,4 +1,3 @@
-// AdminDashboard/components/OverviewTab.jsx
 import React from "react"
 import { StatCard } from "./UIElements"
 import { STAT_CARDS_CONFIG, UI_CONFIG_ADMIN, MESSAGES_ADMIN } from "../common/Constant"

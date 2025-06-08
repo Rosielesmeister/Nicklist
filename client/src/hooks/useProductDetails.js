@@ -1,4 +1,3 @@
-// hooks/useProductDetails.js
 import { useAuth } from "./useAuth"
 import { useProductDetailsImages } from "./useProductDetailsImages"
 import { useProductDetailsPurchase } from "./useProductDetailsPurchase"

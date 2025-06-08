@@ -58,7 +58,7 @@ export const PAGE_CONFIG = {
     MIN_PRICE: 0.01,
   }
 
-  // constants/uiConfig.js
+  // uiConfig
 
 export const UI_CONFIG = {
 	DESCRIPTION_MAX_LENGTH: 80,
@@ -71,7 +71,7 @@ export const UI_CONFIG = {
 export const PLACEHOLDER_IMAGE =
 	"data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48ZGVmcz48bGluZWFyR3JhZGllbnQgaWQ9ImEiIHgxPSIwJSIgeTE9IjAlIiB4Mj0iMTAwJSIgeTI9IjEwMCUiPjxzdG9wIG9mZnNldD0iMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNmMGYwZjAiLz48c3RvcCBvZmZzZXQ9IjEwMCUiIHN0eWxlPSJzdG9wLWNvbG9yOiNlMGUwZTAiLz48L2xpbmVhckdyYWRpZW50PjwvZGVmcz48cmVjdCB3aWR0aD0iMjAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0idXJsKCNhKSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LWZhbWlseT0iQXJpYWwsIHNhbnMtc2VyaWYiIGZvbnQtc2l6ZT0iMTQiIGZpbGw9IiM5OTkiIHRleHQtYW5jaG9yPSJtaWRkbGUiIGR5PSIuM2VtIj5ObyBJbWFnZTwvdGV4dD48L3N2Zz4="
 
-  // constants/productDetailsConfig.js
+  // productDetails
 
 export const UI_CONFIG_PRODUCTS = {
 	MAIN_IMAGE_HEIGHT: "300px",
@@ -103,7 +103,7 @@ export const PLACEHOLDER_IMAGES = {
 	NO_IMAGE: "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjMwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSIjZjBmMGYwIi8+PHRleHQgeD0iNTAlIiB5PSI1MCUiIGZvbnQtZmFtaWx5PSJBcmlhbCIgZm9udC1zaXplPSIxNiIgZmlsbD0iIzk5OSIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZHk9Ii4zZW0iPkltYWdlIEVycm9yPC90ZXh0Pjwvc3ZnPg=="
 }
 
-// constants/orderSuccessConfig.js
+// orderSuccess
 
 export const UI_CONFIG_ORDER_SUCCESS = {
 	SUCCESS_ICON_SIZE: 80,
@@ -146,7 +146,7 @@ export const STORAGE_KEYS = {
 	LAST_ORDER: "lastOrder",
 }
 
-// constants/adminDashboardConfig.js
+// adminDashboard
 
 export const DASHBOARD_TABS = {
 	OVERVIEW: "overview",

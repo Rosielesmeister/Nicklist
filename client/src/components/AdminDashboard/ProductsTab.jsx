@@ -1,4 +1,3 @@
-// AdminDashboard/components/ProductsTab.jsx
 import React from "react"
 import { MESSAGES_ADMIN, TABLE_HEADERS, UI_CONFIG_ADMIN } from "../common/Constant"
 import { 

@@ -1,4 +1,3 @@
-// hooks/useOrderSuccessData.js
 import { useState, useEffect } from "react"
 import { useNavigate, useLocation } from "react-router-dom"
 import { retrieveOrderData, clearStoredOrderData } from "../utils/orderSuccessHelpers"

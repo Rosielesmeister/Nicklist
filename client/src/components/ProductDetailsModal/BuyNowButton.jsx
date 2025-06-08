@@ -1,4 +1,3 @@
-// ProductDetailsModal/components/BuyNowButton.jsx
 import React from "react"
 import { Button } from "react-bootstrap"
 import { ShoppingBag } from "lucide-react"

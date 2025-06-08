@@ -1,4 +1,3 @@
-// ProductCard/components/BuyerActions.jsx
 import React from "react"
 import { Button } from "react-bootstrap"
 import { MessageCircle, ShoppingBag } from "lucide-react"

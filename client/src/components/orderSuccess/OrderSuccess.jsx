@@ -26,7 +26,6 @@ const OrderSuccess = () => {
 		handleViewOrders
 	} = useOrderSuccess()
 
-	// Show fallback if no order data
 	if (!hasOrderData) {
 		return <NoOrderFallback />
 	}

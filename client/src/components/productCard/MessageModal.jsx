@@ -1,4 +1,3 @@
-// ProductCard/components/MessageModal.jsx
 import React from "react"
 import { Modal, Form, Button, Alert, Spinner } from "react-bootstrap"
 import "bootstrap-icons/font/bootstrap-icons.css"
