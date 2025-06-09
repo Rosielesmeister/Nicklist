@@ -6,7 +6,7 @@ import cors from "cors";
 import userRoutes from "./routes/users.js";
 import productRoutes from "./routes/products.js";
 import messageRoutes from "./routes/messageRoutes.js";
-import adminRoutes from "./routes/admin.js"; // Add this import
+import adminRoutes from "./routes/admin.js";
 import jwt from "jsonwebtoken";
 
 if (!process.env.JWT_SECRET) {
@@ -17,11 +17,11 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 const generateToken = (userId) => {
-  if (!JWT_SECRET) {
+  if (!process.env.JWT_SECRET) {
     console.error("JWT_SECRET is not defined in environment variables");
     throw new Error("JWT configuration error");
   }
-  return jwt.sign({ userId }, JWT_SECRET, { expiresIn: JWT_EXPIRES_IN });
+  return jwt.sign({ userId }, process.env.JWT_SECRET, { expiresIn: "24h" });
 };
 
 app.use(cors());
@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 app.use("/api", userRoutes);
 app.use("/api", productRoutes);
 app.use("/api/messages", messageRoutes);
-app.use("/api/admin", adminRoutes); // Add this line
+app.use("/api/admin", adminRoutes);
 app.use("/api/:messageId/read", messageRoutes);
 
 // Error handling middleware

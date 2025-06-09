@@ -4,10 +4,12 @@
 	"description": "Nicklist : \"A MERN stack classifieds platform for categorized user-generated content.\"",
 	"main": "index.js",
 	"scripts": {
-		"test": "echo \"Error: no test specified\" && exit 1",
-		"dev": "concurrently \"npm run server\" \"npm run client\"",
-		"server": "cd backend && npm start",
-		"client": "cd client && npm run dev"
+		  "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "concurrently \"npm run server\" \"npm run client\"",
+    "server": "cd backend && npm start",
+    "client": "cd client && npm run dev",
+    "build": "cd client && npm run build",
+    "start": "cd backend && npm start"
 	},
 	"repository": {
 		"type": "git",
@@ -25,7 +27,6 @@
 		"dotenv": "^16.5.0",
 		"express": "^5.1.0",
 		"jsonwebtoken": "^9.0.2",
-		"lucide-react": "^0.511.0",
 		"mongodb": "^6.16.0"
 	},
 	"devDependencies": {
