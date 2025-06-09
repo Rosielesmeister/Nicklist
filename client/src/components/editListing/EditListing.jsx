@@ -9,10 +9,10 @@ import { useListingImages } from "../../hooks/useListingImages"
 import { useListingUpdate } from "../../hooks/useListingUpdate"
 
 // Components
-import BasicInfoForm from "./BasicInfoForm"
-import LocationForm from "./LocationForm"
-import DescriptionForm from "./DescriptionForm"
-import ImageUploadSection from "./ImageUploadSection"
+import BasicInfoForm from "../BasicInfoForm"
+import LocationForm from "../LocationForm"
+import DescriptionForm from "../DescriptionForm"
+import ImageUploadSection from "../ImageUploadSection"
 
 // Utils
 import { hasValidationErrors } from "../../utils/editListingValidation"

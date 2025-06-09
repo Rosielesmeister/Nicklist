@@ -1,4 +1,3 @@
-// hooks/useListingUpdate.js
 import { useState } from "react"
 import { useAuth } from "./useAuth"
 import { productsAPI } from "../api/api"

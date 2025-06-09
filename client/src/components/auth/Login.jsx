@@ -1,4 +1,3 @@
-// components/auth/Login.jsx
 import React, { useState } from "react"
 import { Modal, Form, Button, Alert, Spinner } from "react-bootstrap"
 import { useAuth } from "../../hooks/useAuth"

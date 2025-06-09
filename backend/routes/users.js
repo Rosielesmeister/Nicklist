@@ -46,6 +46,7 @@ router.get("/user/favorites", authenticate, async (req, res) => {
 
 // POST add product to user's favorites
 router.post("/user/favorites/:productId", authenticate, async (req, res) => {
+  
   try {
     const { productId } = req.params;
     const userId = req.user.userId;

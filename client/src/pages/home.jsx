@@ -6,8 +6,8 @@ import { useAuth } from "../hooks/useAuth"
 import { useProducts } from "../hooks/useProducts"
 import { useFilters } from "../hooks/useFilters"
 import { usePagination } from "../hooks/usePagination"
-import ProductDetailsModal from "../components/products/ProductDetailsModal"
-import NewListing from "../components/products/NewListing"
+import ProductDetailsModal from "../components/ProductDetailsModal/ProductDetailsModal"
+import NewListing from "../components/newListing/NewListing"
 
 // All UI components from single file
 import {

@@ -1,4 +1,3 @@
-// hooks/useAuth.jsx
 import { useState, useContext, createContext, useEffect } from "react"
 import { authAPI } from "../api/api"
 import "bootstrap-icons/font/bootstrap-icons.css"

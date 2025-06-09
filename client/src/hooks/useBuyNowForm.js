@@ -1,6 +1,5 @@
-// hooks/useBuyNowForm.js
 import { useState } from "react"
-import { useAuth } from "./UseAuth"
+import { useAuth } from "./useAuth"
 import { formatCardNumber, formatExpiryDate, formatCvv } from "../utils/inputFormatters"
 import { validateForm as validateFormUtil } from "../utils/formValidation"
 
