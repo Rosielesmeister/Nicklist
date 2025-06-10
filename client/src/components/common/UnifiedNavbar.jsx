@@ -186,7 +186,7 @@ const UnifiedNavbar = () => {
         src="/LOGO.png"
         alt="Nicklist Logo"
         style={{
-          // Keep your existing responsive sizing
+          // Keep ALL your existing styles exactly the same
           height: (() => {
             if (typeof window === "undefined") return "65px";
             if (window.innerWidth < 576) return "65px";
@@ -204,13 +204,9 @@ const UnifiedNavbar = () => {
           borderRadius: "50%",
           objectFit: "cover",
           objectPosition: "center",
-          // Keep balanced cropping for white edge removal
-          transform: "scale(1.25)",
-
+          transform: "scale(1.25)", // Static scale - no hover changes
           border: "3px solid #fff",
           backgroundColor: "transparent",
-
-          // 🆕 INTENSIFIED SHADOW EFFECTS: Much more prominent shadows
           boxShadow: `
             0 6px 12px rgba(0, 0, 0, 0.3),
             0 12px 24px rgba(0, 0, 0, 0.2),
@@ -219,10 +215,7 @@ const UnifiedNavbar = () => {
             0 0 30px rgba(40, 167, 69, 0.25),
             0 0 60px rgba(40, 167, 69, 0.1)
           `,
-
           clipPath: "circle(50% at 50% 50%)",
-
-          // Keep your existing positioning
           marginTop: (() => {
             if (typeof window === "undefined") return "15px";
             if (window.innerWidth < 576) return "15px";
@@ -251,51 +244,22 @@ const UnifiedNavbar = () => {
             if (window.innerWidth < 992) return "22px";
             return "25px";
           })(),
-
           transition: "all 0.3s ease",
           display: logoError ? "none" : "block",
           overflow: "hidden",
-
-          // 🆕 ENHANCED DROP SHADOW: More intense filter shadow
           filter: "drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 20px rgba(40, 167, 69, 0.2))",
         }}
         onLoad={() => {
-          console.log("✅ Logo loaded successfully!");
+          // Only load handling - no hover animations
           setLogoLoaded(true);
           setLogoError(false);
         }}
         onError={(e) => {
-          console.error("❌ Logo failed to load from:", e.target.src);
+          // Only error handling - no hover animations
           setLogoError(true);
           setLogoLoaded(false);
         }}
-        onMouseOver={(e) => {
-          // 🆕 DRAMATIC HOVER SHADOWS: Even more intense on hover
-          e.target.style.transform = "scale(1.35) translateY(-3px)"; // Increased lift
-          e.target.style.boxShadow = `
-            0 12px 24px rgba(0, 0, 0, 0.4),
-            0 24px 48px rgba(0, 0, 0, 0.3),
-            0 48px 96px rgba(0, 0, 0, 0.2),
-            0 4px 8px rgba(255, 255, 255, 0.25) inset,
-            0 0 40px rgba(40, 167, 69, 0.5),
-            0 0 80px rgba(40, 167, 69, 0.3),
-            0 0 120px rgba(40, 167, 69, 0.15)
-          `;
-          e.target.style.filter = "drop-shadow(0 12px 24px rgba(0, 0, 0, 0.4)) drop-shadow(0 0 30px rgba(40, 167, 69, 0.4))";
-        }}
-        onMouseOut={(e) => {
-          // Return to enhanced shadow state
-          e.target.style.transform = "scale(1.25)";
-          e.target.style.boxShadow = `
-            0 6px 12px rgba(0, 0, 0, 0.3),
-            0 12px 24px rgba(0, 0, 0, 0.2),
-            0 24px 48px rgba(0, 0, 0, 0.15),
-            0 3px 6px rgba(255, 255, 255, 0.15) inset,
-            0 0 30px rgba(40, 167, 69, 0.25),
-            0 0 60px rgba(40, 167, 69, 0.1)
-          `;
-          e.target.style.filter = "drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 20px rgba(40, 167, 69, 0.2))";
-        }}
+        // ✅ NO HOVER HANDLERS - Logo won't move on hover
       />
       {NAVBAR_CONFIG.BRAND_NAME}
     </Navbar.Brand>
