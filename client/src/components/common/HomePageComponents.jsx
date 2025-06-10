@@ -11,6 +11,7 @@ import {
 	Pagination,
 } from "react-bootstrap"
 import { Search, Filter, Plus, Package, X } from "lucide-react"
+import ProductCard from "../ProductCard/ProductCard" // Import your existing sophisticated ProductCard
 import {
 	CATEGORIES,
 	US_STATES,
@@ -19,29 +20,6 @@ import {
 	FILTER_LABELS,
 	PAGE_CONFIG,
 } from "./Constant"
-
-// Simple ProductCard component (fallback)
-const ProductCard = ({ product, onViewDetails }) => (
-	<Card className="h-100 shadow-sm">
-		<Card.Img
-			variant="top"
-			src={product.images?.[0]?.url || "https://via.placeholder.com/300x200?text=No+Image"}
-			style={{ height: "200px", objectFit: "cover" }}
-		/>
-		<Card.Body className="d-flex flex-column">
-			<Card.Title className="h6">{product.name}</Card.Title>
-			<Card.Text className="text-muted small flex-grow-1">
-				{product.description?.substring(0, 80)}...
-			</Card.Text>
-			<div className="d-flex justify-content-between align-items-center mt-auto">
-				<span className="h5 text-primary mb-0">${product.price}</span>
-				<Button size="sm" variant="outline-primary" onClick={() => onViewDetails(product)}>
-					View Details
-				</Button>
-			</div>
-		</Card.Body>
-	</Card>
-)
 
 // =============================================================================
 // LOADING STATE COMPONENT
