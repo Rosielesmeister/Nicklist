@@ -185,70 +185,80 @@ const UnifiedNavbar = () => {
         src="/LOGO.png"
         alt="Nicklist Logo"
         style={{
-          // Increased responsive sizing - bigger on all screen sizes
+          // Keep ALL your existing styles exactly the same
           height: (() => {
-            if (typeof window === "undefined") return "70px"; // SSR fallback (was 60px)
-            if (window.innerWidth < 576) return "70px"; // Mobile: 70px (was 60px)
-            if (window.innerWidth < 768) return "90px"; // Small tablet: 90px (was 80px)
-            if (window.innerWidth < 992) return "115px"; // Large tablet: 115px (was 100px)
-            return "140px"; // Desktop: 140px (was 120px)
+            if (typeof window === "undefined") return "65px";
+            if (window.innerWidth < 576) return "65px";
+            if (window.innerWidth < 768) return "80px";
+            if (window.innerWidth < 992) return "100px";
+            return "120px";
           })(),
           width: (() => {
-            if (typeof window === "undefined") return "70px";
-            if (window.innerWidth < 576) return "70px";
-            if (window.innerWidth < 768) return "90px";
-            if (window.innerWidth < 992) return "115px";
-            return "140px";
+            if (typeof window === "undefined") return "65px";
+            if (window.innerWidth < 576) return "65px";
+            if (window.innerWidth < 768) return "80px";
+            if (window.innerWidth < 992) return "100px";
+            return "120px";
           })(),
           borderRadius: "50%",
           objectFit: "cover",
-          border: "4px solid #fff",
-          backgroundColor: logoError ? "#28a745" : "transparent",
-          boxShadow: "0 10px 25px rgba(0,0,0,0.6)", // Enhanced shadow for bigger logo
-          // Adjusted overlap margins for bigger logo
+          objectPosition: "center",
+          transform: "scale(1.25)", // Static scale - no hover changes
+          border: "3px solid #fff",
+          backgroundColor: "transparent",
+          boxShadow: `
+            0 6px 12px rgba(0, 0, 0, 0.3),
+            0 12px 24px rgba(0, 0, 0, 0.2),
+            0 24px 48px rgba(0, 0, 0, 0.15),
+            0 3px 6px rgba(255, 255, 255, 0.15) inset,
+            0 0 30px rgba(40, 167, 69, 0.25),
+            0 0 60px rgba(40, 167, 69, 0.1)
+          `,
+          clipPath: "circle(50% at 50% 50%)",
           marginTop: (() => {
-            if (typeof window === "undefined") return "-12px";
-            if (window.innerWidth < 576) return "-12px";
-            if (window.innerWidth < 768) return "-18px";
-            if (window.innerWidth < 992) return "-28px";
-            return "-35px"; // Bigger overlap for desktop
+            if (typeof window === "undefined") return "15px";
+            if (window.innerWidth < 576) return "15px";
+            if (window.innerWidth < 768) return "12px";
+            if (window.innerWidth < 992) return "8px";
+            return "5px";
           })(),
           marginLeft: (() => {
-            if (typeof window === "undefined") return "-18px";
-            if (window.innerWidth < 576) return "-18px";
-            if (window.innerWidth < 768) return "-25px";
-            if (window.innerWidth < 992) return "-35px";
-            return "-40px"; // Bigger overlap for desktop
+            if (typeof window === "undefined") return "-15px";
+            if (window.innerWidth < 576) return "-15px";
+            if (window.innerWidth < 768) return "-20px";
+            if (window.innerWidth < 992) return "-25px";
+            return "-30px";
           })(),
           marginBottom: (() => {
-            if (typeof window === "undefined") return "-12px";
-            if (window.innerWidth < 576) return "-12px";
-            if (window.innerWidth < 768) return "-18px";
-            if (window.innerWidth < 992) return "-28px";
-            return "-35px";
+            if (typeof window === "undefined") return "-10px";
+            if (window.innerWidth < 576) return "-10px";
+            if (window.innerWidth < 768) return "-15px";
+            if (window.innerWidth < 992) return "-20px";
+            return "-25px";
           })(),
           marginRight: (() => {
-            if (typeof window === "undefined") return "15px";
-            if (window.innerWidth < 576) return "10px";
-            if (window.innerWidth < 768) return "15px";
-            if (window.innerWidth < 992) return "18px";
-            return "22px"; // More spacing for bigger logo
+            if (typeof window === "undefined") return "18px";
+            if (window.innerWidth < 576) return "15px";
+            if (window.innerWidth < 768) return "18px";
+            if (window.innerWidth < 992) return "22px";
+            return "25px";
           })(),
           transition: "all 0.3s ease",
           display: logoError ? "none" : "block",
+          overflow: "hidden",
+          filter: "drop-shadow(0 6px 12px rgba(0, 0, 0, 0.25)) drop-shadow(0 0 20px rgba(40, 167, 69, 0.2))",
         }}
         onLoad={() => {
-          console.log("✅ Logo loaded successfully!");
+          // Only load handling - no hover animations
           setLogoLoaded(true);
           setLogoError(false);
         }}
         onError={(e) => {
-          console.error("❌ Logo failed to load from:", e.target.src);
+          // Only error handling - no hover animations
           setLogoError(true);
           setLogoLoaded(false);
         }}
-        onMouseOver={(e) => (e.target.style.transform = "scale(1.08)")}
-        onMouseOut={(e) => (e.target.style.transform = "scale(1)")}
+        // ✅ NO HOVER HANDLERS - Logo won't move on hover
       />
       {NAVBAR_CONFIG.BRAND_NAME}
     </Navbar.Brand>
